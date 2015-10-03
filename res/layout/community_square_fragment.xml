@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/f8f8f8"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loading_layout"
+        android:background="@color/white_color"/>
+
+    <com.ymdq.thy.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/official_recommendation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_color"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/line_grey" />
+
+                    <LinearLayout
+                        android:id="@+id/official_recommendation_more"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/f8f8f8"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            style="@style/community_dynamic_text"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="11dip"
+                            android:layout_marginLeft="15dip"
+                            android:layout_marginTop="11dip"
+                            android:layout_weight="1"
+                            android:text="@string/official_recommendation" />
+
+                        <TextView
+                            style="@style/community_dynamic_more_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="15dip"
+                            android:text="@string/more" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/line_grey" />
+
+                    <LinearLayout
+                        android:id="@+id/official_recommendation_top_and_group"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/popular_community"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dip"
+                    android:background="@color/white_color"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/popular_community_more"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/f8f8f8"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            style="@style/community_dynamic_text"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="11dip"
+                            android:layout_marginLeft="15dip"
+                            android:layout_marginTop="11dip"
+                            android:layout_weight="1"
+                            android:text="@string/popular_community" />
+
+                        <TextView
+                            style="@style/community_dynamic_more_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="15dip"
+                            android:text="@string/more" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/line_grey" />
+
+                    <LinearLayout
+                        android:id="@+id/popular_community_top_and_group"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </com.ymdq.thy.view.PullToRefreshView>
+
+    <include
+        android:id="@+id/loading_failed"
+        layout="@layout/click_to_reloading"
+        android:visibility="gone" />
+
+</LinearLayout>

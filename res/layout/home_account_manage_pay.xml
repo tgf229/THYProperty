@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_repair_bg"
+    android:orientation="vertical" >
+
+    <include 
+        android:id="@+id/title"
+        layout="@layout/app_title"/>
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dip" >
+
+        <CheckBox
+            android:id="@+id/no_pay_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:gravity="center"
+            android:button="@drawable/account_manage_property_pay_selector"
+            android:paddingRight="6dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="只显示未缴账单"
+            android:textColor="@color/account_manage_575757"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="16dip"
+        android:listSelector="@android:color/transparent"
+        android:divider="@color/property_repair_bg" />
+    <include 
+        android:id="@+id/no_data"
+        layout="@layout/no_data_layout"
+        android:visibility="gone"/>
+
+</LinearLayout>

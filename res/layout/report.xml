@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_repair_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dip"
+        android:layout_marginLeft="16dip"
+        android:layout_marginTop="12dip"
+        android:text="举报原因"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="horizontal"
+        android:paddingBottom="5dip"
+        android:paddingLeft="5dip" >
+
+        <RadioGroup
+            android:id="@+id/left_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/report_btn_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/report_reason"
+                android:text="垃圾营销" />
+
+            <RadioButton
+                android:id="@+id/report_btn_1"
+                style="@style/report_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="不实信息" />
+
+            <RadioButton
+                android:id="@+id/report_btn_2"
+                style="@style/report_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="抄袭内容" />
+
+            <RadioButton
+                android:id="@+id/report_btn_3"
+                style="@style/report_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="虚假中奖" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/right_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/report_btn_4"
+                style="@style/report_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="淫秽色情" />
+
+            <RadioButton
+                android:id="@+id/report_btn_5"
+                style="@style/report_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="敏感信息" />
+
+            <RadioButton
+                android:id="@+id/report_btn_6"
+                style="@style/report_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="骚扰我" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+    <Button
+        android:id="@+id/report_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_marginTop="20dip"
+        android:layout_marginLeft="13dip"
+        android:layout_marginRight="13dip"
+        android:textColor="@color/white_color"
+        android:textSize="18sp"
+        android:background="@drawable/report_submit_selector"
+        android:text="举报"/>
+
+</LinearLayout>

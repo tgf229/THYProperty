@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="54dip"
+    android:background="@color/white_color"
+    android:orientation="horizontal"
+    android:paddingLeft="15dip"
+    android:paddingTop="10dip" >
+
+    <ImageView
+        android:id="@+id/img_type"
+        android:layout_width="34dip"
+        android:layout_height="34dip"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="10dip"
+        android:src="@drawable/community_default" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:paddingLeft="10dip"
+            android:paddingRight="15dip" >
+
+            <TextView
+                android:id="@+id/home_name"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black_color"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/person_register_one_agreement"
+                android:textSize="13sp" />
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/person_register_one_agreement"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:paddingLeft="10dip"
+            android:paddingRight="15dip" >
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交易成功"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/line_item"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/line_grey" />
+    </LinearLayout>
+
+</LinearLayout>

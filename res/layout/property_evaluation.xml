@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_repair_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:focusable="false"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:paddingBottom="19dip"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip"
+                android:paddingTop="19dip"
+                android:text="亲爱的用户，请对我们的服务进行评价，非常感谢您的支出与鼓励！"
+                android:textColor="@color/home_title"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:paddingBottom="12dip"
+                android:paddingLeft="14dip"
+                android:paddingTop="12dip" >
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_color"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/satisfied_1"
+                        style="@style/property_evaluate_radio"
+                        android:background="@color/white_color"
+                        android:text="很满意" />
+
+                    <RadioButton
+                        android:id="@+id/commonly_2"
+                        style="@style/property_evaluate_radio"
+                        android:background="@color/white_color"
+                        android:text="一般" />
+
+                    <RadioButton
+                        android:id="@+id/unsatisfy_3"
+                        style="@style/property_evaluate_radio"
+                        android:background="@color/white_color"
+                        android:text="不满意" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="12dip"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dip"
+                android:background="@color/white_color"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/exchanged_shopping_order_reason_et"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="说点什么吧..."
+                    android:imeOptions="actionDone"
+                    android:maxLength="200"
+                    android:padding="14dp"
+                    android:text=""
+                    android:textColorHint="@color/text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textChangeLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="6dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="4dip"
+                    android:text="0/200"
+                    android:textColor="@color/person_input_hint"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="16dip"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="horizontal" >
+
+                <com.ymdq.thy.view.MyGridView
+                    android:id="@+id/repair_grid_view"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="11dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:drawSelectorOnTop="true"
+                    android:horizontalSpacing="10dip"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:verticalSpacing="10dip" >
+                </com.ymdq.thy.view.MyGridView>
+
+                <!-- android:stretchMode="columnWidth" -->
+
+                <TextView
+                    android:id="@+id/img_txt_num"
+                    android:layout_width="50dip"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="#ffffff"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="11dip"
+                    android:text="0/6"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <RelativeLayout
+                android:id="@+id/bottom_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" >
+                <TextView
+                    android:id="@+id/property_repair_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="温馨提示："
+                    android:textColor="@color/bb474d"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_toRightOf="@id/property_repair_tips"
+                    android:text="亲爱的用户如果选择不满意，我们将会重新对工单进行处理，感谢您的支持！"
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/property_repair_bg"
+    android:gravity="center_vertical"
+    android:paddingLeft="15dip" >
+
+    <ImageView
+        android:id="@+id/comment_img"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="13dip"
+        android:src="@drawable/default_head_pic_round" />
+
+    <TextView
+        android:id="@+id/comment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="18dip"
+        android:layout_toRightOf="@+id/comment_img"
+        android:textSize="15sp"
+        android:textColor="@color/black_color" />
+
+    <TextView
+        android:id="@+id/comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dip"
+        android:textColor="@color/community_come_from"
+        android:textSize="13sp"
+        android:paddingRight="15dip"
+        android:text="14-11-21 11:11:22" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_name"
+        android:layout_toRightOf="@+id/comment_img"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="8dip"
+        android:paddingBottom="15dip"
+        android:lineSpacingExtra="5dip"
+        android:textColor="@color/community_come_from"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/content"
+        android:layout_toRightOf="@+id/comment_img"
+        android:layout_marginLeft="5dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/line_grey" />
+
+</RelativeLayout>

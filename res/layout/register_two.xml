@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/person_register_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/register_two_title"
+        layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/register_two_title" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:paddingLeft="15dp"
+                android:text="请选择您的身份"
+                android:textColor="@color/person_register_choise_title"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <RadioGroup
+                android:id="@+id/register_two_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/register_two_radio_tenement"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_weight="1.0"
+                    android:background="@color/white_color"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableLeft="@drawable/radiobutton_icon_selector"
+                    android:drawablePadding="6dp"
+                    android:paddingBottom="13dp"
+                    android:paddingTop="13dp"
+                    android:text="我是住户"
+                    android:textColor="@color/home_title"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/register_two_radio_owner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:layout_weight="1.0"
+                    android:background="@color/white_color"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/radiobutton_icon_selector"
+                    android:drawablePadding="6dp"
+                    android:paddingBottom="13dp"
+                    android:paddingTop="13dp"
+                    android:text="我是业主"
+                    android:textColor="@color/home_title"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="17dp"
+                android:paddingLeft="15dp"
+                android:text="请补全此房屋业主预留身份证号后六位"
+                android:textColor="@color/person_register_choise_title"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/register_two_idcard_view"
+                    layout="@layout/register_two_idcard" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:text="如已更换身份证号,需业主前往服务中心更新"
+                    android:textColor="@color/person_register_choise_title"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <include
+                android:id="@+id/register_two_phone_num"
+                layout="@layout/register_two_phone"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/register_two_sumbit_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/person_register_sumbit_bg_new_selector"
+                    android:text="@string/register_one_sumbit"
+                    android:textColor="@color/white_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/register_two_keyboard_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

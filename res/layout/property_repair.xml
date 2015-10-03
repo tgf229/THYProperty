@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_repair_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loading_layout"
+        android:visibility="visible" />
+
+    <include
+        android:id="@+id/click_refresh_layout"
+        layout="@layout/loading_failed"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:focusable="false"
+        android:scrollbars="none"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:id="@+id/choice_house_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="14dip"
+                android:paddingLeft="14dip"
+                android:paddingRight="16dip"
+                android:paddingTop="14dip" >
+
+                <EditText
+                    android:id="@+id/house_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="请选择房屋"
+                    android:textColor="@color/home_title"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/service_icon_arrow_down" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:id="@+id/popup_window_layout"
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:background="@color/white_color"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <ListView
+                    android:id="@+id/popup_window"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:divider="@drawable/line_grey"
+                    android:dividerHeight="1px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/line_grey" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="12dip"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dip"
+                android:background="@color/white_color"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/exchanged_shopping_order_reason_et"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请在此描述您的报修信息"
+                    android:imeOptions="actionDone"
+                    android:maxLength="200"
+                    android:padding="14dp"
+                    android:text=""
+                    android:textColorHint="@color/community_come_from"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/textChangeLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="6dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="4dip"
+                    android:text="0/200"
+                    android:textColor="@color/community_come_from"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="horizontal" >
+
+                <com.ymdq.thy.view.MyGridView
+                    android:id="@+id/repair_grid_view"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="11dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:drawSelectorOnTop="true"
+                    android:horizontalSpacing="10dip"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:verticalSpacing="10dip" >
+                </com.ymdq.thy.view.MyGridView>
+
+                <!-- android:stretchMode="columnWidth" -->
+
+                <TextView
+                    android:id="@+id/img_txt_num"
+                    android:layout_width="50dip"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="#ffffff"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="11dip"
+                    android:text="0/6"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <RelativeLayout
+                android:id="@+id/bottom_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" >
+
+                <TextView
+                    android:id="@+id/property_repair_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="温馨提示："
+                    android:textColor="@color/bb474d"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/property_repair_tips"
+                    android:layout_marginTop="14dp"
+                    android:text="报修小区公共设施，可报修电梯、游乐场设施等。"
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

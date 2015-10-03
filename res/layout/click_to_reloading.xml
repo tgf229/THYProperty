@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFCFC"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="100dip" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/refresh" />
+
+    <TextView
+        android:id="@+id/loading_failed_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dip"
+        android:gravity="center"
+        android:text="点击屏幕 重新加载"
+        android:textColor="@color/refresh"
+        android:textSize="15sp" />
+
+</LinearLayout>

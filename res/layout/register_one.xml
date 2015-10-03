@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/person_register_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:paddingLeft="20dp"
+                android:text="@string/register_one_choise_title"
+                android:textColor="@color/person_register_choise_title"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:paddingLeft="15dip"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="36dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/register_one_city"
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_one_city_name"
+                        android:textColor="@color/person_register_choise_title"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_lists_line" />
+
+                <LinearLayout
+                    android:id="@+id/person_register_choise_community_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/register_one_plot"
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/person_register_choise_community_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_one_plot_name"
+                        android:textColor="@color/person_register_choise_title"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/zhuce_arrow_grey" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_lists_line" />
+
+                <LinearLayout
+                    android:id="@+id/person_register_choise_house_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/register_one_house"
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/person_register_choise_house_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/person_register_choise_title"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/zhuce_arrow_grey" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="19dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/register_agreement_ck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:button="@null"
+                    android:checked="false"
+                    android:drawableLeft="@drawable/register_checkbox_agree_selector"
+                    android:drawablePadding="6dp"
+                    android:focusable="false"
+                    android:text="@string/register_one_agree"
+                    android:textColor="@color/person_register_choise_title"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/register_agreement_greement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_one_agreement"
+                    android:textColor="@color/person_register_agreement"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/register_one_sumbit_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
+                    android:background="@drawable/person_register_sumbit_bg_new_selector"
+                    android:text="@string/register_one_sumbit"
+                    android:textColor="@color/white_color"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

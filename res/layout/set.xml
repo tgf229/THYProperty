@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/person_register_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/person_center_gray_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="vertical"
+                android:paddingLeft="15dp" >
+
+                <LinearLayout
+                    android:id="@+id/set_message_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="18dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="新消息提醒"
+                        android:textColor="@color/black_color"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/set_message_img_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/setting_swith_on" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/set_update_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="18dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="检查更新"
+                        android:textColor="@color/black_color"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/person_center_right_icon_selector" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/set_help_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="18dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="意见反馈"
+                        android:textColor="@color/black_color"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/person_center_right_icon_selector" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_gray_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/person_center_gray_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="vertical"
+                android:paddingLeft="15dp" >
+
+                <LinearLayout
+                    android:id="@+id/set_about_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="18dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="关于"
+                        android:textColor="@color/black_color"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/person_center_right_icon_selector" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/set_exit_ll_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/set_exit_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="18dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="退出当前账号"
+                        android:textColor="@color/black_color"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/person_center_right_icon_selector" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_gray_line" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

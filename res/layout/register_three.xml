@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/person_register_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp"
+                android:text="@string/register_three_register_title"
+                android:textColor="@color/person_register_choise_title"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_lists_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp" >
+
+                    <EditText
+                        android:id="@+id/register_three_phone_et"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="1.0"
+                        android:background="@null"
+                        android:hint="@string/person_login_username"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:singleLine="true"
+                        android:textColor="@color/home_title"
+                        android:textColorHint="@color/person_input_hint"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/register_three_phone_delete_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="6dp"
+                        android:src="@drawable/register_three_delete" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_lists_line" />
+
+                <LinearLayout
+                    android:id="@+id/register_three_code_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp" >
+
+                        <EditText
+                            android:id="@+id/register_three_code_et"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.0"
+                            android:background="@null"
+                            android:hint="@string/register_three_code"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:singleLine="true"
+                            android:textColor="@color/home_title"
+                            android:textColorHint="@color/person_input_hint"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/register_three_code_bt"
+                            android:layout_width="100dp"
+                            android:layout_height="37dp"
+                            android:layout_marginLeft="9dp"
+                            android:background="@drawable/register_two_code_sumbit_bg_selector"
+                            android:text="获取验证码"
+                            android:textColor="@color/text_color"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@drawable/person_center_lists_line" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/person_center_lists_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp" >
+
+                <EditText
+                    android:id="@+id/register_three_nickname_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:hint="@string/register_three_name"
+                    android:imeOptions="actionNext"
+                    android:maxLength="7"
+                    android:singleLine="true"
+                    android:textColor="@color/home_title"
+                    android:textColorHint="@color/person_input_hint"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/person_center_lists_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp" >
+
+                <EditText
+                    android:id="@+id/register_three_password_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:hint="请输入密码"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@color/home_title"
+                    android:textColorHint="@color/person_input_hint"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp" >
+
+                <EditText
+                    android:id="@+id/register_three_password_again_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:hint="请确认密码"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@color/home_title"
+                    android:textColorHint="@color/person_input_hint"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_lists_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/register_three_sumbit_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/person_register_sumbit_bg_new_selector"
+                    android:text="@string/register_three_sumbit"
+                    android:textColor="@color/white_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

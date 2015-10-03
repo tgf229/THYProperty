@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/person_register_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/white_color"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/person_info_head_pic_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp" >
+
+                    <TextView
+                        android:id="@+id/person_center_name_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="头像"
+                        android:textColor="@color/black_color"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/person_info_head_pic_iv"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="15dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/default_head_pic" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="14dp"
+                        android:src="@drawable/register_one_house_right_icon" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/person_center_gray_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp" >
+
+                    <TextView
+                        android:layout_width="84dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="昵称"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/person_info_nickname_et"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="1.0"
+                        android:background="@null"
+                        android:hint="@string/person_info_nickname"
+                        android:imeOptions="actionNext"
+                        android:maxLength="7"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+                        android:textColorHint="@color/person_input_hint"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/person_info_nickname_delete_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="6dp"
+                        android:src="@drawable/register_three_delete" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp" >
+
+                    <TextView
+                        android:layout_width="84dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="姓名"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/person_info_name_et"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="1.0"
+                        android:background="@null"
+                        android:hint="@string/person_info_name"
+                        android:imeOptions="actionDone"
+                        android:maxLength="7"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+                        android:textColorHint="@color/person_input_hint"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/person_info_name_delete_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="6dp"
+                        android:src="@drawable/register_three_delete" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/person_info_birth_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp" >
+
+                    <TextView
+                        android:layout_width="84dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="出生日期"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/person_info_birth_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="1988-11-25"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dip"
+                        android:background="@drawable/selector_personal_calendar" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/person_info_sex_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp" >
+
+                    <TextView
+                        android:layout_width="84dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="性别"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/person_info_sex_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="保密"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

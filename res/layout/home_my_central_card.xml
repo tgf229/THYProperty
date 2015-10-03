@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color" >
+
+        <LinearLayout
+            android:id="@+id/community_tab"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/account_manage"
+                style="@style/register_title_text"
+                android:text="@string/account_manage_text"
+                android:textColor="@color/black_color" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="29dip "
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/line_vertical" />
+
+            <TextView
+                android:id="@+id/payment_list"
+                style="@style/register_title_text"
+                android:text="@string/payment_list_text"
+                android:textColor="@color/community_dynamic" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/cursor"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/community_tab"
+            android:layout_marginBottom="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/community_red_line" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/community_red_line_light" />
+
+    <FrameLayout
+        android:id="@+id/account_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0" >
+    </FrameLayout>
+
+</LinearLayout>

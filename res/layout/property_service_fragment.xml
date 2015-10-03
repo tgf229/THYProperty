@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_repair_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dip"
+        android:background="@drawable/home_titibg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip" >
+
+        <TextView
+            android:id="@+id/title_name"
+            style="@style/title_name"
+            android:maxWidth="220dip"
+            android:singleLine="true"
+            android:text="物业服务" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!--
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/home_bg_head" >
+
+                <ImageView
+                    android:id="@+id/top_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/service_top_bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dip"
+                    android:layout_alignBottom="@+id/top_bg"
+                    android:background="@drawable/service_top_blackbg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dip" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/service_icon_location" />
+
+                    <TextView
+                        style="@style/property_top_text"
+                        android:layout_marginLeft="10dip"
+                        android:text="物业地址：" />
+
+                    <TextView
+                        android:id="@+id/property_address"
+                        style="@style/property_top_text" />
+                </LinearLayout>
+            </RelativeLayout>
+            -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="125dip"
+                android:background="@drawable/service_bg_nav"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="14dip"
+                android:paddingRight="14dip" >
+
+                <Button
+                    android:id="@+id/my_ticket"
+                    style="@style/property_middle_red"
+                    android:drawableTop="@drawable/service_icon_mywork"
+                    android:text="@string/property_my_ticket" />
+
+                <Button
+                    android:id="@+id/call"
+                    style="@style/property_middle_red"
+                    android:drawableTop="@drawable/service_icon_phone"
+                    android:text="@string/property_call" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dip" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/service_icon_location" />
+
+                <TextView
+                    style="@style/property_top_text"
+                    android:layout_marginLeft="6dip"
+                    android:text="物业地址：" />
+
+                <TextView
+                    android:id="@+id/property_address"
+                    style="@style/property_top_text" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dip"
+                android:background="@color/white_color"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/repair_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dip"
+                        android:src="@drawable/service_icon_repair" />
+
+                    <TextView
+                        style="@style/property_bottom_text"
+                        android:text="报修" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/line_grey" />
+
+                <LinearLayout
+                    android:id="@+id/help_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dip"
+                        android:src="@drawable/service_icon_help" />
+
+                    <TextView
+                        style="@style/property_bottom_text"
+                        android:text="求助" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/line_grey" />
+
+                <LinearLayout
+                    android:id="@+id/complaint_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dip"
+                        android:src="@drawable/service_icon_complaint" />
+
+                    <TextView
+                        style="@style/property_bottom_text"
+                        android:text="投诉" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dip"
+                android:background="@color/white_color"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/suggest_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dip"
+                    android:layout_weight="2"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="28dip"
+                        android:src="@drawable/service_icon_suggest" />
+
+                    <TextView
+                        style="@style/property_bottom_text"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:text="建议" />
+
+                    
+                </LinearLayout>
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/line_grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/service_icon_more" />
+                </LinearLayout>
+                
+
+                <!--
+                <LinearLayout
+                    android:id="@+id/thanks_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="28dip"
+                        android:src="@drawable/service_icon_thank" />
+
+                    <TextView
+                        style="@style/property_bottom_text"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:text="表扬" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@drawable/line_vertical" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/property_bottom_bg_selector"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="invisible" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dip"
+                        android:src="@drawable/service_icon_complaint" />
+                </LinearLayout>
+                -->
+            </LinearLayout>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/line_vertical" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

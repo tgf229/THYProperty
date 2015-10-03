@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+    android:orientation="vertical"
+    android:scrollbars="none" >
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/content_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/head_image"
+                    android:layout_width="70dip"
+                    android:layout_height="70dip"
+                    android:layout_marginBottom="13dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="13dip"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/community_default" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/user_count"
+                            style="@style/community_circle_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/community_circle_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注" />
+
+                        <TextView
+                            android:id="@+id/article_count"
+                            style="@style/community_circle_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dip" />
+
+                        <TextView
+                            style="@style/community_circle_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发帖" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/time_or_notice"
+                            style="@style/community_circle_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="公告:" />
+
+                        <TextView
+                            android:id="@+id/desc"
+                            style="@style/community_circle_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dip"
+                            android:ellipsize="end"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/delete_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="#ff3b40"
+                android:gravity="center_vertical"
+                android:paddingLeft="25dip"
+                android:paddingRight="25dip"
+                android:text="删除"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/line_to_right"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="95dip"
+        android:background="@drawable/line_grey" />
+
+    <ImageView
+        android:id="@+id/line_all"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_grey" />
+
+</LinearLayout>

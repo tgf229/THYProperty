@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
+
+        <ImageView
+            android:id="@+id/house_user_info_item_head_pic_iv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_head_pic" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1.0"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/house_user_info_item_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="黑眼豆豆"
+                    android:textColor="@color/black_color"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/house_user_info_item_identity_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:background="@drawable/house_user_info_red_icon"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="1dp"
+                    android:text="业主"
+                    android:textColor="@color/white_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/house_user_info_item_pnone_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15151828133"
+                android:textColor="@color/person_center_no_house"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="12dp" >
+
+            <TextView
+                android:id="@+id/house_user_info_item_edit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/house_user_info_red_bg_selector"
+                android:gravity="center"
+                android:text="冻结"
+                android:textColor="@color/white_color"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/house_user_info_item_state_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="正常"
+                android:layout_alignRight="@id/house_user_info_item_edit_tv"
+                android:textColor="@color/house_user_info_normal"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/house_user_info_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="60dp"
+        android:background="@drawable/person_center_gray_line" />
+
+</LinearLayout>

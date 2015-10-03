@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/home_bg"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_footbg"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/home_menu_home"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/home_menu_home_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/home_icon_home" />
+
+                <TextView
+                    android:id="@+id/home_menu_home_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_menu_home_img"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/home_menu_home"
+                    android:textColor="@color/home_menu_normal"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/home_menu_property_service"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/home_menu_property_service_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/home_icon_service" />
+
+                <TextView
+                    android:id="@+id/home_menu_property_service_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_menu_property_service_img"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/home_menu_property_service"
+                    android:textColor="@color/home_menu_normal"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/home_menu_community"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/home_menu_community_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/home_icon_neighbor" />
+
+                <TextView
+                    android:id="@+id/home_menu_community_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_menu_community_img"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/home_menu_community"
+                    android:textColor="@color/home_menu_normal"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/community_message_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@id/home_menu_community_txt"
+                    android:layout_alignTop="@id/home_menu_community_img"
+                    android:layout_marginRight="-5dip"
+                    android:layout_marginTop="-5dip"
+                    android:background="@drawable/community_message_number"
+                    android:gravity="center"
+                    android:textColor="@color/white_color"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/home_menu_person_center"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/home_menu_person_center_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/home_icon_myhome" />
+
+                <TextView
+                    android:id="@+id/home_menu_person_center_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_menu_person_center_img"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/home_menu_person_center"
+                    android:textColor="@color/home_menu_normal"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

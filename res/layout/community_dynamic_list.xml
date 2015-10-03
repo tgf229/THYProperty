@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/community_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loading_layout"
+        android:background="@color/white_color" />
+
+    <com.ymdq.thy.view.PullToRefreshView
+        android:id="@+id/storehome_main_pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/white_color"
+            android:divider="@null"
+            android:dividerHeight="1px"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent" >
+        </ListView>
+    </com.ymdq.thy.view.PullToRefreshView>
+
+    <include
+        android:id="@+id/loading_failed"
+        layout="@layout/click_to_reloading"
+        android:visibility="gone" />
+
+</LinearLayout>

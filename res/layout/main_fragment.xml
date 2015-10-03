@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="44dip"
+        android:background="@drawable/home_titibg"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/home_title"
+            android:textStyle="bold"
+            android:textSize="19sp"/>
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/title_name"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dip"
+            android:src="@drawable/home_icon_arrow"
+            android:visibility="gone" />
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@drawable/line_grey"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <com.ymdq.thy.view.PullToRefreshView
+        android:id="@+id/home_main_pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+     <!--    <com.ymdq.thy.view.MyScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" > -->
+
+                <com.ymdq.thy.view.MyListView2
+                    android:id="@+id/fresh_news_listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/line_grey"
+           			android:dividerHeight="1px"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbars="none" >
+                </com.ymdq.thy.view.MyListView2>
+            <!-- </LinearLayout>
+        </com.ymdq.thy.view.MyScrollView> -->
+    </com.ymdq.thy.view.PullToRefreshView>
+
+</LinearLayout>

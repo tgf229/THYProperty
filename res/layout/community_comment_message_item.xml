@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/community_topic_details"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="41dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="8dip" >
+
+            <ImageView
+                android:id="@+id/head_image"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_marginRight="4dip"
+                android:layout_marginTop="4dip"
+                android:src="@drawable/default_head_pic_round" />
+
+            <ImageView
+                android:id="@+id/icon_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/icon_vip"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="7dip"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/community_comment_message"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/comment"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/community_come_from"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/content_image"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="12dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/community_default" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="12dip"
+            android:ellipsize="end"
+            android:textColor="@color/community_comment_input"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/line_all"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_grey" />
+
+    <ImageView
+        android:id="@+id/line_to_right"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:background="@drawable/line_grey" />
+
+</LinearLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/property_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading_layout" />
+
+    <TextView
+        android:id="@+id/trans_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+        android:text="将此话题移动到"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/trans_view_top"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:cacheColorHint="#00000000"
+        android:listSelector="#00000000"
+        android:scrollbars="none" />
+
+    <View
+        android:id="@+id/trans_view_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+
+    <include
+        android:id="@+id/loading_failed"
+        layout="@layout/loading_failed"
+        android:visibility="gone" />
+
+</LinearLayout>

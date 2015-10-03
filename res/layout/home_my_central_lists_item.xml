@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bianming_content_bg"
+    android:paddingTop="16dip"
+    android:paddingLeft="15dip"
+    android:paddingBottom="16dip"
+    android:orientation="horizontal" >
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+        
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_color"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="星宇华府小区居委会" />
+        <TextView
+            android:id="@+id/tel"
+            style="@style/home_central_list"
+            android:text="025-8436521" />
+        <TextView
+            android:id="@+id/address"
+            style="@style/home_central_list"
+            android:text="江东中路108号万达写字楼C座108-2" />
+    </LinearLayout>
+    <View 
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@drawable/line_vertical"/>
+    <LinearLayout 
+        android:id="@+id/call_layout"
+        android:layout_width="62dip"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/central_list_selector" />
+    </LinearLayout>
+    
+</LinearLayout>

@@ -1,0 +1,5 @@
+<selector xmlns:Android="http://schemas.android.com/apk/res/android">
+
+    <item Android:drawable="@drawable/community_arrow_press" Android:state_pressed="true"/>
+    <item Android:drawable="@drawable/community_arrow"/>
+</selector>

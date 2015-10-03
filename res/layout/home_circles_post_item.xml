@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center" >
+    <!-- android:layout_margin="10dip" -->
+    <!-- android:padding="10dip" -->
+
+    <FrameLayout
+        android:id="@+id/circle_post_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/circle_post_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/circle_post_img_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_margin="4dip"
+            android:background="@drawable/circles_post_item_del_selector"
+            android:gravity="center"
+            android:onClick="onClick" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/circle_post_btn_pick"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/property_choise_img_selector" />
+    <!-- android:layout_margin="10dip" -->
+    <!-- android:layout_alignParentEnd="true" -->
+
+</FrameLayout>

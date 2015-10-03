@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#F1F1F1" >
+
+        <com.ymdq.thy.view.MyImageView
+            android:id="@+id/default_load_img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_banner" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/circlepager"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/circleindicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dip"
+            android:paddingLeft="5dip"
+            android:visibility="gone"
+            app:fillColor="#ea563c"
+            app:pageColor="#939393"
+            app:strokeWidth="0dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="15dip"
+            android:paddingTop="15dip" >
+
+            <Button
+                android:id="@+id/my_central_delivery"
+                style="@style/home_icon_style"
+                android:drawableTop="@drawable/selector_delivery_btn"
+                android:text="@string/delivery_message" />
+
+            <TextView
+                android:id="@+id/deliverty_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-25dip"
+                android:layout_marginTop="-26dip"
+                android:background="@drawable/home_icon_round"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/white_color"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="15dip"
+            android:paddingTop="15dip" >
+
+            <Button
+                android:id="@+id/my_central_message"
+                style="@style/home_icon_style"
+                android:drawableTop="@drawable/selector_my_message_btn"
+                android:text="@string/my_message" />
+
+            <TextView
+                android:id="@+id/message_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-25dip"
+                android:layout_marginTop="-26dip"
+                android:background="@drawable/home_icon_round"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/white_color"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="15dip"
+            android:paddingTop="15dip" >
+
+            <Button
+                android:id="@+id/my_central_card"
+                style="@style/home_icon_style"
+                android:drawableTop="@drawable/selector_my_bill_btn"
+                android:text="@string/my_bill" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="15dip"
+            android:paddingTop="15dip" >
+
+            <Button
+                android:id="@+id/my_central_lists"
+                style="@style/home_icon_style"
+                android:drawableTop="@drawable/selector_convenience_of_information_btn"
+                android:text="@string/convenience_of_information" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- 新鲜事 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_xinxianshi_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="12dip"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip"
+        android:paddingTop="12dip" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dip"
+            android:layout_weight="1"
+            android:background="@drawable/home_titline" />
+
+        <TextView
+            android:id="@+id/home_tit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dip"
+            android:layout_marginRight="14dip"
+            android:textColor="@color/home_tit_xinxianshi"
+            android:textSize="15sp"
+            android:text="小区新鲜事" />
+
+        <View
+            android:id="@+id/home_tit_right_line"
+            android:layout_width="match_parent"
+            android:layout_height="6dip"
+            android:layout_weight="1"
+            android:background="@drawable/home_titline" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/line_grey" />
+
+</LinearLayout>

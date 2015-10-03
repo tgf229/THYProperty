@@ -1,0 +1,161 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:gravity="center_vertical"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/back_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/share_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        tools:context=".MainActivity" >
+
+        <LinearLayout
+            android:id="@+id/first_linearLayout"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/weixin_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_weixin_selector"
+                android:gravity="center"
+                android:text="微信"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/qq_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_tencentqq_selector"
+                android:gravity="center"
+                android:text="QQ"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/renren_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dip"
+                android:layout_marginTop="20dip"
+                android:drawableTop="@drawable/share_renren_selector"
+                android:gravity="center"
+                android:text="人人网"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_linearLayout"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/pyq_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_friendscircle_selector"
+                android:gravity="center"
+                android:text="朋友圈"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/qzone_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_tencentqqspace_selector"
+                android:gravity="center"
+                android:text="QQ空间"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+           <TextView
+                android:id="@+id/weibo_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_sinaweibo_selector"
+                android:gravity="center"
+                android:text="微博"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/third_linearLayout"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txwb_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_tencentweibo_selector"
+                android:gravity="center"
+                android:text="腾讯微博"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/sms_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:drawablePadding="10dip"
+                android:drawableTop="@drawable/share_sms_selector"
+                android:gravity="center"
+                android:text="短信"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/weibo_null"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="20dip"
+                android:drawablePadding="10dip"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/cancle_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/share_bottom_btn_close_selector" />
+
+</RelativeLayout>

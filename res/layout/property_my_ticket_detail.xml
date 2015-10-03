@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/app_title" />
+
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loading_layout" 
+        
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/click_refresh_layout"
+        layout="@layout/loading_failed"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/f8f8f8"
+                android:orientation="vertical"
+                android:paddingBottom="25dip" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dip" >
+
+                    <ImageView
+                        android:id="@+id/self_img"
+                        android:layout_width="40dip"
+                        android:layout_height="40dip"
+                        android:layout_marginBottom="13dip"
+                        android:layout_marginTop="20dip"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/default_head_pic_round" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dip"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginTop="20dip"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/self_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/self_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dip"
+                            android:textColor="@color/community_come_from"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- <ImageView
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:scaleType="fitXY" /> -->
+                </LinearLayout>
+
+               <!--  <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/service_topbg_line" /> -->
+
+                <TextView
+                    android:id="@+id/self_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dip"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="15dip"
+                    android:textColor="@color/home_title"
+                    android:textSize="14sp" />
+
+                <com.ymdq.thy.view.MyGridView
+                    android:id="@+id/photo_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_marginTop="10dip"
+                    android:cacheColorHint="#00000000"
+                    android:horizontalSpacing="7dip"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:verticalSpacing="7dip" >
+                </com.ymdq.thy.view.MyGridView>
+            </LinearLayout>
+
+            <com.ymdq.thy.view.MyListView
+                android:id="@+id/detail_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-15dip"
+                android:divider="@null"
+                android:focusable="false"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/evaluate_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="12dip" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@drawable/line_grey" />
+
+        <Button
+            android:id="@+id/evaluate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/service_btn_evaluation_selector"
+            android:text="评价服务"
+            android:textColor="@color/white_color"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

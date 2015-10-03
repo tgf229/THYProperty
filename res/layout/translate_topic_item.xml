@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+    android:paddingLeft="10dip"
+    android:orientation="horizontal" >
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/report_selector"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <ImageView
+        android:id="@+id/head_image"
+        android:layout_width="70dip"
+        android:layout_height="70dip"
+        android:layout_marginBottom="13dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="13dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/community_default"
+        android:layout_toRightOf="@id/check_box" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dip"
+        android:paddingTop="16dip"
+        android:layout_toRightOf="@id/head_image"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black_color"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/user_count"
+                style="@style/community_circle_list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/community_circle_list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注" />
+
+            <TextView
+                android:id="@+id/article_count"
+                style="@style/community_circle_list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip" />
+
+            <TextView
+                style="@style/community_circle_list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发帖" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/time_or_notice"
+                style="@style/community_circle_list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公告:" />
+
+            <TextView
+                android:id="@+id/desc"
+                style="@style/community_circle_list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:ellipsize="end"
+                android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/head_image"
+        android:layout_marginLeft="20dip"
+        android:background="@drawable/line_grey"/>
+
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/person_register_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/app_title" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="16dip"
+        android:layout_weight="1"
+        android:divider="@color/person_register_bg"
+        android:dividerHeight="16dip"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loading_layout" />
+
+    <include
+        android:id="@+id/click_refresh_layout"
+        layout="@layout/loading_failed"
+        android:visibility="gone" />
+
+</LinearLayout>

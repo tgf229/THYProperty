@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/community_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dip"
+        android:background="@drawable/line_grey" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="horizontal"
+        android:paddingBottom="13dip"
+        android:paddingTop="13dip" >
+
+        <TextView
+            style="@style/community_create_or_edit"
+            android:text="昵称" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dip"
+            android:layout_marginRight="15dip"
+            android:background="@null"
+            android:maxLength="7"
+            android:textColor="@color/person_input_hint"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="85dip"
+        android:background="@drawable/line_grey" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="horizontal"
+        android:paddingBottom="15dip"
+        android:paddingTop="13dip" >
+
+        <TextView
+            style="@style/community_create_or_edit"
+            android:text="签名" />
+
+        <EditText
+            android:id="@+id/sign"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dip"
+            android:layout_marginRight="15dip"
+            android:background="@null"
+            android:maxLength="20"
+            android:textColor="@color/person_input_hint"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_grey" />
+
+</LinearLayout>

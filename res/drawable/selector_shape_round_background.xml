@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- shape如果不声明形状则默认为正方形 -->
+<selector xmlns:Android="http://schemas.android.com/apk/res/android">
+
+    <item Android:state_selected="true"><shape>
+            <gradient Android:endColor="@color/item_click_color" Android:startColor="@color/item_click_color" />
+        </shape></item>
+    <item Android:state_pressed="true"><shape>
+            <gradient Android:endColor="@color/item_click_color" Android:startColor="@color/item_click_color" />
+        </shape></item>
+
+</selector>

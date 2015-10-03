@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/community_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title" />
+
+    <com.ymdq.thy.view.PullToRefreshView
+        android:id="@+id/storehome_main_pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/white_color"
+            android:divider="@null"
+            android:dividerHeight="9dip"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent" >
+        </ListView>
+    </com.ymdq.thy.view.PullToRefreshView>
+
+</LinearLayout>

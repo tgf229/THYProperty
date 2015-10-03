@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ymdq.thy"
+    android:versionCode="4"
+    android:versionName="1.1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+    <!-- 极光推送权限开始 -->
+    <!-- Required -->
+    <permission
+        android:name="com.ymdq.thy.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.ymdq.thy.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 极光推送权限结束 -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- renren sso Permission for Unit Test -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <application
+        android:name="com.ymdq.thy.JRApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+
+        <!-- 友盟AppKey -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="547d682dfd98c5ab6d00087f" >
+        </meta-data>
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!-- 分享编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID -->
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!-- 微信回调activity -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 在SDK中的OAuth授权部分包含了Activity，为了程序能正常允许 -->
+        <activity
+            android:name="com.renn.rennsdk.oauth.OAuthActivity"
+            android:configChanges="orientation|navigation|keyboardHidden" />
+
+        <!-- 登陆 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.WelcomeActivity"
+            android:theme="@style/ContentOverlay" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 登陆 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.LoginActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 主界面 -->
+        <activity
+            android:name="com.ymdq.thy.ui.HomeFragmentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name=".ui.community.CommunityCircleListActivity" />
+        <activity android:name=".ui.community.CommunityGroupDetailActivity" />
+        <activity android:name=".ui.WebviewActivity" />
+        <activity
+            android:name=".ui.community.CommunityTopicDetailsActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.community.CommunityPostTopicActivity"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity android:name=".ui.community.CommunityMemberActivity" />
+        <activity
+            android:name=".ui.community.CommunityPersonDetailActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ui.community.CommunityPersonInfoEditActivity" />
+        <activity android:name=".ui.community.CommunityCreateOrEditActivity" />
+        <activity android:name=".ui.community.CommunityCommentMessageActivity" />
+        <!-- 注册第一步 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.RegisterOneActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 注册第二步 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.RegisterTwoActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 注册第三步 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.RegisterThreeActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 注册协议 -->
+        <activity android:name="com.ymdq.thy.ui.personcenter.AgreementActivity" />
+        <!-- 忘记密码 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.ForgetPasswordActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 设置新密码 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.SetNewPasswordActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 修改密码 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.ManagePasswordActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 设置 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.SetActivity"
+            android:screenOrientation="portrait" />
+        <!-- 意见反馈 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <!-- 楼栋选择 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.HouseChoiseBuildingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 单元选择 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.HouseChoiseUnitActivity"
+            android:screenOrientation="portrait" />
+        <!-- 房号选择 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.HouseChoiseNumActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ymdq.thy.ui.ViewPagerActivity"
+            android:screenOrientation="portrait" />
+        <!-- 发送多张照片 -->
+        <activity
+            android:name="com.ymdq.thy.ui.ChoiseMorePhotosListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 发送多张照片 -->
+        <activity
+            android:name="com.ymdq.thy.ui.ChoiseMorePhotoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 选择小区 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.SelectCommunityActivity"
+            android:screenOrientation="portrait" />
+        <!-- 举报 -->
+        <activity
+            android:name="com.ymdq.thy.ui.community.ReportActivity"
+            android:screenOrientation="portrait" />
+        <!-- 移动 -->
+        <activity
+            android:name="com.ymdq.thy.ui.community.MoveTopicActivity"
+            android:screenOrientation="portrait" />
+        <!-- 便民消息 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.MyCentralListsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 报修&投诉&表扬 -->
+        <activity
+            android:name="com.ymdq.thy.ui.propertyservice.RepairActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 工单评论 -->
+        <activity
+            android:name="com.ymdq.thy.ui.propertyservice.EvaluationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 我的账单 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.MyCentralCardActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的账单：物业费用 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.AccountManagePaymentActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的消息 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.MyCentralMeeageActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <!-- 快递信息 -->
+        <activity
+            android:name="com.ymdq.thy.ui.home.MyCentralDelivertyActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的工单 -->
+        <activity
+            android:name="com.ymdq.thy.ui.propertyservice.MyTicketActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的工单详情 -->
+        <activity
+            android:name="com.ymdq.thy.ui.propertyservice.MyTicketDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 轮播通告详情 -->
+        <activity android:name="com.ymdq.thy.ui.home.AdvertiseDetailActivity" />
+        <!-- 个人中心 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.PersonInfoActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 房屋绑定账号信息 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.HouseUserInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 分享 -->
+        <activity
+            android:name="com.ymdq.thy.ui.CommShareActivity"
+            android:screenOrientation="portrait" />
+        <!-- 分享 -->
+        <activity
+            android:name="com.ymdq.thy.ui.ShareDiaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/image_select_dialog" />
+
+        <!-- 关于 -->
+        <activity
+            android:name="com.ymdq.thy.ui.personcenter.AboutUsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 极光推送开始 -->
+
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- Required -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true" >
+            <intent-filter android:priority="1000" >
+
+                <!-- since 1.3.5 -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- since 1.3.5 -->
+                <category android:name="com.ymdq.thy" />
+                <!-- since 1.3.5 -->
+            </intent-filter>
+            <!-- since 1.3.5 -->
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="com.ymdq.thy" />
+            </intent-filter>
+        </receiver>
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.ymdq.thy" />
+            </intent-filter>
+        </activity>
+        <!-- Required SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+        <!-- Required SDK核心功能 -->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+
+        <!-- User defined.    用户自定义的广播接收器 -->
+        <receiver
+            android:name="com.ymdq.thy.JRReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.ymdq.thy" />
+            </intent-filter>
+        </receiver>
+        <!-- 目前这个渠道统计功能的报表还未开放。 -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <!-- Required. AppKey copied from Portal -->
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="2da8fa4febc83a7257356528" />
+
+        <!-- 极光推送结束 -->
+        <!-- 百度统计开始 -->
+        <!-- 您从百度网站获取的APP KEY -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="546f5fa498" />
+        <meta-data
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="development" />
+
+        <!-- 是否开启错误日志统计，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="true" />
+        <!-- 日志发送策略，可选值：APP_START、ONCE_A_DAY、SET_TIME_INTERVAL，默认为APP_START -->
+        <meta-data
+            android:name="BaiduMobAd_SEND_STRATEGY"
+            android:value="APP_START" />
+        <!-- 日志发送策略 为SET_TIME_INTERVAL时，需设定时间间隔(取消下行注释)。取值为1-24的整数，默认为1 -->
+        <!-- 日志仅在wifi网络下发送，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_ONLY_WIFI"
+            android:value="false" />
+        <!-- 是否获取基站位置信息 ,默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_CELL_LOCATION"
+            android:value="true" />
+        <!-- 是否获取GPS位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_GPS_LOCATION"
+            android:value="true" />
+        <!-- 是否获取WIFI位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_WIFI_LOCATION"
+            android:value="true" />
+        <!-- 百度统计结束 -->
+    </application>
+
+</manifest>

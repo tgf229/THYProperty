@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="32dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/service_line_grey" />
+
+            <ImageView
+                android:id="@+id/server_img"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="16dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_head_pic_round" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_color"
+            android:orientation="vertical"
+            android:paddingBottom="16dip"
+            android:layout_marginLeft="10dip"
+            android:paddingTop="21dip" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/server_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/self_or_server"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/server_name"
+                    android:layout_marginTop="5dip"
+                    android:text="客服"
+                    android:textColor="@color/community_come_from"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/step"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/service_steps_greybg"
+                    android:gravity="center"
+                    android:text="STEP1"
+                    android:paddingTop="5dip"
+                    android:paddingBottom="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="6dip"
+                    android:textColor="@color/white_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/server_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:paddingRight="10dip"
+                android:textColor="@color/black_color"
+                android:textSize="13sp" />
+            <TextView
+                android:id="@+id/server_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:paddingRight="10dip"
+                android:textColor="@color/black_color"
+                android:textSize="13sp" />
+
+            <com.ymdq.thy.view.MyGridView
+                android:id="@+id/photo_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dip"
+                android:cacheColorHint="#00000000"
+                android:horizontalSpacing="7dip"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:verticalSpacing="4dip"
+                android:layout_marginRight="10dip"
+                android:visibility="gone" >
+            </com.ymdq.thy.view.MyGridView>
+
+            <TextView
+                android:id="@+id/server_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="46dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/line_grey" />
+</LinearLayout>

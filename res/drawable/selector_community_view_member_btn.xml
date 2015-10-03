@@ -1,0 +1,6 @@
+<selector xmlns:Android="http://schemas.android.com/apk/res/android">
+
+    <item Android:drawable="@drawable/community_button_blue_presse" Android:state_pressed="true"/>
+    <item Android:drawable="@drawable/community_button_blue"/>
+
+</selector>
