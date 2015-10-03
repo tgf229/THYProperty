@@ -192,7 +192,6 @@ public class CommunityDynamicAdapter extends BaseAdapter
         }
         //判断是否有内容
         viewHolder.content.setMovementMethod(null);
-        String test = entity.getNickName();
         if (GeneralUtils.isNotNullOrZeroLenght(data.get(position).getComment()))
         {
             viewHolder.content.setVisibility(View.VISIBLE);

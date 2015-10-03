@@ -11,8 +11,8 @@
         android:layout_marginLeft="15dip"
         android:layout_marginRight="15dip"
         android:orientation="horizontal"
-        android:paddingBottom="13dip"
-        android:paddingTop="13dip" >
+        android:paddingBottom="20dip"
+        android:paddingTop="15dip" >
 
         <ImageView
             android:id="@+id/head_image"
@@ -41,7 +41,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="圈主:"
-                    android:textColor="@color/black_color"
+                    android:textColor="@color/home_title"
                     android:textSize="15sp" />
 
                 <TextView
@@ -51,7 +51,7 @@
                     android:layout_marginLeft="2dip"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:textColor="@color/black_color"
+                    android:textColor="@color/home_title"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -79,7 +79,7 @@
                     style="@style/community_circle_list_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dip" />
+                    android:layout_marginLeft="10dip" />
 
                 <TextView
                     style="@style/community_circle_list_text"
@@ -91,7 +91,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dip"
+                android:layout_marginTop="6dip"
                 android:orientation="horizontal" >
 
                 <Button
@@ -153,13 +153,18 @@
         android:layout_marginBottom="12dip"
         android:layout_marginLeft="15dip"
         android:layout_marginRight="15dip"
-        android:layout_marginTop="12dip"
+        android:layout_marginTop="13dip"
         android:textSize="14sp" />
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/line_grey" />
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/community_bg"/>
 
     <LinearLayout
         android:id="@+id/no_data"

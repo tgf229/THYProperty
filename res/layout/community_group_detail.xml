@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@color/white_color"
-            android:divider="@null"
-            android:dividerHeight="9dip"
+            android:divider="@color/community_bg"
+            android:dividerHeight="1px"
             android:fadingEdge="none"
             android:listSelector="@android:color/transparent" >
         </ListView>

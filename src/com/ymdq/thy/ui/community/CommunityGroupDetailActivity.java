@@ -291,6 +291,7 @@ public class CommunityGroupDetailActivity extends BaseActivity implements OnHead
         notice = (TextView)headView.findViewById(R.id.notice);
         edit = (LinearLayout)headView.findViewById(R.id.edit);
         listView.addHeaderView(headView);
+        listView.setHeaderDividersEnabled(false);
         listView.addFooterView(loadingFooterView);
         loadingMore.setVisibility(View.GONE);
         
@@ -837,7 +838,7 @@ public class CommunityGroupDetailActivity extends BaseActivity implements OnHead
         name.setText(groupDetailInfoResponse.getNickName());
         userCount.setText(groupDetailInfoResponse.getUserCount());
         articleCount.setText(groupDetailInfoResponse.getArticleCount());
-        notice.setText(Html.fromHtml("<font color=#000000>公告: </font>" + "<font color=#60656b>"
+        notice.setText(Html.fromHtml("<font color=#333333>公告: </font>" + "<font color=#666666>"
             + (groupDetailInfoResponse.getDesc() == null ? "" : groupDetailInfoResponse.getDesc()) + "</font>"));
         type = groupDetailInfoResponse.getFlag();
         adapter.setType(Constants.COMMUNITY_DETAIL);

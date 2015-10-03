@@ -1,0 +1,235 @@
+# view res/layout/register_two.xml #generated:150
+-keep class android.inputmethodservice.KeyboardView { <init>(...); }
+
+# view res/layout/main_fragment_listview_head.xml #generated:21
+# view res/layout/view_page_activity.xml #generated:6
+# view res/layout/welcome.xml #generated:22
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:328
+-keep class cn.jpush.android.service.AlarmReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:322
+-keep class cn.jpush.android.service.DownloadService { <init>(...); }
+
+# view AndroidManifest.xml #generated:286
+-keep class cn.jpush.android.service.PushReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:273
+-keep class cn.jpush.android.service.PushService { <init>(...); }
+
+# view AndroidManifest.xml #generated:310
+-keep class cn.jpush.android.ui.PushActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:95
+-keep class com.renn.rennsdk.oauth.OAuthActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:82
+-keep class com.tencent.connect.common.AssistActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:69
+-keep class com.tencent.tauth.AuthActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:60
+-keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
+
+# view res/layout/umeng_socialize_post_share.xml #generated:2
+-keep class com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout { <init>(...); }
+
+# view res/layout/main_fragment_listview_head.xml #generated:27
+# view res/layout/welcome.xml #generated:27
+-keep class com.viewpagerindicator.CirclePageIndicator { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class com.ymdq.thy.JRApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:331
+-keep class com.ymdq.thy.JRReceiver { <init>(...); }
+
+# view res/layout/photo_view_item.xml #generated:12
+-keep class com.ymdq.thy.photoview.PhotoView { <init>(...); }
+
+# view AndroidManifest.xml #generated:191
+-keep class com.ymdq.thy.ui.ChoiseMorePhotoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:187
+-keep class com.ymdq.thy.ui.ChoiseMorePhotosListActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:257
+-keep class com.ymdq.thy.ui.CommShareActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:115
+-keep class com.ymdq.thy.ui.HomeFragmentActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:261
+-keep class com.ymdq.thy.ui.ShareDiaActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:183
+-keep class com.ymdq.thy.ui.ViewPagerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:122
+-keep class com.ymdq.thy.ui.WebviewActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:120
+-keep class com.ymdq.thy.ui.community.CommunityCircleListActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:136
+-keep class com.ymdq.thy.ui.community.CommunityCommentMessageActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:135
+-keep class com.ymdq.thy.ui.community.CommunityCreateOrEditActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:121
+-keep class com.ymdq.thy.ui.community.CommunityGroupDetailActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:130
+-keep class com.ymdq.thy.ui.community.CommunityMemberActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:131
+-keep class com.ymdq.thy.ui.community.CommunityPersonDetailActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:134
+-keep class com.ymdq.thy.ui.community.CommunityPersonInfoEditActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:126
+-keep class com.ymdq.thy.ui.community.CommunityPostTopicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:123
+-keep class com.ymdq.thy.ui.community.CommunityTopicDetailsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:203
+-keep class com.ymdq.thy.ui.community.MoveTopicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:199
+-keep class com.ymdq.thy.ui.community.ReportActivity { <init>(...); }
+
+# view res/layout/community_person_detail_head_view.xml #generated:58
+-keep class com.ymdq.thy.ui.community.widget.CircleImgView { <init>(...); }
+
+# view AndroidManifest.xml #generated:225
+-keep class com.ymdq.thy.ui.home.AccountManagePaymentActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:246
+-keep class com.ymdq.thy.ui.home.AdvertiseDetailActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:221
+-keep class com.ymdq.thy.ui.home.MyCentralCardActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:234
+-keep class com.ymdq.thy.ui.home.MyCentralDelivertyActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:207
+-keep class com.ymdq.thy.ui.home.MyCentralListsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:229
+-keep class com.ymdq.thy.ui.home.MyCentralMeeageActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:195
+-keep class com.ymdq.thy.ui.home.SelectCommunityActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:100
+-keep class com.ymdq.thy.ui.home.WelcomeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:267
+-keep class com.ymdq.thy.ui.personcenter.AboutUsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:150
+-keep class com.ymdq.thy.ui.personcenter.AgreementActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:168
+-keep class com.ymdq.thy.ui.personcenter.FeedbackActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:152
+-keep class com.ymdq.thy.ui.personcenter.ForgetPasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:172
+-keep class com.ymdq.thy.ui.personcenter.HouseChoiseBuildingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:180
+-keep class com.ymdq.thy.ui.personcenter.HouseChoiseNumActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:176
+-keep class com.ymdq.thy.ui.personcenter.HouseChoiseUnitActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:252
+-keep class com.ymdq.thy.ui.personcenter.HouseUserInfoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:110
+-keep class com.ymdq.thy.ui.personcenter.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:160
+-keep class com.ymdq.thy.ui.personcenter.ManagePasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:248
+-keep class com.ymdq.thy.ui.personcenter.PersonInfoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:138
+-keep class com.ymdq.thy.ui.personcenter.RegisterOneActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:146
+-keep class com.ymdq.thy.ui.personcenter.RegisterThreeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:142
+-keep class com.ymdq.thy.ui.personcenter.RegisterTwoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:164
+-keep class com.ymdq.thy.ui.personcenter.SetActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:156
+-keep class com.ymdq.thy.ui.personcenter.SetNewPasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:216
+-keep class com.ymdq.thy.ui.propertyservice.EvaluationActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:238
+-keep class com.ymdq.thy.ui.propertyservice.MyTicketActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:242
+-keep class com.ymdq.thy.ui.propertyservice.MyTicketDetailActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:211
+-keep class com.ymdq.thy.ui.propertyservice.RepairActivity { <init>(...); }
+
+# view res/layout/choise_more_photos_grally_item.xml #generated:7
+-keep class com.ymdq.thy.view.DefineWHImageView { <init>(...); }
+
+# view res/layout/property_evaluation.xml #generated:138
+# view res/layout/property_my_ticket_detail.xml #generated:107
+# view res/layout/property_my_ticket_detail_head_listview.xml #generated:102
+# view res/layout/property_my_ticket_detail_listview_item.xml #generated:98
+# view res/layout/property_repair.xml #generated:153
+-keep class com.ymdq.thy.view.MyGridView { <init>(...); }
+
+# view res/layout/home_loop_advert_viewpager_item.xml #generated:8
+# view res/layout/main_fragment_listview_head.xml #generated:14
+-keep class com.ymdq.thy.view.MyImageView { <init>(...); }
+
+# view res/layout/home_advertise_detail.xml #generated:92
+# view res/layout/house_user_info.xml #generated:147
+# view res/layout/person_center.xml #generated:200
+# view res/layout/property_my_ticket_detail.xml #generated:122
+-keep class com.ymdq.thy.view.MyListView { <init>(...); }
+
+# view res/layout/main_fragment.xml #generated:56
+-keep class com.ymdq.thy.view.MyListView2 { <init>(...); }
+
+# view res/layout/home_advertise_detail.xml #generated:22
+-keep class com.ymdq.thy.view.MyScrollView { <init>(...); }
+
+# view res/layout/community_circle_list.xml #generated:17
+# view res/layout/community_dynamic_list.xml #generated:13
+# view res/layout/community_dynamic_topic_details.xml #generated:11
+# view res/layout/community_group_detail.xml #generated:11
+# view res/layout/community_my_topic_list.xml #generated:13
+# view res/layout/community_square_fragment.xml #generated:13
+# view res/layout/home_my_central_work_form.xml #generated:15
+# view res/layout/main_fragment.xml #generated:38
+-keep class com.ymdq.thy.view.PullToRefreshView { <init>(...); }
+
+# view AndroidManifest.xml #generated:88
+-keep class com.ymdq.thy.wxapi.WXEntryActivity { <init>(...); }
+
+# onClick res/layout/community_post_image.xml #generated:14
+# onClick res/layout/home_circles_post_item.xml #generated:20
+-keepclassmembers class * { *** onClick(...); }
+
