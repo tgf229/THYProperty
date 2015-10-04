@@ -102,7 +102,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 加载布局
      */
-    private LinearLayout loadingMore;
+    private LinearLayout loadingMore,commitTipsLayout;
     
     /**
      * listview头
@@ -192,7 +192,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 反对数量
      */
-    private TextView noNum;
+    private TextView noNum,commitTipsNum;
     
     /**
      * 赞成图片
@@ -222,7 +222,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 评价布局
      */
-    private LinearLayout chatLayout;
+    private LinearLayout chatLayout,commentAdd;
     
     /**
      * 分享布局
@@ -368,6 +368,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         itemLinear = (LinearLayout)findViewById(R.id.item_linear);
         likeLayout = (LinearLayout)findViewById(R.id.community_like_layout);
         chatLayout = (LinearLayout)findViewById(R.id.community_chat_layout);
+        commentAdd = (LinearLayout)findViewById(R.id.comment_add);
         moreLayout = (LinearLayout)findViewById(R.id.community_more_layout);
         like = (TextView)findViewById(R.id.community_like);
         chat = (TextView)findViewById(R.id.community_chat);
@@ -387,6 +388,8 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         noNum = (TextView)headView.findViewById(R.id.no_num);
         yes = (ImageView)headView.findViewById(R.id.yes);
         no = (ImageView)headView.findViewById(R.id.no);
+        commitTipsLayout = (LinearLayout)headView.findViewById(R.id.commit_tips_layout);
+        commitTipsNum = (TextView)headView.findViewById(R.id.commit_tips_num);
         
         /**
          * 添加按钮点击事件
@@ -397,6 +400,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         disagree.setOnClickListener(this);
         likeLayout.setOnClickListener(this);
         chatLayout.setOnClickListener(this);
+        commentAdd.setOnClickListener(this);
         moreLayout.setOnClickListener(this);
         send.setOnClickListener(this);
     }
@@ -826,6 +830,18 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                 showSoftInput();
             }
         });
+        commentAdd.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //显示键盘
+                sendLinear.setVisibility(View.VISIBLE);
+                itemLinear.setVisibility(View.GONE);
+                inputContent.requestFocus();
+                showSoftInput();
+            }
+        });
     }
     
     /**
@@ -1135,6 +1151,13 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                             topics.addAll(topicsCommentsResponse.getDoc());
                             currentPage = page;
                             adapter.notifyDataSetChanged();
+                            
+                            commitTipsLayout.setVisibility(View.VISIBLE);
+                            commitTipsNum.setText(topic.getComment());
+                        }
+                        else
+                        {
+                            commitTipsLayout.setVisibility(View.GONE);
                         }
                     }
                     else

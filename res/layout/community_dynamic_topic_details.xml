@@ -14,7 +14,7 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:background="@android:color/white"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <ListView
             android:id="@+id/list_view"
@@ -80,81 +80,118 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/community_like_layout"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_shape_round_background"
-            android:gravity="center"
+            android:id="@+id/comment_add"
+            android:layout_width="0dp"
+            android:layout_height="45dip"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
             android:orientation="horizontal" >
-
-            <ImageView
-                android:id="@+id/praise"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-5dip"
-                android:padding="5dip"
-                android:src="@drawable/community_topic_detail_praise" />
 
             <TextView
-                android:id="@+id/community_like"
-                style="@style/community_like_text"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="1dip"
-                android:ellipsize="end"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/line_vertical" />
-
-        <LinearLayout
-            android:id="@+id/community_chat_layout"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_shape_round_background"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/community_topic_detail_comment" />
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/linli_detail_iconadd" />
 
             <TextView
-                android:id="@+id/community_chat"
-                style="@style/community_like_text"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="6.0dip"
-                android:ellipsize="end"
-                android:singleLine="true" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="添加你的评论"
+                android:textSize="14sp" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/line_vertical" />
-
         <LinearLayout
-            android:id="@+id/community_more_layout"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_shape_round_background"
-            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="45dip"
+            android:layout_weight="3"
             android:orientation="horizontal" >
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/community_topic_detail_more" />
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:id="@+id/community_like_layout"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_shape_round_background"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/praise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-5dip"
+                    android:src="@drawable/community_topic_detail_praise" />
+
+                <TextView
+                    android:id="@+id/community_like"
+                    style="@style/community_like_text"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:ellipsize="end"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:id="@+id/community_chat_layout"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_shape_round_background"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/community_topic_detail_comment" />
+
+                <TextView
+                    android:id="@+id/community_chat"
+                    style="@style/community_like_text"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:ellipsize="end"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/line_vertical" />
+
+            <LinearLayout
+                android:id="@+id/community_more_layout"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_shape_round_background"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/community_topic_detail_more" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

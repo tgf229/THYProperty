@@ -220,10 +220,12 @@
         android:background="@drawable/line_grey" />
 
     <LinearLayout
+        android:id="@+id/commit_tips_layout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center_vertical"
-        android:background="@color/property_repair_bg" >
+        android:background="@color/property_repair_bg"
+        android:visibility="gone" >
         
         <TextView 
             android:layout_width="wrap_content"
@@ -233,7 +235,8 @@
             android:textColor="@color/bb474d"
             android:text="评论"/>
         
-        <TextView 
+        <TextView
+            android:id="@+id/commit_tips_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
