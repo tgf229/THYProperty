@@ -4,7 +4,9 @@
     android:layout_height="fill_parent"
     android:background="@color/community_bg"
     android:orientation="vertical" >
-
+    
+    <include layout="@layout/app_title" />
+    
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -12,13 +14,6 @@
 
         <include layout="@layout/community_person_detail_head_view" />
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip"
-            android:layout_marginTop="25dip"
-            android:background="@drawable/selector_community_person_back" />
     </FrameLayout>
 
     <FrameLayout

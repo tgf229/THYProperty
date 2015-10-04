@@ -7,52 +7,34 @@
 
     <include layout="@layout/app_title" />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dip"
-        android:background="@drawable/line_grey" />
-
     <LinearLayout
         android:id="@+id/image_layout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:background="@color/white_color"
-        android:orientation="horizontal" >
-
-        <TextView
-            style="@style/community_create_or_edit"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="圈子头像" />
+        android:orientation="vertical" >
 
         <ImageView
             android:id="@+id/head_img"
-            android:layout_width="70dip"
-            android:layout_height="70dip"
-            android:layout_marginBottom="10dip"
-            android:layout_marginRight="14dip"
-            android:layout_marginTop="10dip"
-            android:scaleType="centerCrop"
-            android:src="@drawable/community_default" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/selector_community_create_circle_img" />
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="15dip"
-            android:background="@drawable/selector_community_create_image_btn" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"
+            android:textColor="@color/text_color"
+            android:text="圈子头像" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/line_grey" />
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dip"
         android:background="@drawable/line_grey" />
 
     <LinearLayout
@@ -71,7 +53,7 @@
             android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="25dip"
             android:layout_marginRight="15dip"
             android:background="@null"
             android:hint="必填,最多8个字"
@@ -83,7 +65,6 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="85dip"
         android:background="@drawable/line_grey" />
 
     <LinearLayout
@@ -101,11 +82,13 @@
         <EditText
             android:id="@+id/community_desc"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            android:layout_height="105dp"
+            android:layout_marginLeft="25dip"
             android:layout_marginRight="15dip"
             android:background="@null"
+            android:gravity="top"
             android:hint="选填,最多200个字"
+            android:imeOptions="actionDone"
             android:maxLength="200"
             android:textColor="@color/person_input_hint"
             android:textSize="15sp" />

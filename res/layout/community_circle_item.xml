@@ -27,10 +27,10 @@
                     android:id="@+id/head_image"
                     android:layout_width="70dip"
                     android:layout_height="70dip"
-                    android:layout_marginBottom="13dip"
+                    android:layout_marginBottom="15dip"
                     android:layout_marginLeft="15dip"
                     android:layout_marginRight="15dip"
-                    android:layout_marginTop="13dip"
+                    android:layout_marginTop="15dip"
                     android:scaleType="centerCrop"
                     android:src="@drawable/community_default" />
 
@@ -45,15 +45,16 @@
                         android:id="@+id/name"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:textColor="@color/black_color"
+                        android:textColor="@color/bb474d"
                         android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dip"
+                        android:layout_marginTop="10dip"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >
 
@@ -86,7 +87,7 @@
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dip"
+                        android:layout_marginTop="10dip"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >
 

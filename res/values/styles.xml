@@ -94,7 +94,7 @@
 
     <style name="community_circle_list_text">
         <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/community_come_from</item>
+        <item name="android:textColor">@color/text_color</item>
     </style>
 
     <style name="community_square_time_text">
@@ -120,7 +120,7 @@
 
     <style name="community_create_or_edit">
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">15dip</item>
@@ -223,7 +223,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textColor">@color/home_title</item>
     </style>
 
     <style name="ContentOverlay" parent="@android:style/Theme.Light">

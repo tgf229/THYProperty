@@ -38,6 +38,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -76,17 +77,19 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
     /**
      * 返回按钮
      */
-    private ImageView back;
+    private LinearLayout back;
     
     /**
      * 设置按钮
      */
-    private ImageView edit;
+    private TextView edit;
+    
+    private LinearLayout editLayout;
     
     /**
      * 头像
      */
-    private CircleImgView head;
+    private ImageView head,arrow;
     
     /**
      * 大V
@@ -106,7 +109,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
     /**
      * 我的话题
      */
-    private TextView myTopic;
+    private TextView myTopic,title;
     
     /**
      * 我的关注
@@ -203,6 +206,8 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
      */
     private boolean isFromCamera;
     
+    private RelativeLayout person;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -225,9 +230,21 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
      */
     private void init()
     {
-        back = (ImageView)findViewById(R.id.back);
-        edit = (ImageView)findViewById(R.id.edit);
-        head = (CircleImgView)findViewById(R.id.head);
+        back = (LinearLayout)findViewById(R.id.title_back_layout);
+        title = (TextView)findViewById(R.id.title_name);
+        title.setText("个人中心");
+        edit = (TextView)findViewById(R.id.title_btn_call);
+        edit.setText("设置");
+        edit.setTextColor(getResources().getColor(R.color.bb474d));
+        editLayout = (LinearLayout)findViewById(R.id.title_call_layout);
+        
+        person = (RelativeLayout)findViewById(R.id.person);
+        arrow = (ImageView)findViewById(R.id.arrow);
+        
+        
+//        back = (ImageView)findViewById(R.id.back);
+//        edit = (ImageView)findViewById(R.id.edit);
+        head = (ImageView)findViewById(R.id.head);
         name = (TextView)findViewById(R.id.name);
         sign = (TextView)findViewById(R.id.sign);
         myTopic = (TextView)findViewById(R.id.my_topic);
@@ -239,8 +256,9 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         /**
          * 添加按钮点击事件
          */
+        
+        editLayout.setOnClickListener(this);
         back.setOnClickListener(this);
-        edit.setOnClickListener(this);
         head.setOnClickListener(this);
         myTopic.setOnClickListener(this);
         myAddedGroup.setOnClickListener(this);
@@ -259,7 +277,9 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         //本用户
         if (Global.getUserId().equals(queryUId))
         {
-            edit.setVisibility(View.VISIBLE);
+            person.setOnClickListener(this);
+            arrow.setVisibility(View.VISIBLE);
+            editLayout.setVisibility(View.VISIBLE);
             head.setClickable(true);
             myTopic.setText("我的话题");
             myAddedGroup.setText("我的关注");
@@ -268,7 +288,8 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         //其他用户
         else
         {
-            edit.setVisibility(View.GONE);
+            arrow.setVisibility(View.GONE);
+            editLayout.setVisibility(View.GONE);
             head.setClickable(false);
             myTopic.setText("他的话题");
             myAddedGroup.setText("他的关注");
@@ -548,17 +569,23 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
             /**
              * 响应返回按钮
              */
-            case R.id.back:
+            case R.id.title_back_layout:
                 finish();
                 break;
             /**
              * 响应编辑按钮
              */
-            case R.id.edit:
+            case R.id.title_call_layout:
                 Intent intent = new Intent(CommunityPersonDetailActivity.this, CommunityPersonInfoEditActivity.class);
                 intent.putExtra("person", groupPersonInfoResponse);
                 startActivityForResult(intent, Constants.NUM0);
                 break;
+            case R.id.person:
+                Intent intent1 = new Intent(CommunityPersonDetailActivity.this, CommunityPersonInfoEditActivity.class);
+                intent1.putExtra("person", groupPersonInfoResponse);
+                startActivityForResult(intent1, Constants.NUM0);
+                break;
+                
             /**
              * 响应头像点击事件
              */

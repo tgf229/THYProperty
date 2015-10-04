@@ -189,7 +189,7 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
     {
         groupType = getIntent().getStringExtra("type");
         add.setTextSize(0);
-        add.setBackgroundResource(R.drawable.selector_community_add_group);
+        add.setBackgroundResource(R.drawable.community_add);
         addLayout.setVisibility(View.GONE);
         loadTitle(title, groupType, "");
         listView.setOnScrollListener(new OnScrollListener()

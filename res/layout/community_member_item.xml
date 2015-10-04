@@ -13,17 +13,15 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="13dip"
+            android:layout_marginBottom="10dip"
             android:layout_marginLeft="20dip"
-            android:layout_marginRight="11dip"
-            android:layout_marginTop="9dip" >
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip" >
 
             <ImageView
                 android:id="@+id/head_image"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
-                android:layout_marginRight="4dip"
-                android:layout_marginTop="4dip"
                 android:src="@drawable/default_head_pic_round" />
 
             <ImageView

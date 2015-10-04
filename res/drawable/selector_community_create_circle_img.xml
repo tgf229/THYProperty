@@ -1,0 +1,6 @@
+<selector xmlns:Android="http://schemas.android.com/apk/res/android">
+
+    <item Android:drawable="@drawable/linli_create_pic_circle_press" Android:state_pressed="true"/>
+    <item Android:drawable="@drawable/linli_create_pic_circle"/>
+
+</selector>
