@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="36dp"
-    android:background="@drawable/select_house_bg_blue"
+    android:background="@color/f8f8f8"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="20dp" >
+    android:paddingLeft="15dp" >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -16,8 +16,8 @@
         android:id="@+id/com_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:textColor="@color/white_color"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/bb474d"
         android:textSize="15sp" />
 
 </LinearLayout>

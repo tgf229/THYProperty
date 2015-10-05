@@ -13,10 +13,12 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginTop="16dip"
+        android:layout_marginTop="12dip"
         android:layout_weight="1"
-        android:divider="@color/person_register_bg"
-        android:dividerHeight="16dip"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:divider="@drawable/line_grey"
+        android:dividerHeight="1px"
         android:visibility="gone" />
 
     <include

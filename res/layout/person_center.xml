@@ -21,19 +21,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@drawable/person_center_gray_line" />
 
                 <LinearLayout
                     android:id="@+id/person_center_name_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="90dp"
+                    android:layout_height="100dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp"
@@ -55,15 +49,14 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="请登录"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:src="@drawable/register_one_house_right_icon" />
+                        android:src="@drawable/person_center_right_icon_selector" />
                 </LinearLayout>
 
                 <View
@@ -75,7 +68,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
 
@@ -101,14 +94,13 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="房屋信息"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:id="@+id/person_center_have_house_add_edit"
@@ -126,13 +118,12 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="10dp"
                             android:text="添加房屋"
-                            android:textColor="@color/selector_color_person_center_edit"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/bb474d"
+                            android:textSize="14sp" />
 
                         <View
                             android:layout_width="1px"
-                            android:layout_height="24dp"
+                            android:layout_height="20dp"
                             android:background="@drawable/person_center_gray_line" />
 
                         <TextView
@@ -143,9 +134,8 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="15dp"
                             android:text="编辑"
-                            android:textColor="@color/selector_color_person_center_edit"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/bb474d"
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <TextView
@@ -156,9 +146,8 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="15dp"
                         android:text="完成"
-                        android:textColor="@color/selector_color_person_center_edit"
+                        android:textColor="@color/bb474d"
                         android:textSize="14sp"
-                        android:textStyle="bold"
                         android:visibility="gone" />
                 </LinearLayout>
 
@@ -174,7 +163,7 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:paddingBottom="12dp"
-                    android:paddingTop="6dp" >
+                    android:paddingTop="16dp" >
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -184,17 +173,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
                         android:text="还没有房屋信息"
                         android:textColor="@color/person_center_no_house"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:text="立即添加"
                         android:textColor="@color/person_center_no_house"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
                 </LinearLayout>
 
                 <com.ymdq.thy.view.MyListView
@@ -218,7 +208,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
 
@@ -230,45 +220,7 @@
                 <LinearLayout
                     android:id="@+id/person_center_manage_pass_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="18dp" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/person_center_set_icon" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="1.0"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="密码管理"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:src="@drawable/person_center_right_icon_selector" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@drawable/person_center_gray_line" />
-
-                <LinearLayout
-                    android:id="@+id/person_center_set_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="50dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp"
@@ -286,10 +238,46 @@
                         android:layout_weight="1.0"
                         android:ellipsize="end"
                         android:singleLine="true"
+                        android:text="密码管理"
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/person_center_right_icon_selector" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_gray_line" />
+
+                <LinearLayout
+                    android:id="@+id/person_center_set_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="18dp" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/person_center_set_icon" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:text="设置"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"

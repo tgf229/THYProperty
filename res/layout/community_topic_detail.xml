@@ -241,8 +241,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textSize="13sp"
-            android:textColor="@color/bb474d"
-            android:text="42"/>
+            android:textColor="@color/bb474d"/>
     </LinearLayout>
 
     <ImageView

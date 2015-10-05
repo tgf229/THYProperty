@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="70dp"
         android:background="@color/white_color"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -40,15 +40,14 @@
                     android:id="@+id/house_user_info_item_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="黑眼豆豆"
-                    android:textColor="@color/black_color"
+                    android:textColor="@color/home_title"
                     android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/house_user_info_item_identity_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@drawable/house_user_info_red_icon"
                     android:gravity="center_horizontal"
                     android:paddingTop="1dp"
@@ -61,7 +60,6 @@
                 android:id="@+id/house_user_info_item_pnone_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15151828133"
                 android:textColor="@color/person_center_no_house"
                 android:textSize="14sp" />
         </LinearLayout>

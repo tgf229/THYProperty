@@ -19,7 +19,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/person_center_gray_line" />
 
             <LinearLayout
@@ -32,10 +32,10 @@
                 <LinearLayout
                     android:id="@+id/set_message_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="44dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingRight="18dp" >
+                    android:paddingRight="15dp" >
 
                     <TextView
                         android:layout_width="0dp"
@@ -44,8 +44,8 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="新消息提醒"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp" />
+                        android:textColor="@color/home_title"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:id="@+id/set_message_img_iv"
@@ -62,10 +62,10 @@
                 <LinearLayout
                     android:id="@+id/set_update_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="44dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingRight="18dp" >
+                    android:paddingRight="15dp" >
 
                     <TextView
                         android:layout_width="0dp"
@@ -74,8 +74,8 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="检查更新"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp" />
+                        android:textColor="@color/home_title"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -92,10 +92,10 @@
                 <LinearLayout
                     android:id="@+id/set_help_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="44dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingRight="18dp" >
+                    android:paddingRight="15dp" >
 
                     <TextView
                         android:layout_width="0dp"
@@ -104,8 +104,8 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="意见反馈"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp" />
+                        android:textColor="@color/home_title"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/person_center_gray_line" />
 
             <LinearLayout
@@ -136,10 +136,10 @@
                 <LinearLayout
                     android:id="@+id/set_about_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="44dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingRight="18dp" >
+                    android:paddingRight="15dp" >
 
                     <TextView
                         android:layout_width="0dp"
@@ -148,8 +148,8 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="关于"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp" />
+                        android:textColor="@color/home_title"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -167,10 +167,10 @@
                 <LinearLayout
                     android:id="@+id/set_exit_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="44dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingRight="18dp" >
+                    android:paddingRight="15dp" >
 
                     <TextView
                         android:layout_width="0dp"
@@ -179,8 +179,8 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="退出当前账号"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp" />
+                        android:textColor="@color/home_title"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"

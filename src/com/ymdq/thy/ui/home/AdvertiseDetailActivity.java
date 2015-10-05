@@ -83,23 +83,23 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
     
     private TextView praiseNum;
     
-    private TextView blameNum;
+//    private TextView blameNum,shareNum;
     
     private TextView commentNum;
     
-    private TextView shareNum;
+    private TextView commitTipsNum;
     
     private ImageView praiseImg;
     
-    private ImageView blameImg;
+//    private ImageView blameImg;
     
     private LinearLayout praiseLayout;
     
-    private LinearLayout blameLayout;
+    private LinearLayout commentAdd;
     
     private LinearLayout commentLayout;
     
-    private LinearLayout shareLayout;
+    private LinearLayout shareLayout,commitTipsLayout;
     
     private List<CommentList> mList;
     
@@ -115,7 +115,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
     
     private TextView titleBarName;
     
-    private AdvertiseBroard broardcast;
+//    private AdvertiseBroard broardcast;
     
     /**
      * 存放是赞还是踩操作
@@ -145,7 +145,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
         initView();
         loadingDialog = new NetLoadingDailog(this);
         reqAdvertiseDetail();
-        registreBroadcast();
+//        registreBroadcast();
     }
     
     private void initView()
@@ -154,7 +154,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
         LinearLayout titleBarBack = (LinearLayout)titleBar.findViewById(R.id.title_back_layout);
         titleBarName = (TextView)titleBar.findViewById(R.id.title_name);
         titleBarBack.setOnClickListener(this);
-        titleBarName.setText("活动详情");
+        titleBarName.setText("详情");
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
         loadingLayout.setVisibility(View.VISIBLE);
@@ -170,16 +170,21 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
         adContent = (TextView)findViewById(R.id.ad_content);
         mListView = (ListView)findViewById(R.id.ad_listview);
         praiseNum = (TextView)findViewById(R.id.praise_num);
-        blameNum = (TextView)findViewById(R.id.blame_num);
+//        blameNum = (TextView)findViewById(R.id.blame_num);
+//        blameImg = (ImageView)findViewById(R.id.blame_img);
+//        shareNum = (TextView)findViewById(R.id.share_num);
+//        blameLayout = (LinearLayout)findViewById(R.id.blame_layout);
+        commentAdd = (LinearLayout)findViewById(R.id.comment_add);
         commentNum = (TextView)findViewById(R.id.comment_num);
-        shareNum = (TextView)findViewById(R.id.share_num);
         praiseImg = (ImageView)findViewById(R.id.praise_img);
-        blameImg = (ImageView)findViewById(R.id.blame_img);
         praiseLayout = (LinearLayout)findViewById(R.id.praise_layout);
-        blameLayout = (LinearLayout)findViewById(R.id.blame_layout);
         commentLayout = (LinearLayout)findViewById(R.id.comment_layout);
         shareLayout = (LinearLayout)findViewById(R.id.share_layout);
         
+        commitTipsLayout = (LinearLayout)findViewById(R.id.commit_tips_layout);
+        commitTipsNum = (TextView)findViewById(R.id.commit_tips_num);
+        
+        commentAdd.setOnClickListener(this);
         commentLayout.setOnClickListener(this);
         shareLayout.setOnClickListener(this);
         
@@ -252,21 +257,25 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
             //赞
             case R.id.praise_layout:
                 praiseLayout.setEnabled(false);
-                blameLayout.setEnabled(false);
+//                blameLayout.setEnabled(false);
                 showAnimation(praiseImg, Constants.PRAISE);
                 praiseOrBlame = Constants.PRAISE;
                 reqPraiseOrBlame(Constants.PRAISE);
                 break;
             //踩
-            case R.id.blame_layout:
-                praiseLayout.setEnabled(false);
-                blameLayout.setEnabled(false);
-                showAnimation(blameImg, Constants.CANCEL_PRAISE);
-                praiseOrBlame = Constants.CANCEL_PRAISE;
-                reqPraiseOrBlame(Constants.CANCEL_PRAISE);
-                break;
+//            case R.id.blame_layout:
+//                praiseLayout.setEnabled(false);
+//                blameLayout.setEnabled(false);
+//                showAnimation(blameImg, Constants.CANCEL_PRAISE);
+//                praiseOrBlame = Constants.CANCEL_PRAISE;
+//                reqPraiseOrBlame(Constants.CANCEL_PRAISE);
+//                break;
             //评论
             case R.id.comment_layout:
+                praise_blame_layout.setVisibility(View.GONE);
+                go_to_evaluate_layout.setVisibility(View.VISIBLE);
+                break;
+            case R.id.comment_add:
                 praise_blame_layout.setVisibility(View.GONE);
                 go_to_evaluate_layout.setVisibility(View.VISIBLE);
                 break;
@@ -402,24 +411,27 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                         {
                             praiseNum.setText(detailREsp.getPraiseNum());
                         }
-                        if (GeneralUtils.isNotNullOrZeroLenght(detailREsp.getBlameNum()))
-                        {
-                            blameNum.setText(detailREsp.getBlameNum());
-                        }
-                        if (GeneralUtils.isNotNullOrZeroLenght(detailREsp.getShareNum()))
-                        {
-                            shareNum.setText(detailREsp.getShareNum());
-                        }
+//                        if (GeneralUtils.isNotNullOrZeroLenght(detailREsp.getBlameNum()))
+//                        {
+//                            blameNum.setText(detailREsp.getBlameNum());
+//                        }
+//                        if (GeneralUtils.isNotNullOrZeroLenght(detailREsp.getShareNum()))
+//                        {
+//                            shareNum.setText(detailREsp.getShareNum());
+//                        }
                         List<CommentList> list = detailREsp.getComment();
                         if (list != null && list.size() > 0)
                         {
                             commentNum.setText(list.size() + "");
                             mList.clear();
                             mList.addAll(list);
+                            commitTipsLayout.setVisibility(View.VISIBLE);
+                            commitTipsNum.setText(String.valueOf(list.size()));
                             adapter.notifyDataSetChanged();
                         }
                         else
                         {
+                            commitTipsLayout.setVisibility(View.GONE);
                             commentNum.setText("0");
                         }
                         String pORb = MyTicketDetailDAO.getInstance(this).queryDB(id);
@@ -427,12 +439,12 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                         if (GeneralUtils.isNotNullOrZeroLenght(pORb))
                         {
                             //踩
-                            if (Constants.CANCEL_PRAISE.equals(pORb))
-                            {
-                                blameImg.setImageResource(R.drawable.icon_caired_pressed);
-                            }
+//                            if (Constants.CANCEL_PRAISE.equals(pORb))
+//                            {
+//                                blameImg.setImageResource(R.drawable.icon_caired_pressed);
+//                            }
                             //赞
-                            else if (Constants.PRAISE.equals(pORb))
+                            if (Constants.PRAISE.equals(pORb))
                             {
                                 praiseImg.setImageResource(R.drawable.community_like_new_press);
                             }
@@ -440,7 +452,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                         else
                         {
                             praiseLayout.setOnClickListener(this);
-                            blameLayout.setOnClickListener(this);
+//                            blameLayout.setOnClickListener(this);
                         }
                     }
                     else
@@ -463,16 +475,16 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                     if (Constants.SUCESS_CODE.equals(resp.getRetcode()))
                     {
                         //踩
-                        if (praiseOrBlame.equals(Constants.CANCEL_PRAISE))
-                        {
+//                        if (praiseOrBlame.equals(Constants.CANCEL_PRAISE))
+//                        {
                             //存数据库
-                            MyTicketDetailDAO.getInstance(this).insertDB(id, praiseOrBlame);
-                            int b_num = Integer.valueOf(blameNum.getText().toString());
-                            ++b_num;
-                            blameNum.setText(b_num + "");
-                        }
+//                            MyTicketDetailDAO.getInstance(this).insertDB(id, praiseOrBlame);
+//                            int b_num = Integer.valueOf(blameNum.getText().toString());
+//                            ++b_num;
+//                            blameNum.setText(b_num + "");
+//                        }
                         //赞
-                        else if (praiseOrBlame.equals(Constants.PRAISE))
+                        if (praiseOrBlame.equals(Constants.PRAISE))
                         {
                             //存数据库
                             MyTicketDetailDAO.getInstance(this).insertDB(id, praiseOrBlame);
@@ -581,30 +593,30 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
      * <功能详细描述>
      * @see [类、类#方法、类#成员]
      */
-    private void registreBroadcast()
-    {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constants.ADVERTISE_SUCCESS_BROADCAST);
-        broardcast = new AdvertiseBroard();
-        this.registerReceiver(broardcast, filter);
-    }
+//    private void registreBroadcast()
+//    {
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(Constants.ADVERTISE_SUCCESS_BROADCAST);
+//        broardcast = new AdvertiseBroard();
+//        this.registerReceiver(broardcast, filter);
+//    }
     
     @Override
     public void onDestroy()
     {
         super.onDestroy();
-        this.unregisterReceiver(broardcast);
+//        this.unregisterReceiver(broardcast);
     }
     
-    class AdvertiseBroard extends BroadcastReceiver
-    {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            if (Constants.ADVERTISE_SUCCESS_BROADCAST.equals(intent.getAction()))
-            {
-                shareNum.setText(String.valueOf((Integer.parseInt(shareNum.getText().toString()) + 1)));
-            }
-        }
-    }
+//    class AdvertiseBroard extends BroadcastReceiver
+//    {
+//        @Override
+//        public void onReceive(Context context, Intent intent)
+//        {
+//            if (Constants.ADVERTISE_SUCCESS_BROADCAST.equals(intent.getAction()))
+//            {
+//                shareNum.setText(String.valueOf((Integer.parseInt(shareNum.getText().toString()) + 1)));
+//            }
+//        }
+//    }
 }

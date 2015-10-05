@@ -17,58 +17,82 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:id="@+id/person_info_head_pic_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@drawable/person_center_gray_line" />
+                <ImageView
+                    android:id="@+id/person_info_head_pic_iv"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/selector_community_create_circle_img" />
 
-                <LinearLayout
-                    android:id="@+id/person_info_head_pic_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp" >
-
-                    <TextView
-                        android:id="@+id/person_center_name_tv"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="头像"
-                        android:textColor="@color/black_color"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/person_info_head_pic_iv"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_marginLeft="15dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/default_head_pic" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="14dp"
-                        android:src="@drawable/register_one_house_right_icon" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@drawable/person_center_gray_line" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:text="我的头像"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_gray_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white_color"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp" >
+
+                <TextView
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="昵称"
+                    android:textColor="@color/black_color"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/person_info_nickname_et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:hint="@string/person_info_nickname"
+                    android:imeOptions="actionNext"
+                    android:maxLength="7"
+                    android:singleLine="true"
+                    android:textColor="@color/black_color"
+                    android:textColorHint="@color/person_input_hint"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/person_info_nickname_delete_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="6dp"
+                    android:src="@drawable/register_three_delete" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/person_center_gray_line" />
 
             <View
                 android:layout_width="match_parent"
@@ -81,54 +105,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp" >
-
-                    <TextView
-                        android:layout_width="84dp"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="昵称"
-                        android:textColor="@color/black_color"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/person_info_nickname_et"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="6dp"
-                        android:layout_weight="1.0"
-                        android:background="@null"
-                        android:hint="@string/person_info_nickname"
-                        android:imeOptions="actionNext"
-                        android:maxLength="7"
-                        android:singleLine="true"
-                        android:textColor="@color/black_color"
-                        android:textColorHint="@color/person_input_hint"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/person_info_nickname_delete_iv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="6dp"
-                        android:paddingLeft="12dp"
-                        android:paddingRight="15dp"
-                        android:paddingTop="6dp"
-                        android:src="@drawable/register_three_delete" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/person_center_gray_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

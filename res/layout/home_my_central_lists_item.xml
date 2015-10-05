@@ -18,8 +18,7 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black_color"
-            android:textStyle="bold"
+            android:textColor="@color/bb474d"
             android:textSize="15sp"
             android:text="星宇华府小区居委会" />
         <TextView

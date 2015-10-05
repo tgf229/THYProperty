@@ -201,9 +201,9 @@
 # view res/layout/main_fragment_listview_head.xml #generated:14
 -keep class com.ymdq.thy.view.MyImageView { <init>(...); }
 
-# view res/layout/home_advertise_detail.xml #generated:92
-# view res/layout/house_user_info.xml #generated:147
-# view res/layout/person_center.xml #generated:200
+# view res/layout/home_advertise_detail.xml #generated:112
+# view res/layout/house_user_info.xml #generated:131
+# view res/layout/person_center.xml #generated:190
 # view res/layout/property_my_ticket_detail.xml #generated:122
 -keep class com.ymdq.thy.view.MyListView { <init>(...); }
 

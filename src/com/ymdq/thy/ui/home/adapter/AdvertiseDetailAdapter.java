@@ -73,10 +73,10 @@ public class AdvertiseDetailAdapter extends BaseAdapter
         if(convertView == null)
         {
             mHolder = new HolderView();
-            convertView = LayoutInflater.from(context).inflate(R.layout.home_advertise_detail_listview_item, null);
-            mHolder.img = (ImageView)convertView.findViewById(R.id.comment_img);
-            mHolder.name = (TextView)convertView.findViewById(R.id.comment_name);
-            mHolder.time = (TextView)convertView.findViewById(R.id.comment_time);
+            convertView = LayoutInflater.from(context).inflate(R.layout.community_topic_comment_item, null);
+            mHolder.img = (ImageView)convertView.findViewById(R.id.head_image);
+            mHolder.name = (TextView)convertView.findViewById(R.id.nick_name);
+            mHolder.time = (TextView)convertView.findViewById(R.id.time);
             mHolder.content = (TextView)convertView.findViewById(R.id.content);
             convertView.setTag(mHolder);
         }

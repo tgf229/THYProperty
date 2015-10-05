@@ -89,10 +89,8 @@ public class MyCentralCardActivity extends FragmentActivity implements OnClickLi
     
     private void initView()
     {
-        LinearLayout titleBarBack = (LinearLayout)findViewById(R.id.title_back_layout);
-        TextView titleBarName = (TextView)findViewById(R.id.title_name);
+        RelativeLayout titleBarBack = (RelativeLayout)findViewById(R.id.title_back_layout);
         titleBarBack.setOnClickListener(this);
-        titleBarName.setText(R.string.my_bill);
         
         accountManage = (TextView)findViewById(R.id.account_manage);
         paymentList = (TextView)findViewById(R.id.payment_list);
@@ -115,7 +113,7 @@ public class MyCentralCardActivity extends FragmentActivity implements OnClickLi
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int screenW = dm.widthPixels;// 获取分辨率宽度
-        offset = (screenW / 2 - bitmapWeight) / 2;// 计算偏移量
+        offset = (screenW / 2 - bitmapWeight);// 计算偏移量
         RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams)cursor.getLayoutParams(); //取控件textView当前的布局参数  
         linearParams.setMargins(offset, 0, 0, 0);
         cursor.setLayoutParams(linearParams);
@@ -129,7 +127,7 @@ public class MyCentralCardActivity extends FragmentActivity implements OnClickLi
      */
     private void loadAnimation()
     {
-        int one = offset * 2 + bitmapWeight;// 页卡1 -> 页卡2 偏移量
+        int one = bitmapWeight  + DisplayUtil.dip2px(this, 10);;// 页卡1 -> 页卡2 偏移量
         leftToRightAnimation = new TranslateAnimation(0, one, 0, 0);
         leftToRightAnimation.setFillAfter(true);// True:图片停在动画结束位置
         leftToRightAnimation.setDuration(300);

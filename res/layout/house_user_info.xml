@@ -19,7 +19,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
 
@@ -33,21 +32,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="13dp"
+                    android:paddingBottom="25dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:paddingTop="14dp" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/house_user_info_yellow" />
+                    android:paddingTop="25dp" >
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
                         android:layout_weight="1.0"
                         android:orientation="vertical" >
 
@@ -55,18 +47,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="房屋基本信息"
-                            android:textColor="@color/black_color"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/bb474d"
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/house_user_info_adress_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="一栋一单元502"
-                            android:textColor="#676767"
-                            android:textSize="16sp" />
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:textColor="#333333"
+                            android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -79,7 +71,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/white_color"
                 android:orientation="vertical" >
 
@@ -90,27 +82,20 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
+                    android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp" >
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/house_user_info_green" />
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="住户信息"
-                        android:textColor="@color/black_color"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/bb474d"
+                        android:textSize="14sp"/>
 
                     <LinearLayout
                         android:id="@+id/house_user_info_edit_ll"
@@ -133,9 +118,8 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="15dp"
                             android:text="编辑"
-                            android:textColor="@color/selector_color_person_center_edit"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/bb474d"
+                            android:textSize="14sp"/>
                     </LinearLayout>
                 </LinearLayout>
 

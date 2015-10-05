@@ -67,6 +67,7 @@ public class MyCentralListsActivity extends BaseActivity implements OnClickListe
         titleBarName.setText(R.string.convenience_of_information);
         
         mListView = (ListView)findViewById(R.id.list_view);
+        mListView.setHeaderDividersEnabled(false);
         mlist = new ArrayList<MyCentralListsDoc>();
         adapter = new MyCentralListsAdapter(this, mlist);
         mListView.setAdapter(adapter);
