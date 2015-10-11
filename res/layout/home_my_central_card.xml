@@ -73,12 +73,6 @@
             android:src="@drawable/community_red_line" />
     </RelativeLayout>
 
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/community_red_line_light" />
-
     <FrameLayout
         android:id="@+id/account_fragment"
         android:layout_width="match_parent"

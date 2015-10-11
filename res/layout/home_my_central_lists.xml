@@ -17,13 +17,14 @@
         android:layout_weight="1"
         android:cacheColorHint="@android:color/transparent"
         android:listSelector="@android:color/transparent"
-        android:divider="@drawable/line_grey"
-        android:dividerHeight="1px"
+        android:divider="@color/white_color"
+        android:dividerHeight="0px"
         android:visibility="gone" />
 
     <include
         android:id="@+id/loading_layout"
-        layout="@layout/loading_layout" />
+        layout="@layout/loading_layout"
+         />
 
     <include
         android:id="@+id/click_refresh_layout"

@@ -235,8 +235,8 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
         }
         title.setText("发话题");
         postTopic.setText("发表");
-        postTopic.setTextSize(15);
-        postTopic.setTextColor(getResources().getColorStateList(R.color.selector_color_community_post));
+        postTopic.setTextSize(16);
+        postTopic.setTextColor(getResources().getColorStateList(R.color.bb474d));
         circleId = getIntent().getStringExtra("circleId");
         imageCache = new HashMap<String, SoftReference<Bitmap>>();
         content.addTextChangedListener(new TextWatcher()

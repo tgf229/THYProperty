@@ -184,11 +184,11 @@ public class CommunityDynamicAdapter extends BaseAdapter
         //未赞
         if (Constants.CANCEL_PRAISE.equals(data.get(position).getFlag()))
         {
-            viewHolder.likeImg.setImageResource(R.drawable.community_like_new);
+            viewHolder.likeImg.setImageResource(R.drawable.btn_zan);
         }
         else
         {
-            viewHolder.likeImg.setImageResource(R.drawable.community_like_new_press);
+            viewHolder.likeImg.setImageResource(R.drawable.btn_zan_press);
         }
         //判断是否有内容
         viewHolder.content.setMovementMethod(null);
@@ -715,12 +715,12 @@ public class CommunityDynamicAdapter extends BaseAdapter
             {
                 if (Constants.CANCEL_PRAISE.equals(data.get(position).getFlag()))
                 {
-                    imageView.setImageResource(R.drawable.community_like_new);
+                    imageView.setImageResource(R.drawable.btn_zan);
                     imageView.clearAnimation();
                 }
                 else
                 {
-                    imageView.setImageResource(R.drawable.community_like_new_press);
+                    imageView.setImageResource(R.drawable.btn_zan_press);
                     imageView.clearAnimation();
                 }
             }

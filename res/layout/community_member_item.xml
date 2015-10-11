@@ -18,7 +18,7 @@
             android:layout_marginRight="10dip"
             android:layout_marginTop="10dip" >
 
-            <ImageView
+            <com.ymdq.thy.ui.community.widget.CircleImgView
                 android:id="@+id/head_image"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
@@ -52,7 +52,7 @@
         android:id="@+id/line_to_right"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70dip"
+        android:layout_marginLeft="10dip"
         android:background="@drawable/line_grey" />
 
 </LinearLayout>

@@ -235,6 +235,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         title.setText("个人中心");
         edit = (TextView)findViewById(R.id.title_btn_call);
         edit.setText("设置");
+        edit.setTextSize(16);
         edit.setTextColor(getResources().getColor(R.color.bb474d));
         editLayout = (LinearLayout)findViewById(R.id.title_call_layout);
         

@@ -446,7 +446,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                             //赞
                             if (Constants.PRAISE.equals(pORb))
                             {
-                                praiseImg.setImageResource(R.drawable.community_like_new_press);
+                                praiseImg.setImageResource(R.drawable.btn_zan_press);
                             }
                         }
                         else
@@ -579,7 +579,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                 //赞
                 else if (Constants.PRAISE.equals(ok))
                 {
-                    imageView.setImageResource(R.drawable.community_like_new_press);
+                    imageView.setImageResource(R.drawable.btn_zan_press);
                     imageView.clearAnimation();
                 }
             }

@@ -317,8 +317,8 @@ public class CommunityGroupDetailActivity extends BaseActivity implements OnHead
         circleName = getIntent().getStringExtra("circleName");
         title.setText(circleName);
         postTopic.setText("发话题");
-        postTopic.setTextSize(15);
-        postTopic.setTextColor(getResources().getColorStateList(R.color.selector_color_community_post));
+        postTopic.setTextSize(16);
+        postTopic.setTextColor(getResources().getColorStateList(R.color.bb474d));
         listView.setOnScrollListener(new OnScrollListener()
         {
             @Override

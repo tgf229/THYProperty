@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -41,7 +41,6 @@ import com.ymdq.thy.callback.UICallBack;
 import com.ymdq.thy.constant.Constants;
 import com.ymdq.thy.constant.URLUtil;
 import com.ymdq.thy.network.ConnectService;
-import com.ymdq.thy.ui.CommShareActivity;
 
 /**
  * 

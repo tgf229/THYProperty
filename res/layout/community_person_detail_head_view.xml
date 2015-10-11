@@ -91,12 +91,6 @@
                 android:text="@string/my_topic"
                 android:textColor="@color/community_dynamic" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="20dip "
-                android:layout_gravity="center"
-                android:scaleType="fitXY"
-                android:src="@drawable/line_vertical" />
 
             <TextView
                 android:id="@+id/my_added_group"
@@ -106,13 +100,6 @@
                 android:gravity="center"
                 android:text="@string/my_added_group"
                 android:textColor="@color/black_color" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="20dip "
-                android:layout_gravity="center"
-                android:scaleType="fitXY"
-                android:src="@drawable/line_vertical" />
 
             <TextView
                 android:id="@+id/my_edit_group"
@@ -127,16 +114,16 @@
         <ImageView
             android:id="@+id/cursor"
             android:layout_width="80dip"
-            android:layout_height="wrap_content"
+            android:layout_height="2dp"
             android:layout_alignBottom="@+id/community_tab"
             android:layout_marginBottom="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/community_red_line" />
+            android:src="@color/bb474d" />
     </RelativeLayout>
 
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/community_red_line_light" />
+        android:background="@drawable/line_grey" />
 
 </LinearLayout>

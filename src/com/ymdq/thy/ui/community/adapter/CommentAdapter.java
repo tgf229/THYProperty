@@ -75,7 +75,7 @@ public class CommentAdapter extends BaseAdapter
             viewHolder.vip = (ImageView)convertView.findViewById(R.id.icon_vip);
             viewHolder.nickName = (TextView)convertView.findViewById(R.id.nick_name);
             viewHolder.time = (TextView)convertView.findViewById(R.id.time);
-            viewHolder.lineAll = (ImageView)convertView.findViewById(R.id.line_all);
+//            viewHolder.lineAll = (ImageView)convertView.findViewById(R.id.line_all);
             viewHolder.lineToRight = (ImageView)convertView.findViewById(R.id.line_to_right);
             viewHolder.content = (TextView)convertView.findViewById(R.id.content);
             convertView.setTag(viewHolder);
@@ -133,12 +133,12 @@ public class CommentAdapter extends BaseAdapter
         if (data.size() - 1 == position)
         {
             viewHolder.lineToRight.setVisibility(View.GONE);
-            viewHolder.lineAll.setVisibility(View.VISIBLE);
+//            viewHolder.lineAll.setVisibility(View.VISIBLE);
         }
         else
         {
             viewHolder.lineToRight.setVisibility(View.VISIBLE);
-            viewHolder.lineAll.setVisibility(View.GONE);
+//            viewHolder.lineAll.setVisibility(View.GONE);
         }
         viewHolder.headImage.setOnClickListener(new OnClickListener()
         {
@@ -166,7 +166,7 @@ public class CommentAdapter extends BaseAdapter
         
         private ImageView lineToRight;
         
-        private ImageView lineAll;
+//        private ImageView lineAll;
         
         private ImageView vip;
     }

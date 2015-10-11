@@ -89,11 +89,11 @@
         <ImageView
             android:id="@+id/cursor"
             android:layout_width="60dip"
-            android:layout_height="wrap_content"
+            android:layout_height="2dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/community_red_line" />
+            android:src="@color/bb474d" />
     </RelativeLayout>
 
     <!--

@@ -19,7 +19,7 @@
         android:id="@+id/c_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black_color"
+        android:textColor="@color/home_title"
         android:layout_toRightOf="@id/city"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dip"

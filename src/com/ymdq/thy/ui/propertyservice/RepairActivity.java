@@ -176,7 +176,7 @@ public class RepairActivity extends BaseActivity implements OnClickListener,OnIt
         titleBarRight.setOnClickListener(this);
         titleBarTextV = (TextView)findViewById(R.id.title_btn_call);
         titleBarTextV.setText("提交");
-        titleBarTextV.setTextColor(getResources().getColorStateList(R.color.selector_color_community_post));
+        titleBarTextV.setTextColor(getResources().getColorStateList(R.color.bb474d));
         titleBarRight.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);

@@ -105,22 +105,15 @@
 
                 <LinearLayout
                     android:id="@+id/edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_community_add_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/person_register_sumbit_bg_new_selector"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:visibility="gone" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/community_edit" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dip"
                         android:text="编辑"
                         android:textColor="@color/white_color"
                         android:textSize="14sp" >
@@ -129,12 +122,12 @@
 
                 <Button
                     android:id="@+id/view_member"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="70dp"
+                    android:layout_height="28dp"
                     android:layout_marginLeft="12dip"
-                    android:background="@drawable/selector_community_view_member_btn"
+                    android:background="@drawable/community_member_btn_bg_selector"
                     android:text="查看成员"
-                    android:textColor="@color/white_color"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp"
                     android:visibility="gone" />
             </LinearLayout>

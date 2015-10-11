@@ -23,7 +23,7 @@
                 android:background="@color/white_color"
                 android:orientation="vertical" >
 
-                <ImageView
+                <com.ymdq.thy.ui.community.widget.CircleImgView
                     android:id="@+id/person_info_head_pic_iv"
                     android:layout_width="80dp"
                     android:layout_height="80dp"

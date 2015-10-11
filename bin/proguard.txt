@@ -103,6 +103,10 @@
 # view AndroidManifest.xml #generated:199
 -keep class com.ymdq.thy.ui.community.ReportActivity { <init>(...); }
 
+# view res/layout/community_member_item.xml #generated:21
+# view res/layout/person_info.xml #generated:26
+-keep class com.ymdq.thy.ui.community.widget.CircleImgView { <init>(...); }
+
 # view AndroidManifest.xml #generated:225
 -keep class com.ymdq.thy.ui.home.AccountManagePaymentActivity { <init>(...); }
 

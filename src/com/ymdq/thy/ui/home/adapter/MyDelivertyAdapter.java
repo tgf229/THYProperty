@@ -100,13 +100,13 @@ public class MyDelivertyAdapter extends BaseAdapter
             //待领取
             if(Constants.NO_TAKE_DELIVERTY.equals(entity.getType()))
             {
-                mHolder.status.setBackgroundResource(R.drawable.service_icon_green);
+                mHolder.status.setBackgroundResource(R.drawable.service_icon_processing);
                 mHolder.status.setText("待领取");
             }
             //已收取
             else if(Constants.HAS_TAKE_DELIVERTY.equals(entity.getType()))
             {
-                mHolder.status.setBackgroundResource(R.drawable.service_icon_grey);
+                mHolder.status.setBackgroundResource(R.drawable.service_icon_complete);
                 mHolder.status.setText("已领取");
             }
         }
