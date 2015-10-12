@@ -49,7 +49,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener
     /**
      * 登陆,注册,游客按钮
      */
-    private Button btLogin, btRegister, btTourist;
+    private Button btLogin;
     
     /**
      * 用户名,密码输入框
@@ -59,7 +59,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener
     /**
      * 忘记密码
      */
-    private TextView tvForgetPass;
+    private TextView tvForgetPass,btRegister;
     
     /**
      * 用户名,密码
@@ -97,21 +97,21 @@ public class LoginActivity extends BaseActivity implements OnClickListener
         fromHomePage = getIntent().getStringExtra("from_homepage");
         
         btLogin = (Button)findViewById(R.id.person_login_bt);
-        btRegister = (Button)findViewById(R.id.person_login_register_bt);
-        btTourist = (Button)findViewById(R.id.person_login_tourist_bt);
+        btRegister = (TextView)findViewById(R.id.person_login_register_bt);
+//        btTourist = (Button)findViewById(R.id.person_login_tourist_bt);
         
         etUserName = (EditText)findViewById(R.id.person_login_username_et);
         etPassword = (EditText)findViewById(R.id.person_login_password_et);
         
         tvForgetPass = (TextView)findViewById(R.id.person_login_forget_password_tv);
-        tvForgetPass.setText(Html.fromHtml("<u><b>忘记密码</b></u>" + "?"));
+//        tvForgetPass.setText(Html.fromHtml("<u><b>忘记密码</b></u>" + "?"));
         
         /**
          * 添加按钮点击事件
          */
         btLogin.setOnClickListener(this);
         btRegister.setOnClickListener(this);
-        btTourist.setOnClickListener(this);
+//        btTourist.setOnClickListener(this);
         tvForgetPass.setOnClickListener(this);
         
         dailog = new NetLoadingDailog(this);
@@ -255,19 +255,19 @@ public class LoginActivity extends BaseActivity implements OnClickListener
                 Intent intentRegister = new Intent(LoginActivity.this, RegisterOneActivity.class);
                 LoginActivity.this.startActivityForResult(intentRegister, 0);
                 break;
-            case R.id.person_login_tourist_bt:
-                Constants.TOURIST = true;
-                if (GeneralUtils.isNotNullOrZeroLenght(fromHomePage))
-                {
-                    Intent intentTourist = new Intent(LoginActivity.this, HomeFragmentActivity.class);
-                    LoginActivity.this.startActivity(intentTourist);
-                    LoginActivity.this.finish();
-                }
-                else
-                {
-                    LoginActivity.this.finish();
-                }
-                break;
+//            case R.id.person_login_tourist_bt:
+//                Constants.TOURIST = true;
+//                if (GeneralUtils.isNotNullOrZeroLenght(fromHomePage))
+//                {
+//                    Intent intentTourist = new Intent(LoginActivity.this, HomeFragmentActivity.class);
+//                    LoginActivity.this.startActivity(intentTourist);
+//                    LoginActivity.this.finish();
+//                }
+//                else
+//                {
+//                    LoginActivity.this.finish();
+//                }
+//                break;
             case R.id.person_login_forget_password_tv:
                 Intent intentForget = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 LoginActivity.this.startActivityForResult(intentForget, 1);

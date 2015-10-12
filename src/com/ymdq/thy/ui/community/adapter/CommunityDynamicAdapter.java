@@ -310,11 +310,11 @@ public class CommunityDynamicAdapter extends BaseAdapter
                 viewHolder.admin.setText("圈主");
                 viewHolder.admin.setBackgroundResource(R.drawable.community_quzhu_bg);
             }
-            else
-            {
-                viewHolder.admin.setText("用户");
-                viewHolder.admin.setBackgroundResource(R.drawable.communiyt_user_bg);
-            }
+//            else
+//            {
+//                viewHolder.admin.setText("用户");
+//                viewHolder.admin.setBackgroundResource(R.drawable.communiyt_user_bg);
+//            }
             if (Constants.ISTOP.equals(data.get(position).getIsTop()))
             {
                 viewHolder.upToTop.setVisibility(View.VISIBLE);

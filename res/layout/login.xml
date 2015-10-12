@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/person_login_bg"
+    android:background="@color/property_repair_bg"
     android:orientation="vertical" >
 
     <ScrollView
@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:paddingBottom="36dp"
+                android:paddingBottom="60dp"
                 android:paddingTop="60dp" >
 
                 <ImageView
@@ -39,8 +39,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/person_login_username_left" />
 
                 <EditText
@@ -53,9 +53,9 @@
                     android:hint="@string/person_login_username"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/person_input_text"
+                    android:textColor="@color/person_input_hint"
                     android:textColorHint="@color/person_input_hint"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,8 +68,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/person_login_password_left" />
 
                 <EditText
@@ -83,27 +83,9 @@
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:textColor="@color/person_input_text"
+                    android:textColor="@color/person_input_hint"
                     android:textColorHint="@color/person_input_hint"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal"
-                android:paddingRight="15dp" >
-
-                <TextView
-                    android:id="@+id/person_login_forget_password_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="6dp"
-                    android:text="@string/person_login_forget_password"
-                    android:textColor="@color/black_color"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <Button
@@ -112,7 +94,7 @@
                 android:layout_height="44dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="35dp"
                 android:background="@drawable/person_register_sumbit_bg_new_selector"
                 android:paddingBottom="12dp"
                 android:paddingTop="12dp"
@@ -120,39 +102,37 @@
                 android:textColor="@color/white_color"
                 android:textSize="16sp" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="105dp"
-                android:layout_marginBottom="37dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <Button
+                >
+                
+                <TextView
                     android:id="@+id/person_login_register_bt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/person_login_register_bg_selector"
-                    android:text="@string/person_login_register"
-                    android:textColor="@color/person_login_register"
-                    android:textSize="15sp" />
+                    android:layout_alignParentLeft="true"
+                     android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp"
+                    android:paddingRight="20dp"
+                    android:text="快速注册"
+                    android:textColor="@color/person_register_one_agree"
+                    android:textSize="14sp" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/person_login_forget_password_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/person_login_d_line" />
-
-                <Button
-                    android:id="@+id/person_login_tourist_bt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/person_login_tourist_bg_selector"
-                    android:text="@string/person_login_tourist"
-                    android:textColor="@color/person_login_tourist"
-                    android:textSize="15sp" />
-            </LinearLayout>
+                    android:layout_alignParentRight="true"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="15dp" 
+                    android:text="@string/person_login_forget_password"
+                    android:textColor="@color/person_register_one_agree"
+                    android:textSize="14sp" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
