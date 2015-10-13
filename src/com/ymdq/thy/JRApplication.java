@@ -1,5 +1,7 @@
 package com.ymdq.thy;
 
+import im.fir.sdk.FIR;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,7 @@ public class JRApplication extends Application
     @Override
     public void onCreate()
     {
+        FIR.init(this);
         super.onCreate();
         jrApplication = this;
         loadData(getApplicationContext());

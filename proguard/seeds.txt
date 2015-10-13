@@ -10934,6 +10934,8 @@ com.ymdq.thy.R$drawable: int account_manage_property_selector
 com.ymdq.thy.R$drawable: int bianming_btn_call
 com.ymdq.thy.R$drawable: int bianming_btn_call_press
 com.ymdq.thy.R$drawable: int bianming_content_bg
+com.ymdq.thy.R$drawable: int btn_gray
+com.ymdq.thy.R$drawable: int btn_gray_press
 com.ymdq.thy.R$drawable: int btn_more
 com.ymdq.thy.R$drawable: int btn_pingjia
 com.ymdq.thy.R$drawable: int btn_pinglun
@@ -10951,7 +10953,6 @@ com.ymdq.thy.R$drawable: int circles_post_item_del_selector
 com.ymdq.thy.R$drawable: int classify_button_select
 com.ymdq.thy.R$drawable: int classify_button_select_press
 com.ymdq.thy.R$drawable: int community_add
-com.ymdq.thy.R$drawable: int community_add_press
 com.ymdq.thy.R$drawable: int community_agree
 com.ymdq.thy.R$drawable: int community_agree_clicked
 com.ymdq.thy.R$drawable: int community_agree_press
@@ -10975,12 +10976,10 @@ com.ymdq.thy.R$drawable: int community_icon_more
 com.ymdq.thy.R$drawable: int community_icon_more_press
 com.ymdq.thy.R$drawable: int community_inputbox_comment
 com.ymdq.thy.R$drawable: int community_like
-com.ymdq.thy.R$drawable: int community_like_new
-com.ymdq.thy.R$drawable: int community_like_new_press
 com.ymdq.thy.R$drawable: int community_like_press
+com.ymdq.thy.R$drawable: int community_member_btn_bg_selector
 com.ymdq.thy.R$drawable: int community_message
 com.ymdq.thy.R$drawable: int community_message_number
-com.ymdq.thy.R$drawable: int community_message_press
 com.ymdq.thy.R$drawable: int community_person_bg
 com.ymdq.thy.R$drawable: int community_person_return
 com.ymdq.thy.R$drawable: int community_person_return_press
@@ -10999,7 +10998,6 @@ com.ymdq.thy.R$drawable: int community_topic_detail_more
 com.ymdq.thy.R$drawable: int community_topic_detail_praise
 com.ymdq.thy.R$drawable: int community_topic_detail_praise_press
 com.ymdq.thy.R$drawable: int community_user
-com.ymdq.thy.R$drawable: int community_user_press
 com.ymdq.thy.R$drawable: int community_zhiding
 com.ymdq.thy.R$drawable: int communiyt_user_bg
 com.ymdq.thy.R$drawable: int default_head_pic
@@ -11079,6 +11077,7 @@ com.ymdq.thy.R$drawable: int ic_pulltorefresh_arrow_up
 com.ymdq.thy.R$drawable: int icon_caired
 com.ymdq.thy.R$drawable: int icon_caired_pressed
 com.ymdq.thy.R$drawable: int icon_location
+com.ymdq.thy.R$drawable: int icon_location_1
 com.ymdq.thy.R$drawable: int icon_vip
 com.ymdq.thy.R$drawable: int icon_xiaoqu
 com.ymdq.thy.R$drawable: int left_arrow
@@ -11086,6 +11085,9 @@ com.ymdq.thy.R$drawable: int line_grey
 com.ymdq.thy.R$drawable: int line_vertical
 com.ymdq.thy.R$drawable: int linli_btn_send
 com.ymdq.thy.R$drawable: int linli_btn_send_press
+com.ymdq.thy.R$drawable: int linli_create_pic_circle
+com.ymdq.thy.R$drawable: int linli_create_pic_circle_press
+com.ymdq.thy.R$drawable: int linli_detail_iconadd
 com.ymdq.thy.R$drawable: int loading
 com.ymdq.thy.R$drawable: int loading_bg
 com.ymdq.thy.R$drawable: int loading_icon1
@@ -11192,18 +11194,16 @@ com.ymdq.thy.R$drawable: int report_submit_selector
 com.ymdq.thy.R$drawable: int select_house_bg_blue
 com.ymdq.thy.R$drawable: int selector_access_control_btn
 com.ymdq.thy.R$drawable: int selector_community_add_btn
-com.ymdq.thy.R$drawable: int selector_community_add_group
 com.ymdq.thy.R$drawable: int selector_community_agree_btn
 com.ymdq.thy.R$drawable: int selector_community_chat_btn
 com.ymdq.thy.R$drawable: int selector_community_comment_send_btn
+com.ymdq.thy.R$drawable: int selector_community_create_circle_img
 com.ymdq.thy.R$drawable: int selector_community_create_confirm_btn
 com.ymdq.thy.R$drawable: int selector_community_create_image_btn
 com.ymdq.thy.R$drawable: int selector_community_disagree_btn
-com.ymdq.thy.R$drawable: int selector_community_message_btn
 com.ymdq.thy.R$drawable: int selector_community_more_btn
 com.ymdq.thy.R$drawable: int selector_community_person_back
 com.ymdq.thy.R$drawable: int selector_community_person_edit
-com.ymdq.thy.R$drawable: int selector_community_user_btn
 com.ymdq.thy.R$drawable: int selector_community_view_member_btn
 com.ymdq.thy.R$drawable: int selector_community_vote
 com.ymdq.thy.R$drawable: int selector_convenience_of_information_btn
@@ -11299,6 +11299,7 @@ com.ymdq.thy.R$drawable: int share_weixin_selector
 com.ymdq.thy.R$drawable: int sym_keyboard_delete
 com.ymdq.thy.R$drawable: int sym_keyboard_done
 com.ymdq.thy.R$drawable: int tips_select
+com.ymdq.thy.R$drawable: int tips_select_1
 com.ymdq.thy.R$drawable: int toast_loading_layout
 com.ymdq.thy.R$drawable: int umeng_default_avatar
 com.ymdq.thy.R$drawable: int umeng_example_shape_gradient_grey_7
@@ -11434,12 +11435,9 @@ com.ymdq.thy.R$id: int add
 com.ymdq.thy.R$id: int address
 com.ymdq.thy.R$id: int admin
 com.ymdq.thy.R$id: int agree
+com.ymdq.thy.R$id: int arrow
 com.ymdq.thy.R$id: int article_count
-com.ymdq.thy.R$id: int back
 com.ymdq.thy.R$id: int back_img
-com.ymdq.thy.R$id: int blame_img
-com.ymdq.thy.R$id: int blame_layout
-com.ymdq.thy.R$id: int blame_num
 com.ymdq.thy.R$id: int bottom
 com.ymdq.thy.R$id: int bottom_layout
 com.ymdq.thy.R$id: int brand_child_layout
@@ -11449,6 +11447,7 @@ com.ymdq.thy.R$id: int call_layout
 com.ymdq.thy.R$id: int camera
 com.ymdq.thy.R$id: int cancel
 com.ymdq.thy.R$id: int cancle_btn
+com.ymdq.thy.R$id: int chat_layout
 com.ymdq.thy.R$id: int checkBox
 com.ymdq.thy.R$id: int check_box
 com.ymdq.thy.R$id: int choice_house_layout
@@ -11468,13 +11467,15 @@ com.ymdq.thy.R$id: int com_name
 com.ymdq.thy.R$id: int come
 com.ymdq.thy.R$id: int come_from
 com.ymdq.thy.R$id: int comment
+com.ymdq.thy.R$id: int comment_add
 com.ymdq.thy.R$id: int comment_img
 com.ymdq.thy.R$id: int comment_layout
 com.ymdq.thy.R$id: int comment_name
 com.ymdq.thy.R$id: int comment_num
 com.ymdq.thy.R$id: int comment_time
+com.ymdq.thy.R$id: int commit_tips_layout
+com.ymdq.thy.R$id: int commit_tips_num
 com.ymdq.thy.R$id: int commonly_2
-com.ymdq.thy.R$id: int community_bg
 com.ymdq.thy.R$id: int community_chat
 com.ymdq.thy.R$id: int community_chat_layout
 com.ymdq.thy.R$id: int community_content
@@ -11590,6 +11591,7 @@ com.ymdq.thy.R$id: int image_title
 com.ymdq.thy.R$id: int image_view
 com.ymdq.thy.R$id: int img
 com.ymdq.thy.R$id: int imgFirst
+com.ymdq.thy.R$id: int imgLayout
 com.ymdq.thy.R$id: int img_txt_num
 com.ymdq.thy.R$id: int img_type
 com.ymdq.thy.R$id: int img_view
@@ -11600,10 +11602,10 @@ com.ymdq.thy.R$id: int iv_banner
 com.ymdq.thy.R$id: int last_line
 com.ymdq.thy.R$id: int left_radio_group
 com.ymdq.thy.R$id: int like
+com.ymdq.thy.R$id: int like_img
 com.ymdq.thy.R$id: int like_layout
 com.ymdq.thy.R$id: int line
 com.ymdq.thy.R$id: int line_all
-com.ymdq.thy.R$id: int line_grey
 com.ymdq.thy.R$id: int line_item
 com.ymdq.thy.R$id: int line_to_right
 com.ymdq.thy.R$id: int list_view
@@ -11651,6 +11653,7 @@ com.ymdq.thy.R$id: int official_recommendation_top_and_group
 com.ymdq.thy.R$id: int open
 com.ymdq.thy.R$id: int payed_money
 com.ymdq.thy.R$id: int payment_list
+com.ymdq.thy.R$id: int person
 com.ymdq.thy.R$id: int person_center_add_house_tv
 com.ymdq.thy.R$id: int person_center_edit_house_tv
 com.ymdq.thy.R$id: int person_center_finish_edit_house_tv
@@ -11678,7 +11681,6 @@ com.ymdq.thy.R$id: int person_login_forget_password_tv
 com.ymdq.thy.R$id: int person_login_password_et
 com.ymdq.thy.R$id: int person_login_register_bt
 com.ymdq.thy.R$id: int person_login_top_pic_iv
-com.ymdq.thy.R$id: int person_login_tourist_bt
 com.ymdq.thy.R$id: int person_login_username_et
 com.ymdq.thy.R$id: int person_register_choise_community_ll
 com.ymdq.thy.R$id: int person_register_choise_community_tv
@@ -11791,7 +11793,6 @@ com.ymdq.thy.R$id: int set_new_password_bt
 com.ymdq.thy.R$id: int set_new_password_sumbit_bt
 com.ymdq.thy.R$id: int set_update_ll
 com.ymdq.thy.R$id: int share_layout
-com.ymdq.thy.R$id: int share_num
 com.ymdq.thy.R$id: int sign
 com.ymdq.thy.R$id: int sms_text
 com.ymdq.thy.R$id: int status
@@ -11912,6 +11913,7 @@ com.ymdq.thy.R$layout: int community_square_fragment
 com.ymdq.thy.R$layout: int community_square_group_item
 com.ymdq.thy.R$layout: int community_square_topic_item
 com.ymdq.thy.R$layout: int community_topic_comment_item
+com.ymdq.thy.R$layout: int community_topic_comment_item2
 com.ymdq.thy.R$layout: int community_topic_detail
 com.ymdq.thy.R$layout: int dialog_loading
 com.ymdq.thy.R$layout: int end_tips_layout
@@ -13399,6 +13401,7 @@ com.ymdq.thy.ui.community.CommunityTopicDetailsActivity
 com.ymdq.thy.ui.community.CommunityTopicDetailsActivity: CommunityTopicDetailsActivity()
 com.ymdq.thy.ui.community.CommunityTopicDetailsActivity: void onClick(android.view.View)
 com.ymdq.thy.ui.community.CommunityTopicDetailsActivity$10: void onClick(android.view.View)
+com.ymdq.thy.ui.community.CommunityTopicDetailsActivity$11: void onClick(android.view.View)
 com.ymdq.thy.ui.community.CommunityTopicDetailsActivity$2: void onClick(android.view.View)
 com.ymdq.thy.ui.community.CommunityTopicDetailsActivity$5: void onClick(android.view.View)
 com.ymdq.thy.ui.community.CommunityTopicDetailsActivity$6: void onClick(android.view.View)
@@ -13421,7 +13424,6 @@ com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter$3: void onClick(androi
 com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter$4: void onClick(android.view.View)
 com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter$5: void onClick(android.view.View)
 com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter$6: void onClick(android.view.View)
-com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter$7: void onClick(android.view.View)
 com.ymdq.thy.ui.community.widget.CircleImgView
 com.ymdq.thy.ui.community.widget.CircleImgView: CircleImgView(android.content.Context)
 com.ymdq.thy.ui.community.widget.CircleImgView: CircleImgView(android.content.Context,android.util.AttributeSet)

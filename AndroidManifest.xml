@@ -27,7 +27,6 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <!-- 极光推送权限结束 -->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -49,6 +48,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
+        
+        <!-- BUG 报告 -->
+         <meta-data android:value="9b8e6bca0f72acf79ea454e7b9c0cfbe" android:name="BUG_HD_SDK_GENERAL_KEY" />
 
         <!-- 友盟AppKey -->
         <meta-data
