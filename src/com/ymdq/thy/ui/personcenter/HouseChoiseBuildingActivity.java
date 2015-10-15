@@ -11,6 +11,7 @@ package com.ymdq.thy.ui.personcenter;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ import com.ymdq.thy.util.GeneralUtils;
  * @see  [相关类/方法]
  * @since  [产品/模块版本]
  */
+@SuppressLint("NewApi")
 public class HouseChoiseBuildingActivity extends BaseActivity
 {
     /**
@@ -87,8 +89,7 @@ public class HouseChoiseBuildingActivity extends BaseActivity
         commNameText.setText(communityName);
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("小区住址");
-        tvTitle.setTypeface(GeneralUtils.getFontFace(this));
+        tvTitle.setBackground(getResources().getDrawable(R.drawable.title_loudonghao));
         llBack.setOnClickListener(new OnClickListener()
         {
             

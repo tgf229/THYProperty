@@ -34,16 +34,18 @@
                 android:gravity="center"
                 android:orientation="horizontal" >
 
-                <TextView
-                    android:id="@+id/account_manage"
+               <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/account_manage_text"
-                    android:textColor="@color/home_title"
-                    android:textSize="19sp" />
-
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/account_manage"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+						android:background="@drawable/title_zhangdanguanli_press"/>
+                </LinearLayout>  
+                               
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="29dip "
@@ -51,15 +53,17 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/line_vertical" />
 
-                <TextView
-                    android:id="@+id/payment_list"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/payment_list_text"
-                    android:textColor="@color/community_dynamic"
-                    android:textSize="19sp" />
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/payment_list"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+						android:background="@drawable/title_jiaofeiqingdan"/>
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 

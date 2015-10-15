@@ -5,7 +5,7 @@
     android:background="@drawable/person_login_bg"
     android:orientation="vertical" >
     
-    <include layout="@layout/app_title" />
+    <include layout="@layout/app_title_pic" />
 
     <WebView
         android:id="@+id/webview_helper_web"

@@ -171,12 +171,32 @@ public class RepairActivity extends BaseActivity implements OnClickListener,OnIt
         TextView titleBarName = (TextView)findViewById(R.id.title_name);
         titleBarBack.setOnClickListener(this);
         String titleName = getIntent().getStringExtra("title_name");
-        titleBarName.setText(titleName);
+        if("报修".equals(titleName))
+        {
+            titleBarName.setBackgroundResource(R.drawable.title_baoxiu);
+        }
+        else if("求助".equals(titleName))
+        {
+            titleBarName.setBackgroundResource(R.drawable.title_qiuzhu);
+        } 
+        else if("投诉".equals(titleName))
+        {
+            titleBarName.setBackgroundResource(R.drawable.title_tousu);
+        }
+        else if("建议".equals(titleName))
+        {
+            titleBarName.setBackgroundResource(R.drawable.title_jianyi);
+        }
+        else
+        {
+            titleBarName.setText(titleName);
+        }
         titleBarRight = (LinearLayout)findViewById(R.id.title_call_layout);
         titleBarRight.setOnClickListener(this);
         titleBarTextV = (TextView)findViewById(R.id.title_btn_call);
-        titleBarTextV.setText("提交");
-        titleBarTextV.setTextColor(getResources().getColorStateList(R.color.bb474d));
+        titleBarTextV.setBackgroundResource(R.drawable.title_red_tijiao);
+//        titleBarTextV.setText("提交");
+//        titleBarTextV.setTextColor(getResources().getColorStateList(R.color.bb474d));
         titleBarRight.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);

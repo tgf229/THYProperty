@@ -93,7 +93,8 @@ public class AccountManagePaymentActivity extends BaseActivity implements OnClic
         LinearLayout titleBarBack = (LinearLayout)titleBar.findViewById(R.id.title_back_layout);
         TextView titleBarName = (TextView)titleBar.findViewById(R.id.title_name);
         titleBarBack.setOnClickListener(this);
-        titleBarName.setText(typeName);
+        titleBarName.setBackgroundResource(R.drawable.title_feiyong);
+//        titleBarName.setText(typeName);
         
         top_ListView = (LinearLayout)findViewById(R.id.top_layout);
         mListView = (ListView)findViewById(R.id.list_view);

@@ -64,7 +64,7 @@ public class MyCentralListsActivity extends BaseActivity implements OnClickListe
         LinearLayout titleBarBack = (LinearLayout)titleBar.findViewById(R.id.title_back_layout);
         TextView titleBarName = (TextView)titleBar.findViewById(R.id.title_name);
         titleBarBack.setOnClickListener(this);
-        titleBarName.setText(R.string.convenience_of_information);
+        titleBarName.setBackgroundResource(R.drawable.title_bianming);
         
         mListView = (ListView)findViewById(R.id.list_view);
         mListView.setHeaderDividersEnabled(false);

@@ -199,7 +199,8 @@ public class CommunityCommentMessageActivity extends BaseActivity implements UIC
      */
     private void initData()
     {
-        title.setText("评论消息");
+//        title.setText("评论消息");
+        title.setBackgroundResource(R.drawable.title_pinglunxiaoxi);
         messageDao = new CommunityMessageDAO(this);
         listView.setOnScrollListener(new OnScrollListener()
         {

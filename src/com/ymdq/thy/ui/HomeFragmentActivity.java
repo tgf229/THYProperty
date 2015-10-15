@@ -67,7 +67,7 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     /**
      * 标签文本
      */
-    private TextView home_menu_home_txt, home_menu_property_service_txt, home_menu_community_txt,
+    private ImageView home_menu_home_txt, home_menu_property_service_txt, home_menu_community_txt,
         home_menu_person_center_txt;
     
     /**
@@ -97,8 +97,6 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
      */
     private CommunityMessageBroard communityMessageBroard;
     
-    private Typeface fontFace;
-    
     @Override
     protected void onCreate(Bundle arg0)
     {
@@ -106,8 +104,6 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
         super.onCreate(arg0);
         setContentView(R.layout.activity_home_fragment);
         JRApplication.jrApplication.addActivity(this);
-        fontFace = Typeface.createFromAsset(getAssets(),
-            "fonts/H-GungSeo2.2.ttf");
         init();
         registreBroadcast();
         initData();
@@ -115,15 +111,12 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
         uploadCrashFile();
     }
     
-    
-    
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
-//        super.onSaveInstanceState(outState);
+        //        super.onSaveInstanceState(outState);
     }
-
-
+    
     /**
      * 
      * <初始化布局组件>
@@ -142,14 +135,10 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
         home_menu_community_img = (ImageView)findViewById(R.id.home_menu_community_img);
         home_menu_person_center_img = (ImageView)findViewById(R.id.home_menu_person_center_img);
         
-        home_menu_home_txt = (TextView)findViewById(R.id.home_menu_home_txt);
-        home_menu_property_service_txt = (TextView)findViewById(R.id.home_menu_property_service_txt);
-        home_menu_community_txt = (TextView)findViewById(R.id.home_menu_community_txt);
-        home_menu_person_center_txt = (TextView)findViewById(R.id.home_menu_person_center_txt);
-        home_menu_home_txt.setTypeface(fontFace);
-        home_menu_property_service_txt.setTypeface(fontFace);
-        home_menu_community_txt.setTypeface(fontFace);
-        home_menu_person_center_txt.setTypeface(fontFace);
+        home_menu_home_txt = (ImageView)findViewById(R.id.home_menu_home_txt);
+        home_menu_property_service_txt = (ImageView)findViewById(R.id.home_menu_property_service_txt);
+        home_menu_community_txt = (ImageView)findViewById(R.id.home_menu_community_txt);
+        home_menu_person_center_txt = (ImageView)findViewById(R.id.home_menu_person_center_txt);
         
         community_message_number = (TextView)findViewById(R.id.community_message_number);
         
@@ -380,13 +369,9 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     private void clearSelection()
     {
         home_menu_home_img.setImageResource(R.drawable.home_icon_home);
-        home_menu_home_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
         home_menu_property_service_img.setImageResource(R.drawable.home_icon_service);
-        home_menu_property_service_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
         home_menu_community_img.setImageResource(R.drawable.home_icon_neighbor);
-        home_menu_community_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
         home_menu_person_center_img.setImageResource(R.drawable.home_icon_myhome);
-        home_menu_person_center_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
     }
     
     @Override

@@ -89,7 +89,8 @@ public class CommunityMemberActivity extends BaseActivity implements OnClickList
      */
     private void initData()
     {
-        title.setText("圈子成员");
+//        title.setText("圈子成员");
+        title.setBackgroundResource(R.drawable.title_quanzichengyuan);
         members = (ArrayList<Member>)getIntent().getSerializableExtra("members");
         adapter = new CommunityMemberAdapter(members, this);
         listView.setAdapter(adapter);

@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/title_bar"
-        layout="@layout/app_title" />
+        layout="@layout/app_title_pic" />
 
     <ListView
         android:id="@+id/list_view"

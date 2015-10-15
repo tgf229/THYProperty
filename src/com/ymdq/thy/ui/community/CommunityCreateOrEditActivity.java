@@ -180,11 +180,13 @@ public class CommunityCreateOrEditActivity extends BaseActivity implements OnCli
         type = getIntent().getStringExtra("type");
         if (Constants.CREATE_COMMUNITY.equals(type))
         {
-            title.setText("创建圈子");
+//            title.setText("创建圈子");
+            title.setBackgroundResource(R.drawable.title_chuangjianquanzi);
         }
         else
         {
-            title.setText("编辑圈子");
+//            title.setText("编辑圈子");
+            title.setBackgroundResource(R.drawable.title_bianjiquanzi);
             groupDetailInfoResponse =
                 (GroupDetailInfoResponse)getIntent().getSerializableExtra("groupDetailInfoResponse");
             name.setText(groupDetailInfoResponse.getName());
@@ -197,8 +199,9 @@ public class CommunityCreateOrEditActivity extends BaseActivity implements OnCli
                     "community_default",
                     "community_default"));
         }
-        confirm.setText("确认");
-        confirm.setTextColor(getResources().getColorStateList(R.color.selector_color_community_post));
+        confirm.setBackgroundResource(R.drawable.title_red_wancheng);
+//        confirm.setText("确认");
+//        confirm.setTextColor(getResources().getColorStateList(R.color.selector_color_community_post));
     }
     
     @Override

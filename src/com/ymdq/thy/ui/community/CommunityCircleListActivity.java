@@ -232,11 +232,13 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
     {
         if (Constants.OFFICIAL_RECOMMENDATION.equals(groupType))
         {
-            view.setText(exist + "官方推荐");
+            view.setBackgroundResource(R.drawable.title_guanfangtuijian);
+//            view.setText(exist + "官方推荐");
         }
         else if (Constants.POPULAR_COMMUNITY.equals(groupType))
         {
-            view.setText(exist + "热门圈子");
+            view.setBackgroundResource(R.drawable.title_remenquanzi);
+//            view.setText(exist + "热门圈子");
         }
         else if (Constants.MY_JOINED_COMMUNITY.equals(groupType))
         {
@@ -244,7 +246,8 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
         }
         else
         {
-            view.setText(exist + "我管理的圈子");
+            view.setBackgroundResource(R.drawable.title_woguanlidequanzi);
+//            view.setText(exist + "我管理的圈子");
         }
         
     }

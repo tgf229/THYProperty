@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -110,21 +111,21 @@ public class RegisterOneActivity extends BaseActivity
     /**
      * 初始化头部
      */
+    @SuppressLint("NewApi")
     private void initTitle()
     {
         bindHouseCenter = getIntent().getStringExtra("center_binding_house");
         
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setTypeface(GeneralUtils.getFontFace(this));
         
         if ("center_binding_house".equals(bindHouseCenter))
         {
-            tvTitle.setText("绑定房屋");
+            tvTitle.setBackground(getResources().getDrawable(R.drawable.title_bangdingfangwu));
         }
         else
         {
-            tvTitle.setText("注册");
+            tvTitle.setBackground(getResources().getDrawable(R.drawable.title_zhuce));
         }
         
         llBack.setOnClickListener(new OnClickListener()

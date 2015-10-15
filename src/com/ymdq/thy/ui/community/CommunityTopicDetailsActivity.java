@@ -418,11 +418,13 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         if (Constants.NUM1 == type)
         {
             listView.removeHeaderView(headView);
-            title.setText("评论");
+            title.setBackgroundResource(R.drawable.title_pinglun);
+//            title.setText("评论");
         }
         else
         {
-            title.setText("详情");
+            title.setBackgroundResource(R.drawable.title_xiangqing);
+//            title.setText("详情");
         }
         listView.setOnScrollListener(new OnScrollListener()
         {

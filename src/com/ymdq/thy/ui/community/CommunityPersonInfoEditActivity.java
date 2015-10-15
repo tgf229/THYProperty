@@ -126,10 +126,12 @@ public class CommunityPersonInfoEditActivity extends BaseActivity implements OnC
      */
     private void initData()
     {
-        title.setText("个人设置");
-        confirm.setText("确认");
-        confirm.setTextSize(16);
-        confirm.setTextColor(getResources().getColorStateList(R.color.bb474d));
+//        title.setText("个人设置");
+        title.setBackgroundResource(R.drawable.title_gerenshezhi);
+        confirm.setBackgroundResource(R.drawable.title_red_tijiao);
+//        confirm.setText("确认");
+//        confirm.setTextSize(16);
+//        confirm.setTextColor(getResources().getColorStateList(R.color.bb474d));
         groupPersonInfoResponse = (GroupPersonInfoResponse)getIntent().getSerializableExtra("person");
         if (groupPersonInfoResponse != null)
         {

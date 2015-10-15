@@ -8,9 +8,10 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -57,18 +58,13 @@ public class GuidePagerAdapter extends PagerAdapter implements IconPagerAdapter
     @Override
     public Object instantiateItem(ViewGroup container, final int position)
     {
-        View pageView = LayoutInflater.from(mContext).inflate(R.layout.home_banner_item, null);
-        
-        ImageView adImageView = (ImageView)pageView.findViewById(R.id.iv_banner);
-        //通过图片名调用图片ID
-        int image = mContext.getResources().getIdentifier(mPaths.get(position), "drawable", "com.ymdq.thy");
-        adImageView.setImageResource(image);
-        
+        View pageView = null;
         if (position == mPaths.size() - 1)
         {
-            adImageView.setOnClickListener(new OnClickListener()
+            pageView = LayoutInflater.from(mContext).inflate(R.layout.home_banner_item_last, null);
+            TextView btn = (TextView)pageView.findViewById(R.id.btn);
+            btn.setOnClickListener(new OnClickListener()
             {
-                
                 @Override
                 public void onClick(View v)
                 {
@@ -79,6 +75,31 @@ public class GuidePagerAdapter extends PagerAdapter implements IconPagerAdapter
                 }
             });
         }
+        else
+        {
+            pageView = LayoutInflater.from(mContext).inflate(R.layout.home_banner_item, null);
+            
+            ImageView adImageView = (ImageView)pageView.findViewById(R.id.iv_banner);
+            //通过图片名调用图片ID
+            int image = mContext.getResources().getIdentifier(mPaths.get(position), "drawable", "com.ymdq.thy");
+            adImageView.setImageResource(image);
+        }
+        
+        //        if (position == mPaths.size() - 1)
+        //        {
+        //            adImageView.setOnClickListener(new OnClickListener()
+        //            {
+        //                
+        //                @Override
+        //                public void onClick(View v)
+        //                {
+        //                    Intent intent = new Intent(mContext, LoginActivity.class);
+        //                    intent.putExtra("from_homepage", "from_homepage");
+        //                    mContext.startActivity(intent);
+        //                    activity.finish();
+        //                }
+        //            });
+        //        }
         
         container.addView(pageView, 0);
         

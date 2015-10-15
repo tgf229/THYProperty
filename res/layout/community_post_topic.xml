@@ -6,7 +6,7 @@
     android:background="@color/community_bg"
     android:orientation="vertical" >
 
-    <include layout="@layout/app_title" />
+    <include layout="@layout/app_title_pic" />
 
     <ScrollView
         android:layout_width="fill_parent"

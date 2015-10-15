@@ -77,7 +77,7 @@ public class SetNewPasswordActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("忘记密码");
+        tvTitle.setBackgroundResource(R.drawable.title_wangjimima);
         llBack.setOnClickListener(new OnClickListener()
         {
             

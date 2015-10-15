@@ -233,10 +233,12 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
                 isVote.setBackgroundResource(R.drawable.community_switch_off);
             }
         }
-        title.setText("发话题");
-        postTopic.setText("发表");
-        postTopic.setTextSize(16);
-        postTopic.setTextColor(getResources().getColorStateList(R.color.bb474d));
+//        title.setText("发话题");
+        title.setBackgroundResource(R.drawable.title_fahuati);
+        postTopic.setBackgroundResource(R.drawable.title_red_wancheng);
+//        postTopic.setText("发表");
+//        postTopic.setTextSize(16);
+//        postTopic.setTextColor(getResources().getColorStateList(R.color.bb474d));
         circleId = getIntent().getStringExtra("circleId");
         imageCache = new HashMap<String, SoftReference<Bitmap>>();
         content.addTextChangedListener(new TextWatcher()

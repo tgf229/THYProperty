@@ -130,16 +130,15 @@ public class RegisterTwoActivity extends BaseActivity
         bindHouseCenter = getIntent().getStringExtra("center_binding_house");
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setTypeface(GeneralUtils.getFontFace(this));
         
         if ("center_binding_house".equals(bindHouseCenter))
         {
-            tvTitle.setText("绑定房屋");
+            tvTitle.setBackgroundResource(R.drawable.title_bangdingfangwu);
         }
         else
         {
             register_cid = getIntent().getStringExtra("register_cid");
-            tvTitle.setText("注册");
+            tvTitle.setBackgroundResource(R.drawable.title_zhuce);
         }
         
         llBack.setOnClickListener(new OnClickListener()

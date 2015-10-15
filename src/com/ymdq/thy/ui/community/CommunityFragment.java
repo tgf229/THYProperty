@@ -354,8 +354,10 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
                     cursor.clearAnimation();
                     cursor.startAnimation(leftToRightAnimation);
                 }
-                communityDynamic.setTextColor(getResources().getColor(R.color.community_dynamic));
-                communitySquare.setTextColor(getResources().getColor(R.color.black_color));
+                communityDynamic.setBackgroundResource(R.drawable.title_dongtai_press);
+                communitySquare.setBackgroundResource(R.drawable.title_guangchang);
+//                communityDynamic.setTextColor(getResources().getColor(R.color.community_dynamic));
+//                communitySquare.setTextColor(getResources().getColor(R.color.black_color));
                 break;
             case R.id.community_square:
                 if (GeneralUtils.isNotNullOrZeroLenght(curFragmentTag))
@@ -363,8 +365,10 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
                     cursor.clearAnimation();
                     cursor.startAnimation(rightToleftAnimation);
                 }
-                communityDynamic.setTextColor(getResources().getColor(R.color.black_color));
-                communitySquare.setTextColor(getResources().getColor(R.color.community_dynamic));
+                communityDynamic.setBackgroundResource(R.drawable.title_dongtai);
+                communitySquare.setBackgroundResource(R.drawable.title_guangchang_press);
+//                communityDynamic.setTextColor(getResources().getColor(R.color.black_color));
+//                communitySquare.setTextColor(getResources().getColor(R.color.community_dynamic));
                 break;
         }
     }

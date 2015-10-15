@@ -13,6 +13,8 @@ package com.ymdq.thy.constant;
 public class URLUtil
 {
     public static final String SERVER = "http://mobile.myx8.cn/";
+//    public static final String SERVER = "http://mobile.crossroad.love/";
+    
     
     //        public static final String SERVER = "http://10.167.130.240:8080/x8-mobile-gw/";
     //public static final String SERVER = "http://10.167.130.144:8080/p_gateway/";

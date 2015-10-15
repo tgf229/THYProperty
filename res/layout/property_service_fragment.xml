@@ -14,12 +14,17 @@
         android:paddingBottom="5dip"
         android:paddingTop="5dip" >
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/title_name"
             style="@style/title_name"
             android:maxWidth="220dip"
             android:singleLine="true"
-            android:text="物业服务" />
+            android:background="@drawable/property_title"/> --> 
+             <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/property_title"/>
     </LinearLayout>
 
     <ScrollView

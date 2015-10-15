@@ -22,6 +22,7 @@ import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.NetLoadingDailog;
 
+@SuppressLint("JavascriptInterface")
 public class AgreementActivity extends BaseActivity
 {
     /**
@@ -60,7 +61,7 @@ public class AgreementActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("隐私条款与使用规则");
+        tvTitle.setBackgroundResource(R.drawable.title_yinsi);
         llBack.setOnClickListener(new OnClickListener()
         {
             

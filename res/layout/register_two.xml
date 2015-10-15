@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/register_two_title"
-        layout="@layout/app_title" />
+        layout="@layout/app_title_pic" />
 
     <ScrollView
         android:layout_width="match_parent"

@@ -110,7 +110,7 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         LinearLayout titleBarBack = (LinearLayout)titleBar.findViewById(R.id.title_back_layout);
         TextView titleBarName = (TextView)titleBar.findViewById(R.id.title_name);
         titleBarBack.setOnClickListener(this);
-        titleBarName.setText(R.string.property_my_ticket);
+        titleBarName.setBackgroundResource(R.drawable.title_gongdanxiangqing);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
         loadingLayout.setVisibility(View.VISIBLE);

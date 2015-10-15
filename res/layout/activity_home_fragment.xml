@@ -37,15 +37,16 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/home_icon_home" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/home_menu_home_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:layout_below="@id/home_menu_home_img"
+                    android:scaleType="centerCrop"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/home_menu_home"
-                    android:textColor="@color/home_menu_normal"
-                    android:textSize="12sp" />
+                    android:src="@drawable/title_xiaoqu"
+                   />
             </RelativeLayout>
 
             <RelativeLayout
@@ -62,15 +63,15 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/home_icon_service" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/home_menu_property_service_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:layout_below="@id/home_menu_property_service_img"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/home_menu_property_service"
-                    android:textColor="@color/home_menu_normal"
-                    android:textSize="12sp" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/title_wuye"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -87,15 +88,15 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/home_icon_neighbor" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/home_menu_community_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/home_menu_community_img"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/home_menu_community"
-                    android:textColor="@color/home_menu_normal"
-                    android:textSize="12sp" />
+                    android:layout_marginTop="3dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/title_linli"/>
 
                 <TextView
                     android:id="@+id/community_message_number"
@@ -126,15 +127,15 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/home_icon_myhome" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/home_menu_person_center_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/home_menu_person_center_img"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/home_menu_person_center"
-                    android:textColor="@color/home_menu_normal"
-                    android:textSize="12sp" />
+                    android:layout_marginTop="3dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/title_linli" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

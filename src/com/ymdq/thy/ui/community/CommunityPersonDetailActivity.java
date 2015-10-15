@@ -232,11 +232,13 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
     {
         back = (LinearLayout)findViewById(R.id.title_back_layout);
         title = (TextView)findViewById(R.id.title_name);
-        title.setText("个人中心");
+//        title.setText("个人中心");
+        title.setBackgroundResource(R.drawable.title_gerenzhongxin);
         edit = (TextView)findViewById(R.id.title_btn_call);
-        edit.setText("设置");
-        edit.setTextSize(16);
-        edit.setTextColor(getResources().getColor(R.color.bb474d));
+        edit.setBackgroundResource(R.drawable.title_red_shezhi);
+//        edit.setText("设置");
+//        edit.setTextSize(16);
+//        edit.setTextColor(getResources().getColor(R.color.bb474d));
         editLayout = (LinearLayout)findViewById(R.id.title_call_layout);
         
         person = (RelativeLayout)findViewById(R.id.person);

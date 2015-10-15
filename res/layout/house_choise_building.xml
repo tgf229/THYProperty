@@ -5,7 +5,7 @@
     android:background="@color/white_color"
     android:orientation="vertical" >
 
-    <include layout="@layout/app_title" />
+    <include layout="@layout/app_title_pic" />
     <include
         android:id="@+id/name_layout" 
         layout="@layout/house_choise_head"/>

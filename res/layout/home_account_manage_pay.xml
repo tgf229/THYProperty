@@ -7,7 +7,7 @@
 
     <include 
         android:id="@+id/title"
-        layout="@layout/app_title"/>
+        layout="@layout/app_title_pic"/>
     <LinearLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"

@@ -244,14 +244,12 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
         
         titleBar = (RelativeLayout)view.findViewById(R.id.title_bar);
         titteName = (TextView)view.findViewById(R.id.title_name);
-        titteName.setTypeface(GeneralUtils.getFontFace(getActivity()));
         titleImg = (ImageView)view.findViewById(R.id.img_view);
         titleBar.setClickable(false);
         titleBar.setOnClickListener(this);
         
         View listview_head = LayoutInflater.from(getActivity()).inflate(R.layout.main_fragment_listview_head, null);
         homeTitTitle = (TextView)listview_head.findViewById(R.id.home_tit_title);
-        homeTitTitle.setTypeface(GeneralUtils.getFontFace(getActivity()));
         Resources res = getResources();
         Bitmap img = BitmapFactory.decodeResource(res, R.drawable.home_titline);
         Matrix matrix = new Matrix();

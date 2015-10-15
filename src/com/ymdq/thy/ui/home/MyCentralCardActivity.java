@@ -269,8 +269,10 @@ public class MyCentralCardActivity extends FragmentActivity implements OnClickLi
                     cursor.clearAnimation();
                     cursor.startAnimation(rightToleftAnimation);
                 }
-                accountManage.setTextColor(getResources().getColor(R.color.register_title_new));
-                paymentList.setTextColor(getResources().getColor(R.color.black_color));
+                accountManage.setBackgroundResource(R.drawable.title_zhangdanguanli_press);
+                paymentList.setBackgroundResource(R.drawable.title_jiaofeiqingdan);
+//                accountManage.setTextColor(getResources().getColor(R.color.register_title_new));
+//                paymentList.setTextColor(getResources().getColor(R.color.black_color));
                 break;
             //缴费清单
             case R.id.payment_list:
@@ -279,8 +281,10 @@ public class MyCentralCardActivity extends FragmentActivity implements OnClickLi
                     cursor.clearAnimation();
                     cursor.startAnimation(leftToRightAnimation);
                 }
-                accountManage.setTextColor(getResources().getColor(R.color.black_color));
-                paymentList.setTextColor(getResources().getColor(R.color.register_title_new));
+                accountManage.setBackgroundResource(R.drawable.title_zhangdanguanli);
+                paymentList.setBackgroundResource(R.drawable.title_jiaofeiqingdan_press);
+//                accountManage.setTextColor(getResources().getColor(R.color.black_color));
+//                paymentList.setTextColor(getResources().getColor(R.color.register_title_new));
                 break;
         }
     }

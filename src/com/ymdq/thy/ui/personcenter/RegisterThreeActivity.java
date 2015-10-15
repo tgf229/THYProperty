@@ -102,8 +102,7 @@ public class RegisterThreeActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("注册");
-        tvTitle.setTypeface(GeneralUtils.getFontFace(this));
+        tvTitle.setBackgroundResource(R.drawable.title_zhuce);
         llBack.setOnClickListener(new OnClickListener()
         {
             

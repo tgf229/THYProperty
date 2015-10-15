@@ -6,7 +6,7 @@
     android:background="@color/community_topic_details"
     android:orientation="vertical" >
 
-    <include layout="@layout/app_title" />
+    <include layout="@layout/app_title_pic" />
 
     <com.ymdq.thy.view.PullToRefreshView
         android:id="@+id/storehome_main_pull_refresh_view"

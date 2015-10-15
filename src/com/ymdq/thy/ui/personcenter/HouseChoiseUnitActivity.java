@@ -91,7 +91,6 @@ public class HouseChoiseUnitActivity extends BaseActivity implements OnScrollLis
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
         tvTitle.setText(title);
-        tvTitle.setTypeface(GeneralUtils.getFontFace(this));
         llBack.setOnClickListener(new OnClickListener()
         {
             
