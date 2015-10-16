@@ -123,7 +123,8 @@ public class SetActivity extends BaseActivity implements OnClickListener
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("设置");
+//        tvTitle.setText("设置");
+        tvTitle.setBackgroundResource(R.drawable.title_shezhi);
         llBack.setOnClickListener(new OnClickListener()
         {
             

@@ -71,7 +71,8 @@ public class ManagePasswordActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("修改密码");
+//        tvTitle.setText("修改密码");
+        tvTitle.setBackgroundResource(R.drawable.title_xiugaimima);
         llBack.setOnClickListener(new OnClickListener()
         {
             

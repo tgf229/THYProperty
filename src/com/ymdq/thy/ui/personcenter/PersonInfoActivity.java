@@ -162,11 +162,13 @@ public class PersonInfoActivity extends BaseActivity implements OnClickListener
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         llFinish = (LinearLayout)findViewById(R.id.title_call_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("个人信息");
+//        tvTitle.setText("个人信息");
+        tvTitle.setBackgroundResource(R.drawable.title_gerenxinxi);
         tvFinish = (TextView)findViewById(R.id.title_btn_call);
-        tvFinish.setText("完成");
-        tvFinish.setTextColor(getResources().getColorStateList(R.color.selector_color_person_info_edit));
-        tvFinish.setTextSize(15);
+        tvFinish.setBackgroundResource(R.drawable.title_red_wancheng);
+//        tvFinish.setText("完成");
+//        tvFinish.setTextColor(getResources().getColorStateList(R.color.selector_color_person_info_edit));
+//        tvFinish.setTextSize(15);
         llBack.setOnClickListener(new OnClickListener()
         {
             

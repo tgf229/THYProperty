@@ -55,7 +55,8 @@ public class AboutUsActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("关于");
+//        tvTitle.setText("关于");
+        tvTitle.setBackgroundResource(R.drawable.title_guanyu);
         llBack.setOnClickListener(new OnClickListener()
         {
             

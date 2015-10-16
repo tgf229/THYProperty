@@ -112,7 +112,8 @@ public class HouseUserInfoActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("房屋信息");
+//        tvTitle.setText("房屋信息");
+        tvTitle.setBackgroundResource(R.drawable.title_fangwuxinxi);
         llBack.setOnClickListener(new OnClickListener()
         {
             

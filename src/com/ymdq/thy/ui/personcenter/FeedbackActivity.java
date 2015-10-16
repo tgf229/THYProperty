@@ -72,7 +72,8 @@ public class FeedbackActivity extends BaseActivity
     {
         llBack = (LinearLayout)findViewById(R.id.title_back_layout);
         tvTitle = (TextView)findViewById(R.id.title_name);
-        tvTitle.setText("意见反馈");
+//        tvTitle.setText("意见反馈");
+        tvTitle.setBackgroundResource(R.drawable.title_yijianfankui);
         llBack.setOnClickListener(new OnClickListener()
         {
             

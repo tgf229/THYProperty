@@ -76,7 +76,8 @@ public class SelectCommunityActivity extends BaseActivity implements OnClickList
         back.setOnClickListener(this);
         loadingLayout = (LinearLayout)findViewById(R.id.loading);
         TextView titleName = (TextView)findViewById(R.id.title_name);
-        titleName.setText("选择小区");
+//        titleName.setText("选择小区");
+        titleName.setBackgroundResource(R.drawable.title_xuanzexiaoqu);
         ListView mListView = (ListView)findViewById(R.id.list_view);
         View headView = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE))
             .inflate(R.layout.select_community_listview_head, null);

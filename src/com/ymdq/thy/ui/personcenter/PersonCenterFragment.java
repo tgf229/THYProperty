@@ -153,7 +153,8 @@ public class PersonCenterFragment extends BaseFragment implements OnClickListene
     {
         llBack = (LinearLayout)mView.findViewById(R.id.title_back_layout);
         tvTitle = (TextView)mView.findViewById(R.id.title_name);
-        tvTitle.setText("我的家");
+//        tvTitle.setText("我的家");
+        tvTitle.setBackgroundResource(R.drawable.title_wodejia);
         llBack.setVisibility(View.INVISIBLE);
     }
     
