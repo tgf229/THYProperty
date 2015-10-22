@@ -651,7 +651,7 @@ public class PersonInfoActivity extends BaseActivity implements OnClickListener
             }
             
         }
-        
+
         super.onActivityResult(requestCode, resultCode, data);
     }
     

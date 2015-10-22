@@ -9,7 +9,6 @@
         android:id="@+id/group_dynamic_photo"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/property_service_default"
         android:src="@drawable/community_default"
         android:gravity="center"
         android:scaleType="fitXY" />

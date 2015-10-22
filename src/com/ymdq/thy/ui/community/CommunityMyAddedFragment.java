@@ -29,6 +29,7 @@ import com.ymdq.thy.ui.BaseFragment;
 import com.ymdq.thy.ui.community.adapter.CommunityCircleAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.PullToRefreshView;
 import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
@@ -128,6 +129,8 @@ public class CommunityMyAddedFragment extends BaseFragment implements UICallBack
      */
     public String queryUId;
     
+    private GifView gif1;
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -155,6 +158,9 @@ public class CommunityMyAddedFragment extends BaseFragment implements UICallBack
         mPullToRefreshView = (PullToRefreshView)view.findViewById(R.id.storehome_main_pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         loadingLayout = (LinearLayout)view.findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingFailedLayout = (LinearLayout)view.findViewById(R.id.loading_failed);
         listView = (ListView)view.findViewById(R.id.list_view);
         loadingFooterView =
@@ -295,6 +301,7 @@ public class CommunityMyAddedFragment extends BaseFragment implements UICallBack
          */
         if (ob instanceof GroupListResponse)
         {
+            gif1.setPaused(true);
             loadingLayout.setVisibility(View.GONE);
             mPullToRefreshView.onHeaderRefreshComplete();
             loadingMore.setVisibility(View.GONE);

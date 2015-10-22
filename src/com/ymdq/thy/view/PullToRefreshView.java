@@ -2,6 +2,7 @@ package com.ymdq.thy.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -194,6 +195,7 @@ public class PullToRefreshView extends LinearLayout
             new RotateAnimation(-180, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
         mReverseFlipAnimation.setInterpolator(new LinearInterpolator());
         mReverseFlipAnimation.setDuration(250);
+        mReverseFlipAnimation.setRepeatCount(5);
         mReverseFlipAnimation.setFillAfter(true);
         
         mInflater = LayoutInflater.from(getContext());
@@ -496,6 +498,7 @@ public class PullToRefreshView extends LinearLayout
     private void headerPrepareToRefresh(int deltaY)
     {
         int newTopMargin = changingHeaderViewTopMargin(deltaY);
+        Log.v("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++", String.valueOf(newTopMargin));
         // 当header view的topMargin>=0时，说明已经完全显示出来了,修改header view 的提示状态
         if (newTopMargin >= 0 && mHeaderState != RELEASE_TO_REFRESH)
         {
@@ -506,7 +509,8 @@ public class PullToRefreshView extends LinearLayout
             mHeaderState = RELEASE_TO_REFRESH;
         }
         else if (newTopMargin < 0 && newTopMargin > -mHeaderViewHeight)
-        {// 拖动时没有释放
+        {
+            // 拖动时没有释放
             mHeaderImageView.clearAnimation();
             mHeaderImageView.startAnimation(mFlipAnimation);
             // mHeaderImageView.
@@ -577,10 +581,14 @@ public class PullToRefreshView extends LinearLayout
     {
         mHeaderState = REFRESHING;
         setHeaderTopMargin(0);
-        mHeaderImageView.setVisibility(View.GONE);
+        
+//        mHeaderImageView.setVisibility(View.GONE);
+//        mHeaderImageView.clearAnimation();
+//        mHeaderImageView.setImageDrawable(null);
+//        mHeaderProgressBar.setVisibility(View.VISIBLE);
         mHeaderImageView.clearAnimation();
-        mHeaderImageView.setImageDrawable(null);
-        mHeaderProgressBar.setVisibility(View.VISIBLE);
+        mHeaderImageView.startAnimation(mReverseFlipAnimation);
+        
         mHeaderTextView.setText(R.string.pull_to_refresh_refreshing_label);
         if (mOnHeaderRefreshListener != null)
         {
@@ -629,7 +637,7 @@ public class PullToRefreshView extends LinearLayout
     {
         setHeaderTopMargin(-mHeaderViewHeight);
         mHeaderImageView.setVisibility(View.VISIBLE);
-        mHeaderImageView.setImageResource(R.drawable.ic_pulltorefresh_arrow);
+        mHeaderImageView.setImageResource(R.drawable.refresh_pull);
         mHeaderTextView.setText(R.string.pull_to_refresh_pull_label);
         mHeaderProgressBar.setVisibility(View.GONE);
         // mHeaderUpdateTextView.setText("");

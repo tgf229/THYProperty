@@ -13,7 +13,6 @@
         android:background="@drawable/mybill_zhanghao_titbg_grey"
         android:gravity="center_vertical"
         android:paddingLeft="15dip"
-        android:text="星雨华府"
         android:textColor="@color/white_color"
         android:textSize="15sp"
         android:textStyle="bold" />

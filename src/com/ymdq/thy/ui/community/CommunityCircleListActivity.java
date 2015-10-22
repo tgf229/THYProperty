@@ -30,6 +30,7 @@ import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.community.adapter.CommunityCircleAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.PullToRefreshView;
 import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
@@ -138,6 +139,8 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
      */
     private List<Group> groups = new ArrayList<Group>();
     
+    private GifView gif1;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -163,6 +166,9 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
         mPullToRefreshView = (PullToRefreshView)findViewById(R.id.storehome_main_pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingFailedLayout = (LinearLayout)findViewById(R.id.loading_failed);
         listView = (ListView)findViewById(R.id.list_view);
         loadingFooterView =
@@ -353,6 +359,7 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
          */
         if (ob instanceof GroupListResponse)
         {
+            gif1.setPaused(true);
             loadingLayout.setVisibility(View.GONE);
             mPullToRefreshView.onHeaderRefreshComplete();
             loadingMore.setVisibility(View.GONE);

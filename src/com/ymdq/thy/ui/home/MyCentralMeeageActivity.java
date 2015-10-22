@@ -29,6 +29,7 @@ import com.ymdq.thy.ui.home.adapter.MyCentralMeeageAdapter;
 import com.ymdq.thy.ui.personcenter.LoginActivity;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 
 /**
  * 
@@ -55,6 +56,8 @@ public class MyCentralMeeageActivity extends BaseActivity implements OnClickList
     private TextView clickTextView;
     
     private boolean fromJpush, fromJpushNoti;
+
+private GifView gif1;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -82,6 +85,9 @@ public class MyCentralMeeageActivity extends BaseActivity implements OnClickList
         mListView.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
@@ -123,6 +129,7 @@ public class MyCentralMeeageActivity extends BaseActivity implements OnClickList
 
     private void UITips(String content)
     {
+        gif1.setPaused(true);
         mListView.setVisibility(View.GONE);
         loadingLayout.setVisibility(View.GONE);
         clickrefreshLayout.setVisibility(View.VISIBLE);
@@ -146,12 +153,14 @@ public class MyCentralMeeageActivity extends BaseActivity implements OnClickList
             mList.addAll(allList);
             adapter.notifyDataSetChanged();
             
+            gif1.setPaused(true);
             loadingLayout.setVisibility(View.GONE);
             clickrefreshLayout.setVisibility(View.GONE);
         }
         else
         {
             mListView.setVisibility(View.GONE);
+            gif1.setPaused(true);
             loadingLayout.setVisibility(View.GONE);
             clickrefreshLayout.setVisibility(View.VISIBLE);
             clickTextView.setText("暂无任何消息");

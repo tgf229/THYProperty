@@ -33,6 +33,7 @@ import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.community.adapter.CommunityCommentMessageAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.PullToRefreshView;
 import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
@@ -130,6 +131,7 @@ public class CommunityCommentMessageActivity extends BaseActivity implements UIC
      * 数据库实体
      */
     private CommunityMessageDAO messageDao;
+    private GifView gif1;
     
     private Handler handler = new Handler()
     {
@@ -176,6 +178,9 @@ public class CommunityCommentMessageActivity extends BaseActivity implements UIC
         mPullToRefreshView = (PullToRefreshView)findViewById(R.id.storehome_main_pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingFailedLayout = (LinearLayout)findViewById(R.id.loading_failed);
         listView = (ListView)findViewById(R.id.list_view);
         loadingFooterView =
@@ -309,6 +314,7 @@ public class CommunityCommentMessageActivity extends BaseActivity implements UIC
          */
         if (ob instanceof CommunityCommentMessageResponse)
         {
+            gif1.setPaused(true);
             loadingLayout.setVisibility(View.GONE);
             mPullToRefreshView.onHeaderRefreshComplete();
             CommunityCommentMessageResponse messageResponse = (CommunityCommentMessageResponse)ob;

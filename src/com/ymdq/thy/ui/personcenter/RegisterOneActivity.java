@@ -93,9 +93,9 @@ public class RegisterOneActivity extends BaseActivity
     /**
      * 小区
      */
-    private String user_community_id = "1";
+    private String user_community_id = "";
     
-    private String communityName = "星雨华府";
+    private String communityName = "";
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -104,7 +104,7 @@ public class RegisterOneActivity extends BaseActivity
         setContentView(R.layout.register_one);
         initTitle();
         init();
-        initData();
+//        initData();
         addListener();
     }
     
@@ -187,10 +187,17 @@ public class RegisterOneActivity extends BaseActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(RegisterOneActivity.this, HouseChoiseBuildingActivity.class);
-                intent.putExtra("community_name",communityName);
-                intent.putExtra("house_building", doc);
-                startActivityForResult(intent, 0);
+                if(GeneralUtils.isNullOrZeroLenght(communityName))
+                {
+                    ToastUtil.makeText(RegisterOneActivity.this, "请先选择小区");
+                }
+                else
+                {
+                    Intent intent = new Intent(RegisterOneActivity.this, HouseChoiseBuildingActivity.class);
+                    intent.putExtra("community_name",communityName);
+                    intent.putExtra("house_building", doc);
+                    startActivityForResult(intent, 0);
+                }
             }
         });
         
@@ -203,7 +210,11 @@ public class RegisterOneActivity extends BaseActivity
             @Override
             public void onClick(View v)
             {
-                if (GeneralUtils.isNull(houseDList))
+                if (GeneralUtils.isNullOrZeroLenght(user_community_id))
+                {
+                    ToastUtil.makeText(RegisterOneActivity.this, "请选择小区");
+                }
+                else if (GeneralUtils.isNull(houseDList))
                 {
                     ToastUtil.makeText(RegisterOneActivity.this, "请选择房号");
                 }

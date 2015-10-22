@@ -24,6 +24,7 @@ import com.ymdq.thy.network.ConnectService;
 import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.home.adapter.MyCentralListsAdapter;
 import com.ymdq.thy.util.GeneralUtils;
+import com.ymdq.thy.view.GifView;
 
 /**
  * 
@@ -48,6 +49,8 @@ public class MyCentralListsActivity extends BaseActivity implements OnClickListe
     private LinearLayout clickrefreshLayout;
     
     private TextView clickTextView;
+    
+    private GifView gif1;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -74,12 +77,15 @@ public class MyCentralListsActivity extends BaseActivity implements OnClickListe
         mListView.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
         clickTextView = (TextView)clickrefreshLayout.findViewById(R.id.loading_failed_txt);
         clickrefreshLayout.setVisibility(View.GONE);
-//        clickrefreshLayout.setOnClickListener(this);
+        //        clickrefreshLayout.setOnClickListener(this);
     }
     
     private void reqServer()
@@ -105,11 +111,11 @@ public class MyCentralListsActivity extends BaseActivity implements OnClickListe
             /**
              * 响应失败页面点击事件
              */
-//            case R.id.click_refresh_layout:
-//                loadingLayout.setVisibility(View.VISIBLE);
-//                clickrefreshLayout.setVisibility(View.GONE);
-//                reqServer();
-//                break;
+            //            case R.id.click_refresh_layout:
+            //                loadingLayout.setVisibility(View.VISIBLE);
+            //                clickrefreshLayout.setVisibility(View.GONE);
+            //                reqServer();
+            //                break;
             default:
                 break;
         }
@@ -118,6 +124,7 @@ public class MyCentralListsActivity extends BaseActivity implements OnClickListe
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
         if (ob != null)
         {

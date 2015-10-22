@@ -563,7 +563,7 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                     {
                         businessPlans.clear();
                         int width = getResources().getDisplayMetrics().widthPixels;
-                        int height = width / 3;
+                        int height = width * 8/ 15;
                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
                         banner_Pager.setLayoutParams(params);
                         

@@ -38,9 +38,10 @@ import com.ymdq.thy.util.DisplayUtil;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.NetLoadingDailog;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.MyGridView;
 
-public class MyTicketDetailActivity extends BaseActivity implements OnClickListener ,UICallBack
+public class MyTicketDetailActivity extends BaseActivity implements OnClickListener, UICallBack
 {
     /**
      * 工单id
@@ -93,6 +94,8 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
     
     private NetLoadingDailog loadingDialog;
     
+    private GifView gif1;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -113,12 +116,15 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         titleBarName.setBackgroundResource(R.drawable.title_gongdanxiangqing);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
         clickTextView = (TextView)clickrefreshLayout.findViewById(R.id.loading_failed_txt);
         clickrefreshLayout.setVisibility(View.GONE);
-//        clickrefreshLayout.setOnClickListener(this);
+        //        clickrefreshLayout.setOnClickListener(this);
         
         //我的布局
         selfImg = (ImageView)findViewById(R.id.self_img);
@@ -131,14 +137,14 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         View headView = LayoutInflater.from(this).inflate(R.layout.property_my_ticket_detail_head_listview, null);
         mListView.addHeaderView(headView);
         mList = new ArrayList<MyTicketDetailPath>();
-        adapter = new MyTicketDetailAdapter(this,mList);
+        adapter = new MyTicketDetailAdapter(this, mList);
         mListView.setAdapter(adapter);
         mListView.setFocusable(false);
         
         headImg = (ImageView)headView.findViewById(R.id.head_img);
         headName = (TextView)headView.findViewById(R.id.head_name);
         selfOrServer = (TextView)headView.findViewById(R.id.self_or_server);
-       // selfOrServer.setVisibility(View.GONE);
+        // selfOrServer.setVisibility(View.GONE);
         headDesc = (TextView)headView.findViewById(R.id.head_desc);
         headContent = (TextView)headView.findViewById(R.id.head_content);
         headTime = (TextView)headView.findViewById(R.id.head_time);
@@ -148,7 +154,7 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         myGridView = (MyGridView)findViewById(R.id.photo_gridview);
         evaluateLayout = (LinearLayout)findViewById(R.id.evaluate_layout);
         evaluateBtn = (Button)findViewById(R.id.evaluate_btn);
-//        evaluateBtn.setOnClickListener(this);
+        //        evaluateBtn.setOnClickListener(this);
     }
     
     /**
@@ -159,7 +165,7 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
      */
     private void reqTicketList()
     {
-        Map<String,String> param = new HashMap<String,String>();
+        Map<String, String> param = new HashMap<String, String>();
         try
         {
             param.put("id", SecurityUtils.encode2Str(id));
@@ -168,24 +174,26 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         {
             e.printStackTrace();
         }
-        ConnectService.instance().connectServiceReturnResponse(this, param, this, 
-            MyTicketDetailResponse.class, 
-            URLUtil.MY_TICKET_DETAIL, 
+        ConnectService.instance().connectServiceReturnResponse(this,
+            param,
+            this,
+            MyTicketDetailResponse.class,
+            URLUtil.MY_TICKET_DETAIL,
             Constants.ENCRYPT_SIMPLE);
     }
-
+    
     @Override
     public void onClick(View v)
     {
         switch (v.getId())
         {
-            //返回
+        //返回
             case R.id.title_back_layout:
                 finish();
                 break;
-//            case R.id.click_refresh_layout:
-//                reqTicketList();
-//                break;
+            //            case R.id.click_refresh_layout:
+            //                reqTicketList();
+            //                break;
             //评价
             case R.id.evaluate_btn:
                 Intent eval = new Intent();
@@ -202,7 +210,7 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == Constants.NUM0 && resultCode == RESULT_OK)
+        if (requestCode == Constants.NUM0 && resultCode == RESULT_OK)
         {
             reqTicketList();
             loadingDialog.loading();
@@ -212,24 +220,25 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
-        if(ob != null)
+        if (ob != null)
         {
-            if(ob instanceof MyTicketDetailResponse)
+            if (ob instanceof MyTicketDetailResponse)
             {
                 loadingDialog.dismissDialog();
                 MyTicketDetailResponse resp = (MyTicketDetailResponse)ob;
-                if(GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
+                if (GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
                 {
-                    if(Constants.SUCESS_CODE.equals(resp.getRetcode()))
+                    if (Constants.SUCESS_CODE.equals(resp.getRetcode()))
                     {
                         initSelfData(resp);
                         List<MyTicketDetailPath> path = resp.getPath();
-                        if(path != null && path.size() > 0)
+                        if (path != null && path.size() > 0)
                         {
                             mListView.setVisibility(View.VISIBLE);
-                            initHeadView(path.get(0),path.size());
-                            if(path.size() > 1)
+                            initHeadView(path.get(0), path.size());
+                            if (path.size() > 1)
                             {
                                 path.remove(0);
                                 adapter.setSelfName(selfName.getText().toString());
@@ -266,64 +275,63 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
                 "default_head_pic_round",
                 "default_head_pic_round",
                 "default_head_pic_round"));
-        if(GeneralUtils.isNotNullOrZeroLenght(entity.getuName()))
+        if (GeneralUtils.isNotNullOrZeroLenght(entity.getuName()))
         {
             selfName.setText(entity.getuName());
         }
-        if(GeneralUtils.isNotNullOrZeroLenght(entity.getTime()))
+        if (GeneralUtils.isNotNullOrZeroLenght(entity.getTime()))
         {
             selfTime.setText(GeneralUtils.splitToSecond(entity.getTime()));
         }
-        if(GeneralUtils.isNotNullOrZeroLenght(entity.getContent()))
+        if (GeneralUtils.isNotNullOrZeroLenght(entity.getContent()))
         {
-            String content = String.format(getResources().getString(R.string.my_ticket_content),
-                entity.getContent());
-            selfContent.setText("工单描述："+content);
+            String content = String.format(getResources().getString(R.string.my_ticket_content), entity.getContent());
+            selfContent.setText("工单描述：" + content);
         }
-//        if(GeneralUtils.isNotNullOrZeroLenght(entity.getType()))
-//        {
-//            if(Constants.PROPERTY_REPAIR.equals(entity.getType()))
-//            {
-//                type.setImageResource(R.drawable.service_icon_angle_repair);
-//            }
-//            else if(Constants.PROPERTY_COMPLAINT.equals(entity.getType()))
-//            {
-//                type.setImageResource(R.drawable.service_icon_angle_complaint);
-//            }
-//            else if(Constants.PROPERTY_PRAISE.equals(entity.getType()))
-//            {
-//                type.setImageResource(R.drawable.service_icon_angle_thank);
-//            }
-//            else if(Constants.PROPERTY_HELP.equals(entity.getType()))
-//            {
-//                type.setImageResource(R.drawable.service_icon_angle_help);
-//            }
-//            else if(Constants.PROPERTY_SUGGEST.equals(entity.getType()))
-//            {
-//                type.setImageResource(R.drawable.service_icon_angle_suggest);
-//            }
-//        }
+        //        if(GeneralUtils.isNotNullOrZeroLenght(entity.getType()))
+        //        {
+        //            if(Constants.PROPERTY_REPAIR.equals(entity.getType()))
+        //            {
+        //                type.setImageResource(R.drawable.service_icon_angle_repair);
+        //            }
+        //            else if(Constants.PROPERTY_COMPLAINT.equals(entity.getType()))
+        //            {
+        //                type.setImageResource(R.drawable.service_icon_angle_complaint);
+        //            }
+        //            else if(Constants.PROPERTY_PRAISE.equals(entity.getType()))
+        //            {
+        //                type.setImageResource(R.drawable.service_icon_angle_thank);
+        //            }
+        //            else if(Constants.PROPERTY_HELP.equals(entity.getType()))
+        //            {
+        //                type.setImageResource(R.drawable.service_icon_angle_help);
+        //            }
+        //            else if(Constants.PROPERTY_SUGGEST.equals(entity.getType()))
+        //            {
+        //                type.setImageResource(R.drawable.service_icon_angle_suggest);
+        //            }
+        //        }
         List<ImageList> imgList = entity.getImageList();
-        if(imgList != null && imgList.size() > 0)
+        if (imgList != null && imgList.size() > 0)
         {
             myGridView.setVisibility(View.VISIBLE);
-            myGridView.setAdapter(new HeadPhotoAdapter(this,imgList,44));
+            myGridView.setAdapter(new HeadPhotoAdapter(this, imgList, 44));
         }
         else
         {
             myGridView.setVisibility(View.GONE);
         }
         
-        if("3".equals(entity.getStatus()))
+        if ("3".equals(entity.getStatus()))
         {
-            evaluateLayout.setVisibility(View.VISIBLE);   
+            evaluateLayout.setVisibility(View.VISIBLE);
             evaluateBtn.setOnClickListener(this);
         }
         else
         {
             evaluateLayout.setVisibility(View.GONE);
         }
-
+        
     }
     
     /**
@@ -332,7 +340,7 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
      * <功能详细描述>
      * @see [类、类#方法、类#成员]
      */
-    private void initHeadView(MyTicketDetailPath path,int length)
+    private void initHeadView(MyTicketDetailPath path, int length)
     {
         ImageLoader.getInstance().displayImage(path.getuImageUrl(),
             headImg,
@@ -340,52 +348,52 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
                 "default_head_pic_round",
                 "default_head_pic_round",
                 "default_head_pic_round"));
-        if(GeneralUtils.isNotNullOrZeroLenght(path.getuName()))
+        if (GeneralUtils.isNotNullOrZeroLenght(path.getuName()))
         {
             headName.setText(path.getuName());
         }
-//        if(GeneralUtils.isNotNullOrZeroLenght(path.getuName()))
-//        {
-//            if(path.getuName().equals(selfName.getText().toString()))
-//            {
-//                selfOrServer.setVisibility(View.INVISIBLE);
-//            }
-//            else
-//            {
-//                selfOrServer.setVisibility(View.VISIBLE);
-//                selfOrServer.setText("客服");
-//            }
-//        }
-        if(GeneralUtils.isNotNullOrZeroLenght(path.getDesc()))
+        //        if(GeneralUtils.isNotNullOrZeroLenght(path.getuName()))
+        //        {
+        //            if(path.getuName().equals(selfName.getText().toString()))
+        //            {
+        //                selfOrServer.setVisibility(View.INVISIBLE);
+        //            }
+        //            else
+        //            {
+        //                selfOrServer.setVisibility(View.VISIBLE);
+        //                selfOrServer.setText("客服");
+        //            }
+        //        }
+        if (GeneralUtils.isNotNullOrZeroLenght(path.getDesc()))
         {
             headDesc.setText(path.getDesc());
         }
-        if(GeneralUtils.isNotNullOrZeroLenght(path.getContent()))
+        if (GeneralUtils.isNotNullOrZeroLenght(path.getContent()))
         {
             headContent.setVisibility(View.VISIBLE);
-            headContent.setText("描述："+path.getContent());
+            headContent.setText("描述：" + path.getContent());
         }
         else
         {
             headContent.setVisibility(View.GONE);
         }
         
-        if(GeneralUtils.isNotNullOrZeroLenght(path.getTime()))
+        if (GeneralUtils.isNotNullOrZeroLenght(path.getTime()))
         {
             headTime.setText(path.getTime());
         }
-        if(GeneralUtils.isNotNullOrZeroLenght(path.getDepName()))
+        if (GeneralUtils.isNotNullOrZeroLenght(path.getDepName()))
         {
             selfOrServer.setText(path.getDepName());
         }
         
-        headStep.setText("STEP"+length);
+        headStep.setText("STEP" + length);
         
         List<Image> imgList = path.getImageList();
-        if(imgList != null && imgList.size() > 0)
+        if (imgList != null && imgList.size() > 0)
         {
             headGridView.setVisibility(View.VISIBLE);
-            headGridView.setAdapter(new PhotoAdapter(this,imgList,85));
+            headGridView.setAdapter(new PhotoAdapter(this, imgList, 85));
         }
         else
         {
@@ -393,10 +401,8 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         }
     }
     
-
-
     class HeadPhotoAdapter extends BaseAdapter
-    { 
+    {
         private Context context;
         
         protected List<ImageList> photos;
@@ -405,7 +411,7 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         
         private int width;
         
-        public HeadPhotoAdapter(Context context,List<ImageList> photos,int width)//, String channel)
+        public HeadPhotoAdapter(Context context, List<ImageList> photos, int width)//, String channel)
         {
             this.context = context;
             this.photos = photos;
@@ -462,7 +468,9 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
             }
             ImageLoader.getInstance().displayImage(photos.get(position).getImageUrlS(),
                 photoViewHolder.pic,
-                JRApplication.setAllDisplayImageOptions(context, "community_default", "community_default",
+                JRApplication.setAllDisplayImageOptions(context,
+                    "community_default",
+                    "community_default",
                     "community_default"));
             photoViewHolder.pic.setOnClickListener(new OnClickListener()
             {
@@ -484,5 +492,5 @@ public class MyTicketDetailActivity extends BaseActivity implements OnClickListe
         }
         
     }
-
+    
 }

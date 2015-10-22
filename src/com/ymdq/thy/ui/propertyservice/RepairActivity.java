@@ -61,6 +61,7 @@ import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.NetLoadingDailog;
 import com.ymdq.thy.util.SecurityUtils;
 import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.MyGridView;
 
 /**
@@ -147,6 +148,8 @@ public class RepairActivity extends BaseActivity implements OnClickListener,OnIt
     
     private LinearLayout titleBarRight;
     
+    private GifView gif1;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -200,6 +203,9 @@ public class RepairActivity extends BaseActivity implements OnClickListener,OnIt
         titleBarRight.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
@@ -752,6 +758,7 @@ public class RepairActivity extends BaseActivity implements OnClickListener,OnIt
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
         commitLoading.dismissDialog();
         if(ob != null)

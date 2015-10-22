@@ -8,7 +8,6 @@ import java.util.Map;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -26,6 +25,7 @@ import com.ymdq.thy.ui.BaseFragment;
 import com.ymdq.thy.ui.home.adapter.PaymentListAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 
 public class PaymentListFragment extends BaseFragment implements UICallBack
 {
@@ -44,6 +44,7 @@ public class PaymentListFragment extends BaseFragment implements UICallBack
     private LinearLayout clickrefreshLayout;
     
     private TextView clickTextView;
+    private GifView gif1;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -71,6 +72,9 @@ public class PaymentListFragment extends BaseFragment implements UICallBack
         listviewLayout.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)view.findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)view.findViewById(R.id.click_refresh_layout);
@@ -107,6 +111,7 @@ public class PaymentListFragment extends BaseFragment implements UICallBack
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
         if(ob != null)
         {

@@ -487,16 +487,16 @@ public class Constants
     /**
      *  微信分享app和appKey
      */
-    public static final String WEIXINID = "wxd49ea46006558fc8";
+    public static final String WEIXINID = "wx99e5dfd086492c32";
     
-    public static final String WEIXINKEY = "7a00aa5e164b138ae64012f3b66cfd3d";
+    public static final String WEIXINKEY = "dcf38e6118b73b8c71e1051021e2da4a";
     
     /**
      * QQ的appId
      */
-    public static final String QQ_APP_ID = "1103559554";
+    public static final String QQ_APP_ID = "1104830577";
     
-    public static final String QQ_APP_KEY = "MV3lqRHkgo1rVZH7";
+    public static final String QQ_APP_KEY = "ZaPcXuZhJfaufZ6a";
     
     /**
      * 人人网的appKey

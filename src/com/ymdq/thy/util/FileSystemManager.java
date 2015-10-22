@@ -81,7 +81,7 @@ public class FileSystemManager
      */
     public static String getCacheFilePath(Context context)
     {
-        cacheFilePath = FileUtil.getSDPath(context) + File.separator + "jiarun" + File.separator;
+        cacheFilePath = FileUtil.getSDPath(context) + File.separator + "thy" + File.separator;
         return cacheFilePath;
     }
     

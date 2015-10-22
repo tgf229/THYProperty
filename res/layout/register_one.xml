@@ -34,35 +34,6 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingRight="36dp" >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:text="@string/register_one_city"
-                        android:textColor="@color/home_title"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/city"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/register_one_city_name"
-                        android:textColor="@color/person_register_choise_title"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@drawable/person_center_lists_line" />
-
-                <LinearLayout
                     android:id="@+id/person_register_choise_community_ll"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
@@ -81,7 +52,7 @@
                         android:id="@+id/person_register_choise_community_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/register_one_plot_name"
+                        android:text="请选择"
                         android:textColor="@color/person_register_choise_title"
                         android:textSize="16sp" />
 
@@ -91,6 +62,34 @@
                         android:layout_marginLeft="11dp"
                         android:layout_marginRight="15dp"
                         android:src="@drawable/zhuce_arrow_grey" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@drawable/person_center_lists_line" />
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="36dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/register_one_city"
+                        android:textColor="@color/home_title"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/person_register_choise_title"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <View

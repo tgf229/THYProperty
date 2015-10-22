@@ -466,7 +466,7 @@ public class CommShareActivity extends BaseActivity implements OnClickListener
                 }
                 else
                 {
-                    tencentContent.setShareMedia(new UMImage(CommShareActivity.this, R.drawable.default_load));
+                    tencentContent.setShareMedia(new UMImage(CommShareActivity.this, R.drawable.community_default));
                 }
                 mController.setShareMedia(tencentContent);
                 mController.getConfig().registerListener(setPostListener());

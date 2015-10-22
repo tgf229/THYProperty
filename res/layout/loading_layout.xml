@@ -3,19 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="100dp"
-    android:background="#ffffff"
+    android:background="#eeeeee"
     android:gravity="center"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
-    <ProgressBar
+    <!-- <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:indeterminateDrawable="@drawable/toast_loading_layout"  />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/loading_icon2" />
+        android:src="@drawable/loading_icon2" /> -->
+        
+        <com.ymdq.thy.view.GifView  
+	        android:id="@+id/gif1"  
+	        android:layout_width="100dp"  
+	        android:layout_height="100dp"  
+	        android:layout_gravity="center_horizontal"  
+	        android:enabled="false" />  
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:layout_marginTop="10dp"
+            android:text="正在加载，请稍后..."/>
 
 </LinearLayout>

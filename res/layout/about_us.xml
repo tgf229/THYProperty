@@ -104,7 +104,7 @@
                         android:layout_weight="1.0"
                         android:gravity="center_vertical"
                         android:lineSpacingExtra="5dp"
-                        android:text="南京雨润云中央电子商务有限公司版权所有"
+                        android:text="南京越陌度阡网络科技有限公司版权所有"
                         android:textColor="@color/black_color"
                         android:textSize="16sp" />
                 </LinearLayout>

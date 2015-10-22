@@ -30,6 +30,7 @@ import com.ymdq.thy.ui.BaseFragment;
 import com.ymdq.thy.util.DisplayUtil;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.PullToRefreshView;
 import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
@@ -109,6 +110,8 @@ public class CommunitySquareFragment extends BaseFragment implements UICallBack,
      */
     private CellBroard cellBroard;
     
+    private GifView gif1;
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -134,6 +137,9 @@ public class CommunitySquareFragment extends BaseFragment implements UICallBack,
     private void init()
     {
         loadingLayout = (LinearLayout)view.findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         errorMessage = (TextView)view.findViewById(R.id.loading_failed_txt);
         loadingFailedLayout = (LinearLayout)view.findViewById(R.id.loading_failed);
         mPullToRefreshView = (PullToRefreshView)view.findViewById(R.id.pull_refresh_view);
@@ -454,6 +460,7 @@ public class CommunitySquareFragment extends BaseFragment implements UICallBack,
          */
         if (ob instanceof CommunitySquareResponse)
         {
+            gif1.setPaused(true);
             loadingLayout.setVisibility(View.GONE);
             mPullToRefreshView.onHeaderRefreshComplete();
             CommunitySquareResponse communitySquareResponse = (CommunitySquareResponse)ob;

@@ -11,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.AbsListView.OnScrollListener;
 
 import com.ymdq.thy.R;
 import com.ymdq.thy.bean.home.MyCentralDelivertyDoc;
@@ -29,6 +29,7 @@ import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.home.adapter.MyDelivertyAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 
 /**
  * 
@@ -40,12 +41,12 @@ import com.ymdq.thy.util.SecurityUtils;
  * @see  [相关类/方法]
  * @since  [产品/模块版本]
  */
-public class MyCentralDelivertyActivity extends BaseActivity implements OnClickListener ,UICallBack
+public class MyCentralDelivertyActivity extends BaseActivity implements OnClickListener, UICallBack
 {
     /**
      * 显示加载进度的view，当listview向下滚动的时候显示此view
      */
-    private View loadingFooterView;   
+    private View loadingFooterView;
     
     /**
      * 加载布局
@@ -93,6 +94,8 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
      */
     private TextView clickTextView;
     
+    private GifView gif1;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -103,7 +106,7 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
         initData();
         reqServer();
     }
-
+    
     private void initView()
     {
         RelativeLayout titleBar = (RelativeLayout)findViewById(R.id.title_bar);
@@ -114,7 +117,7 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
         
         mListView = (ListView)findViewById(R.id.list_view);
         mList = new ArrayList<MyCentralDelivertyDoc>();
-        adapter = new MyDelivertyAdapter(this,mList);
+        adapter = new MyDelivertyAdapter(this, mList);
         mListView.setVisibility(View.GONE);
         loadingFooterView =
             ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.loading, null);
@@ -122,12 +125,15 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
         mListView.addFooterView(loadingFooterView);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
         clickTextView = (TextView)clickrefreshLayout.findViewById(R.id.loading_failed_txt);
         clickrefreshLayout.setVisibility(View.GONE);
-//        clickrefreshLayout.setOnClickListener(this);
+        //        clickrefreshLayout.setOnClickListener(this);
     }
     
     private void initData()
@@ -153,7 +159,7 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
                 
             }
         });
-
+        
         mListView.setAdapter(adapter);
     }
     
@@ -171,8 +177,8 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
             param.put("cId", SecurityUtils.encode2Str(Global.getCId()));
             param.put("uId", SecurityUtils.encode2Str(Global.getUserId()));
             param.put("type", SecurityUtils.encode2Str(Constants.DELIVERTY_ALL));
-            param.put("page", SecurityUtils.encode2Str(page+""));
-            param.put("num", SecurityUtils.encode2Str(num+""));
+            param.put("page", SecurityUtils.encode2Str(page + ""));
+            param.put("num", SecurityUtils.encode2Str(num + ""));
             
         }
         catch (Exception e)
@@ -180,12 +186,14 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
             e.printStackTrace();
         }
         
-        ConnectService.instance().connectServiceReturnResponse(this, param, this, 
-            MyCentralDelivertyResponse.class, 
-            URLUtil.MY_DELIVERTY, 
+        ConnectService.instance().connectServiceReturnResponse(this,
+            param,
+            this,
+            MyCentralDelivertyResponse.class,
+            URLUtil.MY_DELIVERTY,
             Constants.ENCRYPT_SIMPLE);
     }
-
+    
     @Override
     public void onClick(View v)
     {
@@ -194,13 +202,13 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
             case R.id.title_back_layout:
                 finish();
                 break;
-                /**
-                 * 响应失败页面点击事件
-                 */
-//            case R.id.click_refresh_layout:
-//                loadingLayout.setVisibility(View.VISIBLE);
-//                clickrefreshLayout.setVisibility(View.GONE);
-//                reqServer();
+            /**
+             * 响应失败页面点击事件
+             */
+            //            case R.id.click_refresh_layout:
+            //                loadingLayout.setVisibility(View.VISIBLE);
+            //                clickrefreshLayout.setVisibility(View.GONE);
+            //                reqServer();
             default:
                 break;
         }
@@ -209,27 +217,28 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
         loadingMore.setVisibility(View.GONE);
-        if(ob != null)
+        if (ob != null)
         {
-            if(ob instanceof MyCentralDelivertyResponse)
+            if (ob instanceof MyCentralDelivertyResponse)
             {
                 MyCentralDelivertyResponse resp = (MyCentralDelivertyResponse)ob;
-                if(GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
+                if (GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
                 {
-                    if(Constants.SUCESS_CODE.equals(resp.getRetcode()))
+                    if (Constants.SUCESS_CODE.equals(resp.getRetcode()))
                     {
                         List<MyCentralDelivertyDoc> list = resp.getDoc();
-                        if(page == 1)
+                        if (page == 1)
                         {
-                            if(list != null && list.size() > 0)
+                            if (list != null && list.size() > 0)
                             {
                                 mListView.setVisibility(View.VISIBLE);
                                 clickrefreshLayout.setVisibility(View.GONE);
                                 
                                 isRefreshing = false;
-                                if(list.size() == num)
+                                if (list.size() == num)
                                 {
                                     anyMore = true;
                                 }
@@ -250,13 +259,13 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
                         }
                         else
                         {
-                            if(list != null && list.size() > 0)
+                            if (list != null && list.size() > 0)
                             {
                                 mListView.setVisibility(View.VISIBLE);
                                 clickrefreshLayout.setVisibility(View.GONE);
                                 
                                 isRefreshing = false;
-                                if(list.size() == num)
+                                if (list.size() == num)
                                 {
                                     anyMore = true;
                                 }
@@ -267,7 +276,7 @@ public class MyCentralDelivertyActivity extends BaseActivity implements OnClickL
                                 
                                 mList.addAll(list);
                                 adapter.notifyDataSetChanged();
-                            } 
+                            }
                         }
                     }
                     else

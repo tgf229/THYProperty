@@ -11,10 +11,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -31,6 +31,7 @@ import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.propertyservice.adapter.MyTicketAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.PullToRefreshView;
 import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
@@ -93,6 +94,8 @@ public class MyTicketActivity extends BaseActivity implements OnClickListener,On
     
     private TextView clickTextView;
     
+    private GifView gif1;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -126,6 +129,9 @@ public class MyTicketActivity extends BaseActivity implements OnClickListener,On
         loadingMore.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
@@ -213,6 +219,7 @@ public class MyTicketActivity extends BaseActivity implements OnClickListener,On
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
         loadingMore.setVisibility(View.GONE);
         mPullToRefreshView.onHeaderRefreshComplete();

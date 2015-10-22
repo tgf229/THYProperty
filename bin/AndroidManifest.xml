@@ -55,7 +55,7 @@
         <!-- 友盟AppKey -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="547d682dfd98c5ab6d00087f" >
+            android:value="561c76aa67e58e484100702c" >
         </meta-data>
         <!-- ###################注册SDK使用的Activity###################### -->
         <!-- 分享编辑页 -->
@@ -362,7 +362,7 @@
         <!-- 您从百度网站获取的APP KEY -->
         <meta-data
             android:name="BaiduMobAd_STAT_ID"
-            android:value="546f5fa498" />
+            android:value="91056827d8" />
         <meta-data
             android:name="BaiduMobAd_CHANNEL"
             android:value="development" />

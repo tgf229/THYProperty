@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ymdq.thy.R;
 import com.ymdq.thy.bean.home.AccountManageDoc;
@@ -29,6 +27,7 @@ import com.ymdq.thy.ui.BaseFragment;
 import com.ymdq.thy.ui.home.adapter.AccountManageAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.SecurityUtils;
+import com.ymdq.thy.view.GifView;
 
 /**
  * 
@@ -56,6 +55,8 @@ public class AccountManageFragment extends BaseFragment implements OnClickListen
     
     private TextView clickTextView;
     
+    private GifView gif1;
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -67,7 +68,7 @@ public class AccountManageFragment extends BaseFragment implements OnClickListen
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-//        Toast.makeText(getActivity(), "AccountManageFragment", Toast.LENGTH_SHORT).show();
+        //        Toast.makeText(getActivity(), "AccountManageFragment", Toast.LENGTH_SHORT).show();
         init();
         initData();
     }
@@ -76,17 +77,20 @@ public class AccountManageFragment extends BaseFragment implements OnClickListen
     {
         mListView = (ListView)view.findViewById(R.id.list_view);
         mList = new ArrayList<AccountManageDoc>();
-        adapter = new AccountManageAdapter(getActivity(),mList,this);
+        adapter = new AccountManageAdapter(getActivity(), mList, this);
         mListView.setAdapter(adapter);
         mListView.setVisibility(View.GONE);
         
         loadingLayout = (LinearLayout)view.findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)view.findViewById(R.id.click_refresh_layout);
         clickTextView = (TextView)clickrefreshLayout.findViewById(R.id.loading_failed_txt);
         clickrefreshLayout.setVisibility(View.GONE);
-//        clickrefreshLayout.setOnClickListener(this);
+        //        clickrefreshLayout.setOnClickListener(this);
     }
     
     private void initData()
@@ -112,31 +116,32 @@ public class AccountManageFragment extends BaseFragment implements OnClickListen
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
-        if(ob != null)
+        if (ob != null)
         {
-            if(ob instanceof AccountManageResponse)
+            if (ob instanceof AccountManageResponse)
             {
                 AccountManageResponse resp = (AccountManageResponse)ob;
-                if(GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
+                if (GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
                 {
-                    if(Constants.SUCESS_CODE.equals(resp.getRetcode()))
+                    if (Constants.SUCESS_CODE.equals(resp.getRetcode()))
                     {
                         List<AccountManageDoc> docList = resp.getDoc();
-                        if(docList != null && docList.size() > 0)
+                        if (docList != null && docList.size() > 0)
                         {
                             mListView.setVisibility(View.VISIBLE);
                             clickrefreshLayout.setVisibility(View.GONE);
                             
-                            for(int i=0;i < docList.size();i++)
+                            for (int i = 0; i < docList.size(); i++)
                             {
                                 List<HomeList> homeList = docList.get(i).gethList();
-                                if(homeList != null && homeList.size() > 0)
+                                if (homeList != null && homeList.size() > 0)
                                 {
                                     mList.add(docList.get(i));
                                 }
                             }
-                            if(mList.size() > 0)
+                            if (mList.size() > 0)
                             {
                                 adapter.notifyDataSetChanged();
                             }
@@ -168,32 +173,32 @@ public class AccountManageFragment extends BaseFragment implements OnClickListen
             }
         }
     }
-
+    
     @Override
     public void onClick(View v)
     {
         switch (v.getId())
         {
-            
-            //物业费用
-//            case R.id.deliverty_layout:
-//                int position = (Integer)v.getTag();
-//                AccountManageDoc doc = (AccountManageDoc)adapter.getItem(position);
-//                
-//                Intent deltyIntent = new Intent(getActivity(),AccountManagePaymentActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("doc", doc);
-//                bundle.putString("type", "1");
-//                deltyIntent.putExtras(bundle);
-//                startActivity(deltyIntent);
-//                break;
-                /**
-                 * 响应失败页面点击事件
-                 */
-//            case R.id.click_refresh_layout:
-//                loadingLayout.setVisibility(View.VISIBLE);
-//                clickrefreshLayout.setVisibility(View.GONE);
-//                initData();
+        
+        //物业费用
+        //            case R.id.deliverty_layout:
+        //                int position = (Integer)v.getTag();
+        //                AccountManageDoc doc = (AccountManageDoc)adapter.getItem(position);
+        //                
+        //                Intent deltyIntent = new Intent(getActivity(),AccountManagePaymentActivity.class);
+        //                Bundle bundle = new Bundle();
+        //                bundle.putSerializable("doc", doc);
+        //                bundle.putString("type", "1");
+        //                deltyIntent.putExtras(bundle);
+        //                startActivity(deltyIntent);
+        //                break;
+        /**
+         * 响应失败页面点击事件
+         */
+        //            case R.id.click_refresh_layout:
+        //                loadingLayout.setVisibility(View.VISIBLE);
+        //                clickrefreshLayout.setVisibility(View.GONE);
+        //                initData();
             default:
                 break;
         }

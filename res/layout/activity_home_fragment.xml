@@ -135,7 +135,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/title_linli" />
+                    android:src="@drawable/title_wode" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

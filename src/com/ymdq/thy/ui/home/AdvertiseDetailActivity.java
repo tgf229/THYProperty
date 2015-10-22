@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +46,7 @@ import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.NetLoadingDailog;
 import com.ymdq.thy.util.SecurityUtils;
 import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.GifView;
 import com.ymdq.thy.view.MyListView;
 import com.ymdq.thy.view.MyScrollView;
 
@@ -135,6 +134,8 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
     */
     public static Context mContext;
     
+    private GifView gif1;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -157,6 +158,9 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
         titleBarName.setText("详情");
         
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
         loadingLayout.setVisibility(View.VISIBLE);
         
         clickrefreshLayout = (LinearLayout)findViewById(R.id.click_refresh_layout);
@@ -379,6 +383,7 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
     @Override
     public void netBack(Object ob)
     {
+        gif1.setPaused(true);
         loadingLayout.setVisibility(View.GONE);
         if (ob != null)
         {
@@ -458,12 +463,14 @@ public class AdvertiseDetailActivity extends BaseActivity implements OnClickList
                     else
                     {
                         clickrefreshLayout.setVisibility(View.VISIBLE);
+                        gif1.setPaused(true);
                         loadingLayout.setVisibility(View.GONE);
                         clickTextView.setText(detailREsp.getRetinfo());
                     }
                     return;
                 }
                 clickrefreshLayout.setVisibility(View.VISIBLE);
+                gif1.setPaused(true);
                 loadingLayout.setVisibility(View.GONE);
                 clickTextView.setText(Constants.ERROR_MESSAGE);
             }

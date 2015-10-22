@@ -52,11 +52,13 @@ public class SelectCommunityActivity extends BaseActivity implements OnClickList
     /**
      * 城市名
      */
-    private TextView currentCity;
+    private TextView currentCity,otherTitle;
     
     private SelectCommunityAdapter adapter;
     
-    private LinearLayout loadingLayout;
+    private LinearLayout loadingLayout,currentLayTitle;
+    
+    private RelativeLayout currentLay;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -81,8 +83,10 @@ public class SelectCommunityActivity extends BaseActivity implements OnClickList
         ListView mListView = (ListView)findViewById(R.id.list_view);
         View headView = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE))
             .inflate(R.layout.select_community_listview_head, null);
-        RelativeLayout currentLay = (RelativeLayout)headView.findViewById(R.id.current_layout);
+        currentLay = (RelativeLayout)headView.findViewById(R.id.current_layout);
+        currentLayTitle = (LinearLayout)headView.findViewById(R.id.current_layout_title);
         currentCity = (TextView)headView.findViewById(R.id.current_c_city);
+        otherTitle = (TextView)headView.findViewById(R.id.other_title);
         currentCName = (TextView)headView.findViewById(R.id.current_comm);
         mListView.addHeaderView(headView);
         currentLay.setOnClickListener(this);
@@ -138,6 +142,9 @@ public class SelectCommunityActivity extends BaseActivity implements OnClickList
                             {
                                 currentCity.setText(doc.get(i).getCity());
                                 currentCName.setText(doc.get(i).getcName());
+                                currentLay.setVisibility(View.VISIBLE);
+                                currentLayTitle.setVisibility(View.VISIBLE);
+                                otherTitle.setText("其他小区");
                                 continue;
                             }
                             mList.add(doc.get(i));
