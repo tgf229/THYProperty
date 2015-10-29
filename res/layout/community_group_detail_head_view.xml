@@ -96,9 +96,9 @@
 
                 <Button
                     android:id="@+id/add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_community_add_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/person_register_sumbit_bg_new_selector"
                     android:text="关注"
                     android:textColor="@color/white_color"
                     android:textSize="14sp" />

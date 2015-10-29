@@ -166,7 +166,7 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
         mPullToRefreshView = (PullToRefreshView)findViewById(R.id.storehome_main_pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         loadingLayout = (LinearLayout)findViewById(R.id.loading_layout);
-        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);
         // 设置背景gif图片资源  
         gif1.setMovieResource(R.raw.jiazai_gif);
         loadingFailedLayout = (LinearLayout)findViewById(R.id.loading_failed);
@@ -197,7 +197,7 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
         add.setTextSize(0);
         add.setBackgroundResource(R.drawable.community_add);
         addLayout.setVisibility(View.GONE);
-        loadTitle(title, groupType, "");
+        loadTitle(title, groupType, "", false);
         listView.setOnScrollListener(new OnScrollListener()
         {
             @Override
@@ -234,26 +234,44 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
      * @param groupType
      * @see [类、类#方法、类#成员]
      */
-    private void loadTitle(TextView view, String groupType, String exist)
+    private void loadTitle(TextView view, String groupType, String exist, boolean isErrTips)
     {
         if (Constants.OFFICIAL_RECOMMENDATION.equals(groupType))
         {
-            view.setBackgroundResource(R.drawable.title_guanfangtuijian);
-//            view.setText(exist + "官方推荐");
+            if (isErrTips)
+            {
+                view.setText(exist + "官方推荐");
+            }
+            else
+            {
+                view.setBackgroundResource(R.drawable.title_guanfangtuijian);
+            }
         }
         else if (Constants.POPULAR_COMMUNITY.equals(groupType))
         {
-            view.setBackgroundResource(R.drawable.title_remenquanzi);
-//            view.setText(exist + "热门圈子");
+            if (isErrTips)
+            {
+                view.setText(exist + "热门圈子");
+            }
+            else
+            {
+                view.setBackgroundResource(R.drawable.title_remenquanzi);
+            }
         }
         else if (Constants.MY_JOINED_COMMUNITY.equals(groupType))
         {
-            view.setText(exist + "我的加入的圈子");
+            view.setText(exist + "我加入的圈子");
         }
         else
         {
-            view.setBackgroundResource(R.drawable.title_woguanlidequanzi);
-//            view.setText(exist + "我管理的圈子");
+            if (isErrTips)
+            {
+                view.setText(exist + "我管理的圈子");
+            }
+            else
+            {
+                view.setBackgroundResource(R.drawable.title_woguanlidequanzi);
+            }
         }
         
     }
@@ -346,7 +364,7 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
         {
             loadingFailedLayout.setVisibility(View.VISIBLE);
             mPullToRefreshView.setVisibility(View.GONE);
-            loadTitle(errorMessage, groupType, "暂无");
+            loadTitle(errorMessage, groupType, "暂无", true);
         }
     }
     
@@ -387,7 +405,7 @@ public class CommunityCircleListActivity extends BaseActivity implements UICallB
                         {
                             loadingFailedLayout.setVisibility(View.VISIBLE);
                             mPullToRefreshView.setVisibility(View.GONE);
-                            loadTitle(errorMessage, groupType, "暂无");
+                            loadTitle(errorMessage, groupType, "暂无", true);
                         }
                     }
                     else

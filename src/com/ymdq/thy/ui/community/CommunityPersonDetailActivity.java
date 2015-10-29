@@ -82,9 +82,9 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
     /**
      * 设置按钮
      */
-    private TextView edit;
-    
-    private LinearLayout editLayout;
+//    private TextView edit;
+//    
+//    private LinearLayout editLayout;
     
     /**
      * 头像
@@ -234,12 +234,12 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         title = (TextView)findViewById(R.id.title_name);
 //        title.setText("个人中心");
         title.setBackgroundResource(R.drawable.title_gerenzhongxin);
-        edit = (TextView)findViewById(R.id.title_btn_call);
-        edit.setBackgroundResource(R.drawable.title_red_shezhi);
+//        edit = (TextView)findViewById(R.id.title_btn_call);
+//        edit.setBackgroundResource(R.drawable.title_red_shezhi);
 //        edit.setText("设置");
 //        edit.setTextSize(16);
 //        edit.setTextColor(getResources().getColor(R.color.bb474d));
-        editLayout = (LinearLayout)findViewById(R.id.title_call_layout);
+//        editLayout = (LinearLayout)findViewById(R.id.title_call_layout);
         
         person = (RelativeLayout)findViewById(R.id.person);
         arrow = (ImageView)findViewById(R.id.arrow);
@@ -260,7 +260,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
          * 添加按钮点击事件
          */
         
-        editLayout.setOnClickListener(this);
+//        editLayout.setOnClickListener(this);
         back.setOnClickListener(this);
         head.setOnClickListener(this);
         myTopic.setOnClickListener(this);
@@ -282,7 +282,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         {
             person.setOnClickListener(this);
             arrow.setVisibility(View.VISIBLE);
-            editLayout.setVisibility(View.VISIBLE);
+//            editLayout.setVisibility(View.VISIBLE);
             head.setClickable(true);
             myTopic.setText("我的话题");
             myAddedGroup.setText("我的关注");
@@ -292,7 +292,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
         else
         {
             arrow.setVisibility(View.GONE);
-            editLayout.setVisibility(View.GONE);
+//            editLayout.setVisibility(View.GONE);
             head.setClickable(false);
             myTopic.setText("他的话题");
             myAddedGroup.setText("他的关注");
@@ -978,7 +978,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
                 //本用户
                 if (Global.getUserId().equals(queryUId))
                 {
-                    edit.setVisibility(View.VISIBLE);
+//                    edit.setVisibility(View.VISIBLE);
                     head.setClickable(true);
                     myTopic.setText("我的话题");
                     myAddedGroup.setText("我的关注");
@@ -987,7 +987,7 @@ public class CommunityPersonDetailActivity extends FragmentActivity implements O
                 //其他用户
                 else
                 {
-                    edit.setVisibility(View.GONE);
+//                    edit.setVisibility(View.GONE);
                     head.setClickable(false);
                     myTopic.setText("他的话题");
                     myAddedGroup.setText("他的关注");

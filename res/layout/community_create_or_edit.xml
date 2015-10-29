@@ -14,7 +14,7 @@
         android:background="@color/white_color"
         android:orientation="vertical" >
 
-        <ImageView
+        <com.ymdq.thy.ui.community.widget.CircleImgView
             android:id="@+id/head_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
