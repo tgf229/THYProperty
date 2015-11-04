@@ -16,12 +16,12 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper
 {
-    private static final String DATABASE_NAME = "jiarun";
+    private static final String DATABASE_NAME = "thy";
     
     /**
      * 数据库版本 1.1.0
      */
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     
     /**
      * 用户会员卡表

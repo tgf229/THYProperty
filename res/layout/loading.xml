@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dip"
             android:gravity="center"
-            android:text="加载更多,请稍后..."
+            android:text="加载更多,请稍候..."
             android:textColor="#000000"
             android:textSize="14sp"
             android:visibility="visible" />
