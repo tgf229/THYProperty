@@ -313,4 +313,22 @@ public class URLUtil
      */
     public static final String COMMUNITY_COMMENT_MESSAGE = "Bus302101";
     
+    //===================================   V2.0   ===================================
+    
+    /**
+     * 3.2.5    表扬—信息列表查询 v2.0
+     */
+    public static final String BUS_200501 = "Bus200501";
+    /**
+     * 3.2.7    表扬—标签查询 v2.0
+     */
+    public static final String BUS_200701 = "Bus200701";
+    
+    /**
+     * 3.2.8    表扬—评论列表查询 v2.0
+     */
+    public static final String BUS_200801 = "Bus200801";
+    
+    
+    
 }

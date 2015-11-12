@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topic_details"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/community_topic_details"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_title_pic" />
+
+    <com.ymdq.thy.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/community_topic_details"
+            android:cacheColorHint="@color/white_color"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none" >
+        </ListView>
+    </com.ymdq.thy.view.PullToRefreshView>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_grey" />
+
+    <RelativeLayout
+        android:id="@+id/item_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@drawable/property_praise_btn"
+            android:text="表扬一下吧"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white_color" />
+    </RelativeLayout>
+
+</LinearLayout>

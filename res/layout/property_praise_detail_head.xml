@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white_color"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="118dp" >
+
+        <com.ymdq.thy.ui.community.widget.CircleImgView
+            android:id="@+id/img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="21dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/default_head_pic_round" />
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/img"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            >
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="涂高峰"
+                android:textSize="16sp"
+                android:textColor="@color/home_title"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="工号-12321321"
+                android:textSize="14sp"
+                android:textColor="@color/text_color"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="部门-安保部"
+                android:textSize="14sp"
+                android:textColor="@color/text_color"/>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+            <ImageView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/property_praise_detail_first"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center_horizontal"
+                android:text="3次"
+                android:textSize="10sp"
+                android:textColor="@color/community_come_from"/>
+        </LinearLayout>
+        
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_grey" />
+
+    <LinearLayout
+        android:id="@+id/commit_tips_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/property_repair_bg"
+        android:visibility="gone"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:text="表扬"
+            android:textColor="@color/d96e5d"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/commit_tips_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/d96e5d"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_grey" />
+
+</LinearLayout>
