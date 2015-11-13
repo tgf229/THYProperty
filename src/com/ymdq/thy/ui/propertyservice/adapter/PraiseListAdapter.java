@@ -17,8 +17,7 @@ import com.ymdq.thy.JRApplication;
 import com.ymdq.thy.R;
 import com.ymdq.thy.bean.propertyservice.PraiseListDoc;
 import com.ymdq.thy.callback.UICallBack;
-import com.ymdq.thy.constant.Constants;
-import com.ymdq.thy.ui.propertyservice.PraiseDetailActivity;
+import com.ymdq.thy.ui.propertyservice.PraiseVoteActivity;
 import com.ymdq.thy.util.GeneralUtils;
 
 public class PraiseListAdapter extends BaseAdapter
@@ -97,7 +96,7 @@ public class PraiseListAdapter extends BaseAdapter
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(context,PraiseDetailActivity.class);
+                Intent intent = new Intent(context,PraiseVoteActivity.class);
                 intent.putExtra("detail", entity);
                 context.startActivity(intent);
             }

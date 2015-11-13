@@ -12,11 +12,10 @@ package com.ymdq.thy.constant;
  */
 public class URLUtil
 {
-//    public static final String SERVER = "http://mobile.myx8.cn/";
+    //    public static final String SERVER = "http://mobile.myx8.cn/";
     public static final String SERVER = "http://mobile.crossroad.love/";
     
-    
-//            public static final String SERVER = "http://192.168.0.250:8080/community-mobile/";
+    //            public static final String SERVER = "http://192.168.0.250:8080/community-mobile/";
     //public static final String SERVER = "http://10.167.130.144:8080/p_gateway/";
     /**
      * 分享地址
@@ -319,6 +318,12 @@ public class URLUtil
      * 3.2.5    表扬—信息列表查询 v2.0
      */
     public static final String BUS_200501 = "Bus200501";
+    
+    /**
+     * 3.2.6    表扬—表扬接口 v2.0
+     */
+    public static final String BUS_200601 = "Bus200601";
+    
     /**
      * 3.2.7    表扬—标签查询 v2.0
      */
@@ -328,7 +333,5 @@ public class URLUtil
      * 3.2.8    表扬—评论列表查询 v2.0
      */
     public static final String BUS_200801 = "Bus200801";
-    
-    
     
 }

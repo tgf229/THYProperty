@@ -283,6 +283,11 @@
             android:name="com.ymdq.thy.ui.propertyservice.PraiseDetailActivity"
             android:screenOrientation="portrait">
         </activity>
+        <!-- 表扬投票详情 -->
+        <activity
+            android:name="com.ymdq.thy.ui.propertyservice.PraiseVoteActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
         <!-- 极光推送开始 -->
 

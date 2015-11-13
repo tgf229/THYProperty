@@ -9,6 +9,8 @@
  */
 package com.ymdq.thy.bean.propertyservice;
 
+import java.io.Serializable;
+
 /**
  * <一句话功能简述>
  * <功能详细描述>
@@ -18,7 +20,7 @@ package com.ymdq.thy.bean.propertyservice;
  * @see  [相关类/方法]
  * @since  [产品/模块版本]
  */
-public class PraiseTagDoc
+public class PraiseTagDoc implements Serializable
 {
     private String tId;
     private String tName;
