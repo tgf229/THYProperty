@@ -19,6 +19,7 @@ import java.util.Map;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -55,11 +56,11 @@ import com.ymdq.thy.view.MyGridView;
 @SuppressLint("NewApi")
 public class PraiseListActivity extends BaseActivity implements OnClickListener
 {
-    private LinearLayout loadingLayout,clickrefreshLayout,titleName;
+    private LinearLayout loadingLayout,clickrefreshLayout,titleName,back;
     
     private GifView gif1;
     
-    private TextView clickTextView,voteTimes;
+    private TextView clickTextView,voteTimes,yearTxt,monthTxt;
     
     private MyGridView praiseGrid;
     
@@ -69,7 +70,10 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
     
     private PraiseListAdapter listAdapter;
     
-    private String myVoteTimes;
+    public String myVoteTimes;
+    
+    public String currentTime;
+    public String choiseTime;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -83,6 +87,7 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
     
     private void initView()
     {
+        back = (LinearLayout)findViewById(R.id.title_back_layout);
         scrollView = (ScrollView)findViewById(R.id.scroll_view);
         titleName = (LinearLayout)findViewById(R.id.title_name);
         //加载中
@@ -100,63 +105,18 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
         voteTimes = (TextView)findViewById(R.id.vote_times_txt);
         praiseGrid = (MyGridView)findViewById(R.id.praise_grid);
         
-        titleName.setOnClickListener(this);
+        
+        yearTxt = (TextView)findViewById(R.id.year_txt);
+        monthTxt = (TextView)findViewById(R.id.month_txt);
+        back.setOnClickListener(this);
     }
     
     private void initData()
     {
         mList = new ArrayList<PraiseListDoc>();
-        
-        //测试
-        gif1.setPaused(true);
-        loadingLayout.setVisibility(View.GONE);
-        ArrayList<PraiseListDoc> list = new ArrayList<PraiseListDoc>();
-        PraiseListDoc bean = new PraiseListDoc();
-        bean.seteId("1");
-        bean.seteName("涂高峰");
-        bean.seteNum("052402");
-        bean.seteImageUrl("http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=2d97560012dfa9ecfd7b5e1357e0db35/962bd40735fae6cda4cd9f7d0cb30f2442a70fb4.jpg");
-        bean.seteDepName("保卫部");
-        bean.setPraise("2011");
-        bean.setTop("");
-        bean.setIsPraise("0");
-        
-        PraiseListDoc bean2 = new PraiseListDoc();
-        bean2.seteId("1");
-        bean2.seteName("涂高峰");
-        bean2.seteNum("052402");
-        bean2.seteImageUrl("http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=2d97560012dfa9ecfd7b5e1357e0db35/962bd40735fae6cda4cd9f7d0cb30f2442a70fb4.jpg");
-        bean2.seteDepName("保卫部");
-        bean2.setPraise("2011");
-        bean2.setTop("");
-        bean2.setIsPraise("0");
-        
-        PraiseListDoc bean3 = new PraiseListDoc();
-        bean3.seteId("1");
-        bean3.seteName("涂高峰");
-        bean3.seteNum("052402");
-        bean3.seteImageUrl("http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=2d97560012dfa9ecfd7b5e1357e0db35/962bd40735fae6cda4cd9f7d0cb30f2442a70fb4.jpg");
-        bean3.seteDepName("保卫部");
-        bean3.setPraise("2011");
-        bean3.setTop("");
-        bean3.setIsPraise("0");
-        
-        PraiseListDoc bean4 = new PraiseListDoc();
-        bean4.seteId("1");
-        bean4.seteName("涂高峰");
-        bean4.seteNum("052402");
-        bean4.seteImageUrl("http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=2d97560012dfa9ecfd7b5e1357e0db35/962bd40735fae6cda4cd9f7d0cb30f2442a70fb4.jpg");
-        bean4.seteDepName("保卫部");
-        bean4.setPraise("2011");
-        bean4.setTop("");
-        bean4.setIsPraise("0");
-        
-        list.add(bean);
-        list.add(bean2);
-        list.add(bean3);
-        list.add(bean4);
-        listAdapter = new PraiseListAdapter(this, list, this);
+        listAdapter = new PraiseListAdapter(this, mList, this);
         praiseGrid.setAdapter(listAdapter);
+        reqList();
     }
     
     private void reqList()
@@ -166,6 +126,10 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
         {
             param.put("cId", SecurityUtils.encode2Str(Global.getCId()));
             param.put("uId", SecurityUtils.encode2Str(Global.getUserId()));
+            if(GeneralUtils.isNotNullOrZeroLenght(choiseTime))
+            {
+                param.put("time", SecurityUtils.encode2Str(choiseTime));
+            }
         }
         catch (Exception e)
         {
@@ -194,19 +158,27 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
                     if (Constants.SUCESS_CODE.equals(resp.getRetcode()))
                     {
                         myVoteTimes = resp.getPraiseTimes();
+                        currentTime = resp.getCurrentTime();
                         if (GeneralUtils.isNullOrZeroLenght(myVoteTimes) || "0".equals(myVoteTimes.trim()))
                         {
-                            voteTimes.setText("您已经没有投票机会了哦！");
+                            voteTimes.setText("您本月已经没有投票机会了哦！");
                         }
                         else
                         {
                             voteTimes.setText(Html.fromHtml("您还有<font color=#d96e5d>" + myVoteTimes + "</font>次表扬机会哦！"));
+                        }
+                        if(GeneralUtils.isNotNullOrZeroLenght(currentTime) && currentTime.length() == 6)
+                        {
+                            yearTxt.setText(GeneralUtils.isNullOrZeroLenght(choiseTime)?currentTime.substring(0, 4):choiseTime.substring(0, 4));
+                            monthTxt.setText(GeneralUtils.isNullOrZeroLenght(choiseTime)?formatMonth(currentTime.substring(4, 6)):formatMonth(choiseTime.substring(4, 6)));
+                            titleName.setOnClickListener(this);
                         }
                         List<PraiseListDoc> doc = resp.getDoc();
                         if (GeneralUtils.isNotNullOrZeroSize(doc))
                         {
                             mList.clear();
                             mList.addAll(doc);
+                            clickrefreshLayout.setVisibility(View.GONE);
                             listAdapter.notifyDataSetChanged();
                         }
                         else
@@ -224,7 +196,7 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
                 else
                 {
                     clickrefreshLayout.setVisibility(View.VISIBLE);
-                    clickTextView.setText(Constants.ERROR_MESSAGE);
+                    clickTextView.setText("暂无投票信息");
                 }
             }
         }
@@ -242,12 +214,34 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
     {
         switch (v.getId())
         {
+            case R.id.title_back_layout:
+                this.finish();
+                break;
             case R.id.title_name:
                 showCalendar();
                 break;
             
             default:
                 break;
+        }
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.Praise_vote_success && resultCode == Constants.Praise_vote_success)
+        {
+            String eId = data.getStringExtra("eId");
+            for(PraiseListDoc doc: mList)
+            {
+                if(eId.equals(doc.geteId()))
+                {
+                    doc.setIsPraise("1");
+                }
+            }
+            myVoteTimes = String.valueOf(Integer.parseInt(myVoteTimes) - 1);
+            voteTimes.setText(Html.fromHtml("您还有<font color=#d96e5d>" + myVoteTimes + "</font>次表扬机会哦！"));
         }
     }
     
@@ -273,11 +267,12 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
         minCalendar.set(Calendar.HOUR_OF_DAY,0);
         minCalendar.set(Calendar.MINUTE,0);
         minCalendar.set(Calendar.SECOND,0);
-        minCalendar.set(2015, 8, 1);
+        minCalendar.set(2014, 8, 1);
         datePicker.setMinDate(minCalendar.getTimeInMillis());
         
         Calendar maxCalendar = Calendar.getInstance();
 //        maxCalendar.add(Calendar.YEAR,1);
+        maxCalendar.set(Integer.parseInt(currentTime.substring(0, 4)), Integer.parseInt(formatMonth(currentTime.substring(4, 6)))-1, 1);
         datePicker.setMaxDate(maxCalendar.getTimeInMillis());
         
         
@@ -296,12 +291,34 @@ public class PraiseListActivity extends BaseActivity implements OnClickListener
             {
                 int y = datePicker.getYear();
                 int m = datePicker.getMonth();
+                yearTxt.setText(String.valueOf(y));
+                monthTxt.setText(String.valueOf(m+1));
+                String yearData = String.valueOf(y);
+                String monthData = String.valueOf(m+1);
+                if(monthData.length()<2)
+                {
+                    monthData = "0"+monthData;
+                }
+                choiseTime = yearData+monthData;
+                mList.clear();
+                reqList();
             }
         });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
+    }
+    
+    private String formatMonth(String str)
+    {
+        String s = "";
+        if(GeneralUtils.isNotNullOrZeroLenght(str) && str.length() == 2 && str.startsWith("0"))
+        {
+            s = str.substring(1, 2);
+            return s;
+        }
+        return str;
     }
 
 }

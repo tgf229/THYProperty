@@ -17,18 +17,21 @@ import com.ymdq.thy.JRApplication;
 import com.ymdq.thy.R;
 import com.ymdq.thy.bean.propertyservice.PraiseListDoc;
 import com.ymdq.thy.callback.UICallBack;
-import com.ymdq.thy.ui.propertyservice.PraiseVoteActivity;
+import com.ymdq.thy.constant.Constants;
+import com.ymdq.thy.ui.propertyservice.PraiseDetailActivity;
+import com.ymdq.thy.ui.propertyservice.PraiseListActivity;
 import com.ymdq.thy.util.GeneralUtils;
+import com.ymdq.thy.util.ToastUtil;
 
 public class PraiseListAdapter extends BaseAdapter
 {
-    private Context context;
+    private PraiseListActivity context;
     
     private List<PraiseListDoc> mList;
     
     private UICallBack callBack;
     
-    public PraiseListAdapter(Context context, List<PraiseListDoc> freshNewsList, UICallBack callBack)
+    public PraiseListAdapter(PraiseListActivity context, List<PraiseListDoc> freshNewsList, UICallBack callBack)
     {
         this.context = context;
         this.mList = freshNewsList;
@@ -96,9 +99,12 @@ public class PraiseListAdapter extends BaseAdapter
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(context,PraiseVoteActivity.class);
+                Intent intent = new Intent(context,PraiseDetailActivity.class);
                 intent.putExtra("detail", entity);
-                context.startActivity(intent);
+                String time = GeneralUtils.isNullOrZeroLenght(context.choiseTime)? context.currentTime:context.choiseTime;
+                intent.putExtra("time", time);
+                intent.putExtra("myVoteTimes", context.myVoteTimes);
+                context.startActivityForResult(intent, Constants.Praise_vote_success);
             }
         });
         return convertView;

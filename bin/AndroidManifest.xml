@@ -104,6 +104,11 @@
         <activity
             android:name="com.ymdq.thy.ui.home.WelcomeActivity"
             android:theme="@style/ContentOverlay" >
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!-- 登陆 -->
         <activity
@@ -272,11 +277,6 @@
             android:name="com.ymdq.thy.ui.propertyservice.PraiseListActivity"
             android:screenOrientation="portrait" 
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- 表扬详情 -->
         <activity

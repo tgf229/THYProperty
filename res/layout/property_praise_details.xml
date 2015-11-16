@@ -43,6 +43,7 @@
         android:paddingRight="20dp" >
 
         <TextView
+            android:id="@+id/submit_txt"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:background="@drawable/property_praise_btn"

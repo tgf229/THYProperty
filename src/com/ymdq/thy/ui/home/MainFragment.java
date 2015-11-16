@@ -57,6 +57,7 @@ import com.ymdq.thy.ui.BaseFragment;
 import com.ymdq.thy.ui.home.adapter.FreshNewsAdapter;
 import com.ymdq.thy.ui.home.adapter.HomeImagePagerAdapter;
 import com.ymdq.thy.ui.personcenter.LoginActivity;
+import com.ymdq.thy.ui.propertyservice.PraiseListActivity;
 import com.ymdq.thy.util.DialogUtil;
 import com.ymdq.thy.util.DownApkUtil;
 import com.ymdq.thy.util.GeneralUtils;
@@ -820,7 +821,8 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                 break;
             //便民信息
             case R.id.my_central_lists:
-                Intent mylist = new Intent(getActivity(), MyCentralListsActivity.class);
+//                Intent mylist = new Intent(getActivity(), MyCentralListsActivity.class);
+                Intent mylist = new Intent(getActivity(), PraiseListActivity.class);
                 startActivity(mylist);
                 break;
             //选择小区

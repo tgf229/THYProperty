@@ -79,35 +79,13 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
         //获取详情透传数据
         detail = (PraiseListDoc)getIntent().getSerializableExtra("detail");
         tags = (ArrayList<PraiseTagDoc>)getIntent().getSerializableExtra("tags");
-        //      if (GeneralUtils.isNull(detail) || GeneralUtils.isNullOrZeroSize(tags))
-        //      {
-        //          ToastUtil.makeText(PraiseVoteActivity.this, "很抱歉，无法进入该页面");
-        //          this.finish();
-        //          return;
-        //      }
+        if (GeneralUtils.isNull(detail) || GeneralUtils.isNullOrZeroSize(tags))
+        {
+            ToastUtil.makeText(PraiseVoteActivity.this, "很抱歉，无法进入该页面");
+            this.finish();
+            return;
+        }
         
-        //测试 ============
-        tags = new ArrayList<PraiseTagDoc>();
-        PraiseTagDoc b = new PraiseTagDoc();
-        b.settId("1");
-        b.settName("长的帅");
-        PraiseTagDoc b2 = new PraiseTagDoc();
-        b2.settId("2");
-        b2.settName("长的帅");
-        PraiseTagDoc b3 = new PraiseTagDoc();
-        b3.settId("3");
-        b3.settName("长的帅");
-        PraiseTagDoc b4 = new PraiseTagDoc();
-        b4.settId("4");
-        b4.settName("长的帅");
-        PraiseTagDoc b5 = new PraiseTagDoc();
-        b5.settId("5");
-        b5.settName("长的帅");
-        tags.add(b);
-        tags.add(b2);
-        tags.add(b3);
-        tags.add(b4);
-        tags.add(b5);
         
         initView();
         
@@ -124,7 +102,7 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
         LinearLayout titleBarBack = (LinearLayout)findViewById(R.id.title_back_layout);
         TextView titleBarName = (TextView)findViewById(R.id.title_name);
         titleBarBack.setOnClickListener(this);
-        titleBarName.setBackgroundResource(R.drawable.title_gongdanxiangqing);
+        titleBarName.setBackgroundResource(R.drawable.title_biaoyang);
         LinearLayout titleBarRight = (LinearLayout)findViewById(R.id.title_call_layout);
         titleBarRight.setOnClickListener(this);
         TextView titleBarTextV = (TextView)findViewById(R.id.title_btn_call);
@@ -159,14 +137,18 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
             }
         });
         
+        
+        for(int i=tags.size()-1; i>=0; i--)
+        {
+            if("0".equals(tags.get(i).gettStatus()))
+            {
+                tags.remove(i);
+            }
+        }
+        
         tagAdapter = new PraiseTagAdapter(PraiseVoteActivity.this, tags, this);
         tagGrid.setAdapter(tagAdapter);
         dialog = new NetLoadingDailog(this);
-    }
-    
-    public void test()
-    {
-        
     }
     
     private void reqSubmit()
@@ -185,6 +167,8 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
             sb.append(ids+",");
         }
         
+        String tags = sb.toString();
+        
         dialog.loading();
         Map<String, String> param = new HashMap<String, String>();
         try
@@ -192,8 +176,7 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
             param.put("cId", SecurityUtils.encode2Str(Global.getCId()));
             param.put("uId", SecurityUtils.encode2Str(Global.getUserId()));
             param.put("eId", SecurityUtils.encode2Str(detail.geteId()));
-            
-            param.put("tag", SecurityUtils.encode2Str(sb.toString()));
+            param.put("tag", SecurityUtils.encode2Str(tags.substring(0, tags.length()-1)));
             if(GeneralUtils.isNotNullOrZeroLenght(text))
             {
                 param.put("content", SecurityUtils.encode2Str(text));
@@ -204,12 +187,12 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
             e.printStackTrace();
         }
         
-//        ConnectService.instance().connectServiceReturnResponse(this,
-//            param,
-//            this,
-//            BaseResponse.class,
-//            URLUtil.BUS_200601,
-//            Constants.ENCRYPT_SIMPLE);
+        ConnectService.instance().connectServiceReturnResponse(this,
+            param,
+            this,
+            BaseResponse.class,
+            URLUtil.BUS_200601,
+            Constants.ENCRYPT_SIMPLE);
     }
     
     @Override
@@ -228,8 +211,9 @@ public class PraiseVoteActivity extends BaseActivity implements OnClickListener
                 if (Constants.SUCESS_CODE.equals(res.getRetcode()))
                 {
                     ToastUtil.makeText(PraiseVoteActivity.this, "表扬成功");
-                    PraiseVoteActivity.this.finish();
                     contentTxt.setText("");
+                    setResult(Constants.Praise_vote_success);
+                    PraiseVoteActivity.this.finish();
                 }
                 else
                 {

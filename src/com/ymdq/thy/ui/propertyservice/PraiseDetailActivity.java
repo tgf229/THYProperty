@@ -15,15 +15,22 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.ymdq.thy.JRApplication;
 import com.ymdq.thy.R;
 import com.ymdq.thy.bean.community.GroupTopicsCommentsResponse;
 import com.ymdq.thy.bean.propertyservice.PraiseCommentDoc;
@@ -40,6 +47,7 @@ import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.community.CommunityTopicDetailsActivity;
 import com.ymdq.thy.ui.community.adapter.CommentAdapter;
 import com.ymdq.thy.ui.community.service.CommunityService;
+import com.ymdq.thy.ui.personcenter.RegisterTwoActivity;
 import com.ymdq.thy.ui.propertyservice.adapter.PraiseCommentAdapter;
 import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.NetLoadingDailog;
@@ -57,19 +65,21 @@ import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
  * @see  [相关类/方法]
  * @since  [产品/模块版本]
  */
-public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefreshListener
+public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefreshListener, OnClickListener
 {
-    private LinearLayout back, commitTipsLayout;
+    private LinearLayout back, commitTipsLayout, loadingMore, eTopLayout;
     
-    private TextView title, commitTipsNum;
+    private RelativeLayout itemLinear;
+    
+    private TextView title, commitTipsNum, eName, eNum, eDepName, submitTxt, eTopTxt;
+    
+    private ImageView eImg;
     
     private PullToRefreshView mPullToRefreshView;
     
     private ListView listView;
     
     private View loadingFooterView;
-    
-    private LinearLayout loadingMore;
     
     private View headView;
     
@@ -88,7 +98,8 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
      */
     private int page = 1;
     
-    private List<PraiseTagDoc> tagList;
+   private ArrayList<PraiseTagDoc> tagList;
+    public HashMap<String, String> tagMap;
     
     private List<PraiseCommentDoc> mList;
     
@@ -100,6 +111,8 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
     
     private String time = null;
     
+    private String myVoteTimes = null;
+    
     private String queryTime = null;
     
     private int num = 10;
@@ -109,6 +122,8 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
      */
     private int currentPage = 1;
     
+    private boolean isVoteSuccess = false;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -117,6 +132,7 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
         //获取列表透传数据
         detail = (PraiseListDoc)getIntent().getSerializableExtra("detail");
         time = getIntent().getStringExtra("time");
+        myVoteTimes = getIntent().getStringExtra("myVoteTimes");
         if (GeneralUtils.isNull(detail) || GeneralUtils.isNullOrZeroLenght(time))
         {
             ToastUtil.makeText(PraiseDetailActivity.this, "很抱歉，无法进入详情页面");
@@ -132,6 +148,9 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
     {
         back = (LinearLayout)findViewById(R.id.title_back_layout);
         title = (TextView)findViewById(R.id.title_name);
+        title.setBackgroundResource(R.drawable.title_xiangqing);
+        itemLinear = (RelativeLayout)findViewById(R.id.item_linear);
+        submitTxt = (TextView)findViewById(R.id.submit_txt);
         mPullToRefreshView = (PullToRefreshView)findViewById(R.id.pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         listView = (ListView)findViewById(R.id.list_view);
@@ -145,19 +164,66 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
         listView.addHeaderView(headView);
         loadingMore.setVisibility(View.GONE);
         
+        eImg = (ImageView)headView.findViewById(R.id.img);
+        eName = (TextView)headView.findViewById(R.id.name);
+        eNum = (TextView)headView.findViewById(R.id.num);
+        eDepName = (TextView)headView.findViewById(R.id.dep_name);
+        eTopLayout = (LinearLayout)headView.findViewById(R.id.top_layout);
+        eTopTxt = (TextView)headView.findViewById(R.id.top_num_txt);
+        
         commitTipsLayout = (LinearLayout)headView.findViewById(R.id.commit_tips_layout);
         commitTipsNum = (TextView)headView.findViewById(R.id.commit_tips_num);
+        showHead();
+        
+        back.setOnClickListener(this);
+        submitTxt.setOnClickListener(this);
+    }
+    
+    private void showHead()
+    {
+        ImageLoader.getInstance().displayImage(detail.geteImageUrl(),
+            eImg,
+            JRApplication.setAllDisplayImageOptions(this,
+                "default_head_pic_round",
+                "default_head_pic_round",
+                "default_head_pic_round"));
+        if (GeneralUtils.isNotNullOrZeroLenght(detail.geteName()))
+        {
+            eName.setText(detail.geteName());
+        }
+        if (GeneralUtils.isNotNullOrZeroLenght(detail.geteNum()))
+        {
+            eNum.setText("工号-" + detail.geteNum());
+        }
+        if (GeneralUtils.isNotNullOrZeroLenght(detail.geteDepName()))
+        {
+            eDepName.setText("部门-" + detail.geteDepName());
+        }
+        if (GeneralUtils.isNotNullOrZeroLenght(detail.getTop()) && !"0".equals(detail.getTop()))
+        {
+            eTopLayout.setVisibility(View.VISIBLE);
+            eTopTxt.setText(detail.getTop() + "次");
+        }
+        if (GeneralUtils.isNullOrZeroLenght(myVoteTimes) || "0".equals(myVoteTimes.trim()))
+        {
+            itemLinear.setVisibility(View.GONE);
+        }
+        if(GeneralUtils.isNotNullOrZeroLenght(detail.getIsPraise()) && "1".equals(detail.getIsPraise().trim()))
+        {
+            itemLinear.setVisibility(View.GONE);
+        }
     }
     
     private void initData()
     {
-        if (GeneralUtils.isNotNullOrZeroLenght(detail.getPraise()))
+        if (GeneralUtils.isNotNullOrZeroLenght(detail.getPraise()) && !"0".equals(detail.getPraise().trim()))
         {
             commitTipsLayout.setVisibility(View.VISIBLE);
             commitTipsNum.setText(detail.getPraise());
         }
         
         mList = new ArrayList<PraiseCommentDoc>();
+        tagList = new ArrayList<PraiseTagDoc>();
         
         listView.setOnScrollListener(new OnScrollListener()
         {
@@ -238,6 +304,13 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
                     {
                         tagList.clear();
                         tagList.addAll(tagResponse.getDoc());
+                        
+                        tagMap = new HashMap<String, String>();
+                        for (PraiseTagDoc tag : tagList)
+                        {
+                            tagMap.put(tag.gettId(), tag.gettName());
+                        }
+                        
                         reqCommentList();
                     }
                 }
@@ -266,6 +339,7 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
                 dailog.dismissDialog();
             }
             loadingMore.setVisibility(View.GONE);
+            mPullToRefreshView.onHeaderRefreshComplete();
             PraiseCommentResponse commentsResponse = (PraiseCommentResponse)ob;
             if (GeneralUtils.isNotNullOrZeroLenght(commentsResponse.getRetcode()))
             {
@@ -345,5 +419,59 @@ public class PraiseDetailActivity extends BaseActivity implements OnHeaderRefres
     {
         page = 1;
         reqCommentList();
+    }
+    
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.title_back_layout:
+                if(isVoteSuccess)
+                {
+                    Intent data = new Intent();
+                    data.putExtra("eId", detail.geteId());
+                    setResult(Constants.Praise_vote_success, data);
+                }
+                this.finish();
+                break;
+            case R.id.submit_txt:
+                Intent intent = new Intent(this, PraiseVoteActivity.class);
+                intent.putExtra("detail", detail);
+                intent.putExtra("tags", tagList);
+                startActivityForResult(intent, Constants.Praise_vote_success);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            if(isVoteSuccess)
+            {
+                Intent data = new Intent();
+                data.putExtra("eId", detail.geteId());
+                setResult(Constants.Praise_vote_success, data);
+            }
+            this.finish();
+        }
+        return false;
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.Praise_vote_success && resultCode == Constants.Praise_vote_success)
+        {
+            isVoteSuccess = true;
+            page = 1;
+            reqCommentList();
+            itemLinear.setVisibility(View.GONE);
+        }
     }
 }

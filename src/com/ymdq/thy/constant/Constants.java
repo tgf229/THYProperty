@@ -318,6 +318,8 @@ public class Constants
      */
     public static final int User_info_pic = 1014;
     
+    public static final int Praise_vote_success = 1015;
+    
     /**
      * 手机验证码类型
      */
