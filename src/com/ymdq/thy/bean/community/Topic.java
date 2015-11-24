@@ -38,6 +38,12 @@ public class Topic extends BaseResponse implements Serializable
     private String imageUrl;
     
     /**
+     * 话题发布日期
+     * YYYYMMDD
+     */
+    private String date;
+    
+    /**
      * 话题发布时间
      */
     private String time;
@@ -61,6 +67,11 @@ public class Topic extends BaseResponse implements Serializable
      * 话题ID
      */
     private String articleId;
+    
+    /**
+     * 话题ID   v2.0
+     */
+    private String aId;
     
     /**
      * 话题内容
@@ -90,7 +101,17 @@ public class Topic extends BaseResponse implements Serializable
     private String comment;
     
     /**
+     * 评论数量
+     */
+    private String commentNum;
+    
+    /**
      * 话题类型
+     *  1   普通话题
+        2   投票(赞成or反对)话题
+        3   投票(自定义)话题
+        4   官方(美食)话题
+        5   官方(生活常识)话题
      */
     private String type;
     
@@ -121,12 +142,49 @@ public class Topic extends BaseResponse implements Serializable
     private String isTop;
     
     /**
+     * 话题是否火
+     * 0 否
+     * 1 是
+     */
+    private String isHot;
+    
+    /**
      * 0普通用户
      * 1大V
      * 2超级管理员
      */
     private String userLevel;
     
+    public String getaId()
+    {
+        return aId;
+    }
+
+    public void setaId(String aId)
+    {
+        this.aId = aId;
+    }
+
+    public String getCommentNum()
+    {
+        return commentNum;
+    }
+
+    public void setCommentNum(String commentNum)
+    {
+        this.commentNum = commentNum;
+    }
+
+    public String getIsHot()
+    {
+        return isHot;
+    }
+
+    public void setIsHot(String isHot)
+    {
+        this.isHot = isHot;
+    }
+
     /**
      * 图片列表
      */
@@ -262,6 +320,16 @@ public class Topic extends BaseResponse implements Serializable
         this.comment = comment;
     }
     
+    public String getDate()
+    {
+        return date;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
     public String getType()
     {
         return type;

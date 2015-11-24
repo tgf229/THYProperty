@@ -13,9 +13,9 @@ package com.ymdq.thy.constant;
 public class URLUtil
 {
     //    public static final String SERVER = "http://mobile.myx8.cn/";
-//    public static final String SERVER = "http://mobile.crossroad.love/";
+    public static final String SERVER = "http://mobile.crossroad.love/";
     
-                public static final String SERVER = "http://192.168.0.100:8080/community-mobile/";
+//                public static final String SERVER = "http://192.168.0.100:8080/community-mobile/";
     //public static final String SERVER = "http://10.167.130.144:8080/p_gateway/";
     /**
      * 分享地址
@@ -333,5 +333,10 @@ public class URLUtil
      * 3.2.8    表扬—评论列表查询 v2.0
      */
     public static final String BUS_200801 = "Bus200801";
+    
+    /**
+     * 3.3.11社区—小区话题列表查询v2.0 
+     */
+    public static final String BUS_302301 = "Bus302301";
     
 }

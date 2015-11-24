@@ -1,126 +1,136 @@
 package com.ymdq.thy.ui.community;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ymdq.thy.R;
+import com.ymdq.thy.bean.community.JoinedGroupDynamicResponse;
+import com.ymdq.thy.bean.community.Topic;
+import com.ymdq.thy.callback.UICallBack;
 import com.ymdq.thy.constant.Constants;
 import com.ymdq.thy.constant.Global;
+import com.ymdq.thy.constant.URLUtil;
+import com.ymdq.thy.network.ConnectService;
 import com.ymdq.thy.ui.BaseFragment;
-import com.ymdq.thy.ui.HomeFragmentActivity;
-import com.ymdq.thy.util.DialogUtil;
+import com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter;
+import com.ymdq.thy.ui.community.adapter.CommunityListAdapter;
 import com.ymdq.thy.util.DisplayUtil;
 import com.ymdq.thy.util.GeneralUtils;
+import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.GifView;
+import com.ymdq.thy.view.PullToRefreshView;
+import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
 /**
- * 
- * <邻里主页面>
+ * <社区主页>
  * <功能详细描述>
  * 
- * @author  cyf
- * @version  [版本号, 2014-11-13]
+ * @author  tgf
+ * @version  [版本号, 2015-11-24]
  * @see  [相关类/方法]
  * @since  [产品/模块版本]
  */
-public class CommunityFragment extends BaseFragment implements OnClickListener
+public class CommunityFragment extends BaseFragment implements UICallBack, OnClickListener,
+    OnHeaderRefreshListener
 {
+    
     private View view;
     
     /**
-     * 返回按钮
+     * 上下拉刷新
      */
-    private RelativeLayout back;
+    private PullToRefreshView mPullToRefreshView;
     
     /**
-     * 回复消息按钮
+     * listview
      */
-    private Button messageBtn;
+    private ListView listView;
     
     /**
-     * 用户
+     * 显示加载进度的view，当listview向下滚动的时候显示此view
      */
-    private TextView user;
+    private View loadingFooterView;
     
     /**
-     * 用户布局
+     * 数据加载框
      */
-    private LinearLayout userLayout;
+    private LinearLayout loadingLayout,back,loadingMore,loadingFailedLayout,rightLayout;
+    /**
+     * 结束标志
+     */
+    private RelativeLayout endTips;
     
     /**
-     * 目前的Fragment Tag
+     * 每页展示条数
      */
-    private String curFragmentTag;
+    private int num = 10;
     
     /**
-     * 用于对Fragment进行管理
+     * 当前页
      */
-    private FragmentManager fragmentManager;
+    private int page = 1;
     
     /**
-     * 社区动态
+     * 保存当前页数
      */
-    private TextView communityDynamic;
+    private int currentPage = 1;
     
     /**
-     * 社区广场
+     * 查询时间点
      */
-    private TextView communitySquare;
+    private String queryTime;
     
     /**
-     * 下划线
+     * 是否有更多消息
      */
-    private ImageView cursor;
+    private boolean anyMore = true;
     
     /**
-     * 下划线宽度
+     * 记录滚动列表的状态，是否已刷新
      */
-    private int bitmapWeight = 70;
+    private boolean isRefreshing = false;
     
     /**
-     * 动画图片偏移量
+     * 请求失败展示信息
      */
-    private int offset;
+    private TextView errorMessage,title,rightTxt;
     
     /**
-     * 从左往右动画
+     * 动态适配器
      */
-    private Animation leftToRightAnimation;
+    private CommunityListAdapter adapter;
     
     /**
-     * 从右往左动画
+     * 话题列表
      */
-    private Animation rightToleftAnimation;
-    
-    private String[] tags;
-    
-    /**
-     * 未读消息数量
-     */
-    private TextView community_message_number;
+    private List<Topic> mList = new ArrayList<Topic>();
     
     /**
      * 登陆成功广播
      */
-    private CommunityMessageBroard communityMessageBroard;
+    private LoginSuccessBroard loginBroardcast;
+    
+    private GifView gif1;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -133,12 +143,9 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        init();
+        initView();
         initData();
         registreBroadcast();
-        initImageView();
-        loadAnimation();
-        setTabSelection(getString(R.string.community_square));
     }
     
     /**
@@ -147,24 +154,44 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
      * <功能详细描述>
      * @see [类、类#方法、类#成员]
      */
-    private void init()
+    private void initView()
     {
-        back = (RelativeLayout)view.findViewById(R.id.title_back_layout);
-        messageBtn = (Button)view.findViewById(R.id.title_btn_back);
-        user = (TextView)view.findViewById(R.id.title_btn_call);
-        userLayout = (LinearLayout)view.findViewById(R.id.title_call_layout);
-        communityDynamic = (TextView)view.findViewById(R.id.community_dynamic);
-        communitySquare = (TextView)view.findViewById(R.id.community_square);
-        cursor = (ImageView)view.findViewById(R.id.cursor);
-        community_message_number = (TextView)view.findViewById(R.id.community_message_number);
+        back = (LinearLayout)view.findViewById(R.id.title_back_layout);
+        back.setVisibility(View.GONE);
+        title = (TextView)view.findViewById(R.id.title_name);
+        rightTxt = (TextView)view.findViewById(R.id.title_btn_call);
+        rightLayout = (LinearLayout)view.findViewById(R.id.title_call_layout);
+        
+        title.setBackgroundResource(R.drawable.title_fahuati);
+        rightTxt.setBackgroundResource(R.drawable.title_red_wancheng);
+        
+        mPullToRefreshView = (PullToRefreshView)view.findViewById(R.id.pull_refresh_view);
+        mPullToRefreshView.setOnHeaderRefreshListener(this);
+        loadingLayout = (LinearLayout)view.findViewById(R.id.loading_layout);
+        gif1 = (GifView)loadingLayout.findViewById(R.id.gif1);  
+        // 设置背景gif图片资源  
+        gif1.setMovieResource(R.raw.jiazai_gif);
+        loadingFailedLayout = (LinearLayout)view.findViewById(R.id.loading_failed);
+        listView = (ListView)view.findViewById(R.id.list_view);
+        loadingFooterView =
+            ((LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.loading,
+                null);
+        endTips = (RelativeLayout)loadingFooterView.findViewById(R.id.end_tips);
+        loadingMore = (LinearLayout)loadingFooterView.findViewById(R.id.loading_more);
+        errorMessage = (TextView)loadingFailedLayout.findViewById(R.id.loading_failed_txt);
+        listView.addFooterView(loadingFooterView);
+        loadingMore.setVisibility(View.GONE);
+        TextView view = new TextView(getActivity());
+        view.setWidth(getActivity().getWindowManager().getDefaultDisplay().getWidth());
+        view.setHeight(DisplayUtil.dip2px(getActivity(), 0));
+        view.setBackgroundColor(getResources().getColor(R.color.community_bg));
+        listView.addHeaderView(view);
         
         /**
-         *  添加按钮点击事件
+         * 添加按钮点击事件
          */
-        userLayout.setOnClickListener(this);
-        communityDynamic.setOnClickListener(this);
-        communitySquare.setOnClickListener(this);
-        back.setOnClickListener(this);
+        loadingFailedLayout.setOnClickListener(this);
+        rightLayout.setOnClickListener(this);
     }
     
     /**
@@ -175,21 +202,211 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
      */
     private void initData()
     {
-        messageBtn.setBackgroundResource(R.drawable.community_message);
-        user.setTextSize(0);
-        user.setBackgroundResource(R.drawable.community_user);
-        fragmentManager = getActivity().getSupportFragmentManager();
-        bitmapWeight = DisplayUtil.dip2px(getActivity(), bitmapWeight);
-        tags = new String[] {getString(R.string.community_dynamic), getString(R.string.community_square)};
-        if (((HomeFragmentActivity)getActivity()).getMessageNumber() > 0)
+        listView.setOnScrollListener(new OnScrollListener()
         {
-            community_message_number.setVisibility(View.VISIBLE);
-            community_message_number.setText(((HomeFragmentActivity)getActivity()).getMessageNumber() + "");
-        }
-        else
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState)
+            {
+                if (scrollState == OnScrollListener.SCROLL_STATE_IDLE && anyMore && !isRefreshing
+                    && view.getLastVisiblePosition() == view.getCount() - 1)
+                {
+                    loadingMore.setVisibility(View.VISIBLE);
+                    isRefreshing = true;
+                    page++;
+                    reqList();
+                }
+            }
+            
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+            {
+                
+            }
+        });
+        listView.setOnItemClickListener(new OnItemClickListener()
         {
-            community_message_number.setVisibility(View.GONE);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+//                Intent intent = new Intent(getActivity(), CommunityTopicDetailsActivity.class);
+//                intent.putExtra("id", topics.get(position - 1).getArticleId());
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+            }
+        });
+        adapter = new CommunityListAdapter(mList, getActivity(), CommunityFragment.this);
+        listView.setAdapter(adapter);
+        reqList();
+    }
+    
+    /**
+     * 
+     * <社区列表查询>
+     * <功能详细描述>
+     * @see [类、类#方法、类#成员]
+     */
+    private void reqList()
+    {
+        endTips.setVisibility(View.GONE);
+        Map<String, String> param = new HashMap<String, String>();
+        param.put("cId", Global.getCId());
+        param.put("uId", Global.getUserId());
+        param.put("page", page + "");
+        param.put("num", num + "");
+        if (page > 1)
+        {
+            param.put("queryTime", queryTime);
         }
+        ConnectService.instance().connectServiceReturnResponse(getActivity(),
+            param,
+            CommunityFragment.this,
+            JoinedGroupDynamicResponse.class,
+            URLUtil.BUS_302301,
+            Constants.ENCRYPT_NONE);
+    }
+    
+    @Override
+    public void onHeaderRefresh(PullToRefreshView view)
+    {
+        page = 1;
+        reqList();
+    }
+    
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+        /**
+         * 响应失败页面点击事件
+         */
+            case R.id.loading_failed:
+                loadingFailedLayout.setVisibility(View.GONE);
+                loadingLayout.setVisibility(View.VISIBLE);
+                reqList();
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
+    @Override
+    public void netBack(Object ob)
+    {
+        if (ob instanceof JoinedGroupDynamicResponse)
+        {
+            gif1.setPaused(true);
+            loadingLayout.setVisibility(View.GONE);
+            mPullToRefreshView.onHeaderRefreshComplete();
+            loadingMore.setVisibility(View.GONE);
+            JoinedGroupDynamicResponse response = (JoinedGroupDynamicResponse)ob;
+            if (GeneralUtils.isNotNullOrZeroLenght(response.getRetcode()))
+            {
+                if (Constants.SUCESS_CODE.equals(response.getRetcode()))
+                {
+                    mPullToRefreshView.setVisibility(View.VISIBLE);
+                    queryTime = response.getQueryTime();
+                    if (page == 1)
+                    {
+                        if (GeneralUtils.isNotNullOrZeroSize(response.getDoc()))
+                        {
+                            mList.clear();
+                            mList.addAll(response.getDoc());
+                            currentPage = page;
+                            adapter = new CommunityListAdapter(mList, getActivity(), CommunityFragment.this);
+                            listView.setAdapter(adapter);
+                        }
+                        else
+                        {
+                            loadingFailedLayout.setVisibility(View.VISIBLE);
+                            mPullToRefreshView.setVisibility(View.GONE);
+                            errorMessage.setText("咱未查询到");
+                        }
+                    }
+                    else
+                    {
+                        isRefreshing = false;
+                        //没有更多
+                        if (response.getDoc() == null || response.getDoc().size() < 0)
+                        {
+                            page--;
+                        }
+                        else
+                        {
+                            mList.addAll(response.getDoc());
+                            currentPage = page;
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                    //是否有更多
+                    if (response.getDoc() == null || response.getDoc().size() < num)
+                    {
+                        anyMore = false;
+                        endTips.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        anyMore = true;
+                    }
+                }
+                else
+                {
+                    if (page == 1)
+                    {
+                        //请求失败后，page重置
+                        page = currentPage;
+                        //内容为空,才显示哭脸,有数据的情况下,加载失败,不覆盖原先的内容
+                        if (GeneralUtils.isNullOrZeroSize(mList))
+                        {
+                            loadingFailedLayout.setVisibility(View.VISIBLE);
+                            mPullToRefreshView.setVisibility(View.GONE);
+                            errorMessage.setText(response.getRetinfo());
+                        }
+                        else
+                        {
+                            ToastUtil.makeText(getActivity(), response.getRetinfo());
+                        }
+                    }
+                    else
+                    {
+                        page--;
+                        isRefreshing = false;
+                        ToastUtil.makeText(getActivity(), response.getRetinfo());
+                    }
+                }
+            }
+            else
+            {
+                if (page == 1)
+                {
+                    page = currentPage;
+                    if (GeneralUtils.isNullOrZeroSize(mList))
+                    {
+                        loadingFailedLayout.setVisibility(View.VISIBLE);
+                        mPullToRefreshView.setVisibility(View.GONE);
+                        errorMessage.setText(Constants.ERROR_MESSAGE);
+                    }
+                    else
+                    {
+                        ToastUtil.showError(getActivity());
+                    }
+                }
+                else
+                {
+                    page--;
+                    isRefreshing = false;
+                    ToastUtil.showError(getActivity());
+                }
+            }
+        }
+    }
+    
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        getActivity().unregisterReceiver(loginBroardcast);
     }
     
     /**
@@ -201,234 +418,12 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
     private void registreBroadcast()
     {
         IntentFilter loginFilter = new IntentFilter();
-        loginFilter.addAction(Constants.COMMUNITY_MESSAGE_NUMBER_BROADCAST);
-        communityMessageBroard = new CommunityMessageBroard();
-        getActivity().registerReceiver(communityMessageBroard, loginFilter);
-    }
-    
-    /**
-     * 
-     * <初始化动画>
-     * <功能详细描述>
-     * @see [类、类#方法、类#成员]
-     */
-    private void initImageView()
-    {
-        DisplayMetrics dm = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int screenW = dm.widthPixels;// 获取分辨率宽度
-        offset = (screenW / 2 - bitmapWeight);// 计算偏移量
-        RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams)cursor.getLayoutParams(); //取控件textView当前的布局参数  
-        linearParams.setMargins(offset, 0, 0, 0);
-        cursor.setLayoutParams(linearParams);
-    }
-    
-    /**
-     * 
-     * <初始化动画>
-     * <功能详细描述>
-     * @see [类、类#方法、类#成员]
-     */
-    private void loadAnimation()
-    {
-        int one =  bitmapWeight  + DisplayUtil.dip2px(getActivity(), 10);// 页卡1 -> 页卡2 偏移量
-        leftToRightAnimation = new TranslateAnimation(0, one, 0, 0);
-        leftToRightAnimation.setFillAfter(true);// True:图片停在动画结束位置
-        leftToRightAnimation.setDuration(300);
-        rightToleftAnimation = new TranslateAnimation(one, 0, 0, 0);
-        rightToleftAnimation.setFillAfter(true);// True:图片停在动画结束位置
-        rightToleftAnimation.setDuration(300);
-    }
-    
-    /**
-     * 
-     * <设置选中的Tab>
-     * <功能详细描述>
-     * @param tag tab的名称
-     * @see [类、类#方法、类#成员]
-     */
-    public void setTabSelection(String tag)
-    {
-        if (TextUtils.equals(tag, curFragmentTag))
-        {
-            return;
-        }
-        // 开启一个Fragment事务
-        Fragment mFragment = fragmentManager.findFragmentByTag(tag);
-        if (TextUtils.equals(tag, getString(R.string.community_dynamic)))
-        {
-            // 当点击了消息tab时，改变控件的图片和文字颜色
-            setSelection(R.id.community_dynamic);
-            if (mFragment == null)
-            {
-                mFragment = new CommunityDynamicFragment();
-            }
-        }
-        if (TextUtils.equals(tag, getString(R.string.community_square)))
-        {
-            setSelection(R.id.community_square);
-            if (mFragment == null)
-            {
-                mFragment = new CommunitySquareFragment();
-            }
-        }
-        switchFragment(mFragment, tag);
-    }
-    
-    /**
-     * 
-     * <根据传入的tag切换fragment>
-     * <功能详细描述>
-     * @param tag
-     * @see [类、类#方法、类#成员]
-     */
-    private void switchFragment(Fragment fragment, String tag)
-    {
-        detachFragment();
-        attachFragment(fragment, tag);
-        curFragmentTag = tag;
-    }
-    
-    /**
-     * 
-     * <隐藏当前Fragment>
-     * <功能详细描述>
-     * @param f
-     * @see [类、类#方法、类#成员]
-     */
-    private void detachFragment()
-    {
-        for (int i = 0; i < tags.length; i++)
-        {
-            Fragment fragment = fragmentManager.findFragmentByTag(tags[i]);
-            if (fragment != null && !fragment.isDetached())
-            {
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.hide(fragment);
-                ft.commit();
-            }
-        }
-    }
-    
-    /**
-     * 
-     * <加入Fragment>
-     * <功能详细描述>
-     * @param layout
-     * @param f
-     * @param tag
-     * @see [类、类#方法、类#成员]
-     */
-    private void attachFragment(Fragment fragment, String tag)
-    {
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        if (fragment.isHidden())
-        {
-            ft.show(fragment);
-        }
-        else if (fragment.isDetached())
-        {
-            ft.attach(fragment);
-        }
-        else if (!fragment.isAdded())
-        {
-            ft.add(R.id.community_content, fragment, tag);
-        }
-        ft.commit();
-    }
-    
-    /**
-     * 
-     * <设置控件的选择状态>
-     * <功能详细描述>
-     * @param id   //传入父视图的id
-     * @see [类、类#方法、类#成员]
-     */
-    private void setSelection(int id)
-    {
-        switch (id)
-        {
-            case R.id.community_dynamic:
-                if (GeneralUtils.isNotNullOrZeroLenght(curFragmentTag))
-                {
-                    cursor.clearAnimation();
-                    cursor.startAnimation(leftToRightAnimation);
-                }
-                communityDynamic.setBackgroundResource(R.drawable.title_dongtai_press);
-                communitySquare.setBackgroundResource(R.drawable.title_guangchang);
-//                communityDynamic.setTextColor(getResources().getColor(R.color.community_dynamic));
-//                communitySquare.setTextColor(getResources().getColor(R.color.black_color));
-                break;
-            case R.id.community_square:
-                if (GeneralUtils.isNotNullOrZeroLenght(curFragmentTag))
-                {
-                    cursor.clearAnimation();
-                    cursor.startAnimation(rightToleftAnimation);
-                }
-                communityDynamic.setBackgroundResource(R.drawable.title_dongtai);
-                communitySquare.setBackgroundResource(R.drawable.title_guangchang_press);
-//                communityDynamic.setTextColor(getResources().getColor(R.color.black_color));
-//                communitySquare.setTextColor(getResources().getColor(R.color.community_dynamic));
-                break;
-        }
-    }
-    
-    @Override
-    public void onClick(View v)
-    {
-        switch (v.getId())
-        {
-        /**
-         * 响应社区动态按钮
-         */
-            case R.id.community_dynamic:
-                if (Global.isLogin())
-                {
-                    setTabSelection(getString(R.string.community_dynamic));
-                }
-                else
-                {
-                    DialogUtil.TwoButtonDialogGTLogin(getActivity());
-                }
-                break;
-            /**
-             * 响应社区广场按钮
-             */
-            case R.id.community_square:
-                setTabSelection(getString(R.string.community_square));
-                break;
-            /**
-             * 响应个人界面按钮
-             */
-            case R.id.title_call_layout:
-                if (Global.isLogin())
-                {
-                    Intent intent = new Intent(getActivity(), CommunityPersonDetailActivity.class);
-                    intent.putExtra("queryUId", Global.getUserId());
-                    startActivity(intent);
-                }
-                else
-                {
-                    DialogUtil.TwoButtonDialogGTLogin(getActivity());
-                }
-                break;
-            /**
-             * 响应评论消息
-             */
-            case R.id.title_back_layout:
-                if (Global.isLogin())
-                {
-                    Intent intent = new Intent(getActivity(), CommunityCommentMessageActivity.class);
-                    startActivity(intent);
-                }
-                else
-                {
-                    DialogUtil.TwoButtonDialogGTLogin(getActivity());
-                }
-                break;
-            default:
-                break;
-        }
+        loginFilter.addAction(Constants.LOGIN_SUCCESS_BROADCAST);
+        loginBroardcast = new LoginSuccessBroard();
+        IntentFilter cellFilter = new IntentFilter();
+        cellFilter.addAction(Constants.SELECT_NEW_COMMUNITY);
+        getActivity().registerReceiver(loginBroardcast, loginFilter);
+        getActivity().registerReceiver(loginBroardcast, cellFilter);
     }
     
     /**
@@ -441,32 +436,43 @@ public class CommunityFragment extends BaseFragment implements OnClickListener
      * @see  [相关类/方法]
      * @since  [产品/模块版本]
      */
-    class CommunityMessageBroard extends BroadcastReceiver
+    class LoginSuccessBroard extends BroadcastReceiver
     {
         @Override
         public void onReceive(Context context, Intent intent)
         {
             //登录成功
-            if (Constants.COMMUNITY_MESSAGE_NUMBER_BROADCAST.equals(intent.getAction()))
+            if (Constants.SELECT_NEW_COMMUNITY.equals(intent.getAction()))
             {
-                String number = intent.getStringExtra("number");
-                if (Integer.valueOf(number) > 0)
-                {
-                    community_message_number.setVisibility(View.VISIBLE);
-                    community_message_number.setText(number);
-                }
-                else
-                {
-                    community_message_number.setVisibility(View.GONE);
-                }
+                mList.clear();
+                adapter.notifyDataSetChanged();
+                mPullToRefreshView.setVisibility(View.GONE);
+                loadingFailedLayout.setVisibility(View.GONE);
+                page = 1;
+                currentPage = 1;
+                loadingLayout.setVisibility(View.VISIBLE);
+                reqList();
             }
         }
     }
     
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        getActivity().unregisterReceiver(communityMessageBroard);
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data)
+//    {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == Constants.NUM1 && resultCode == Constants.move_topic && data != null)
+//        {
+//            String fromId = data.getStringExtra("from_id");
+//            String articleId = data.getStringExtra("article_id");
+//            for (int i = 0; i < topics.size(); i++)
+//            {
+//                if (articleId.equals(topics.get(i).getArticleId()) && fromId.equals(topics.get(i).getId()))
+//                {
+//                    topics.remove(i);
+//                    i--;
+//                }
+//            }
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
 }
