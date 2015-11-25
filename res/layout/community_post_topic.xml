@@ -43,7 +43,7 @@
                     android:paddingLeft="15dip"
                     android:paddingRight="15dip"
                     android:paddingTop="15dp"
-                    android:textColorHint="@color/text_color"
+                    android:textColorHint="@color/home_list_time"
                     android:textSize="15sp" />
 
                 <TextView
@@ -54,15 +54,9 @@
                     android:layout_marginBottom="5dip"
                     android:layout_marginRight="15dip"
                     android:text="0/200"
-                    android:textColor="@color/person_input_hint"
+                    android:textColor="@color/home_list_time"
                     android:textSize="12sp" />
-
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/line_grey" />
 
             <LinearLayout
                 android:id="@+id/select_photo"
@@ -92,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="添加照片"
-                        android:textColor="@color/community_come_from"
+                        android:textColor="@color/text_color"
                         android:textSize="15sp" />
 
                     <TextView
@@ -101,7 +95,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="8dip"
                         android:text="最多6张"
-                        android:textColor="@color/community_come_from"
+                        android:textColor="@color/text_color"
                         android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -139,10 +133,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/line_grey" />
 
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/line_grey" />
+
             <LinearLayout
                 android:id="@+id/vote"
                 android:layout_width="fill_parent"
-                android:layout_height="60dip"
+                android:layout_height="55dip"
                 android:background="@color/white_color"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -156,7 +156,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="26dip"
+                    android:layout_marginLeft="25dip"
                     android:background="@drawable/community_post_agree" />
 
                 <TextView
@@ -186,7 +186,78 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/line_grey" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="vertical"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip" >
+
+                <LinearLayout
+                    android:id="@+id/vote_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/community_post_topic"
+                        android:layout_weight="1"
+                        android:text="开启自定义投票" />
+
+                    <ImageView
+                        android:id="@+id/is_vote_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/community_switch_off" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/vote_custom_sence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:id="@+id/vote_custom_sence_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:background="@drawable/property_praise_tag_btn"
+                                android:hint="请输入选项内容（限20字）"
+                                android:maxLength="20"
+                                android:singleLine="true"
+                                android:textColor="@color/person_input_hint"
+                                android:textColorHint="@color/home_list_time"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/vote_custom_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:drawableLeft="@drawable/community_vote_add_btn"
+                        android:drawablePadding="5dp"
+                        android:padding="15dp"
+                        android:text="添加选项"
+                        android:textColor="#e7a297"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

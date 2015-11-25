@@ -162,8 +162,8 @@ public class CommunityFragment extends BaseFragment implements UICallBack, OnCli
         rightTxt = (TextView)view.findViewById(R.id.title_btn_call);
         rightLayout = (LinearLayout)view.findViewById(R.id.title_call_layout);
         
-        title.setBackgroundResource(R.drawable.title_fahuati);
-        rightTxt.setBackgroundResource(R.drawable.title_red_wancheng);
+        title.setBackgroundResource(R.drawable.title_linli_big);
+        rightTxt.setBackgroundResource(R.drawable.title_red_fahuati);
         
         mPullToRefreshView = (PullToRefreshView)view.findViewById(R.id.pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
@@ -277,6 +277,10 @@ public class CommunityFragment extends BaseFragment implements UICallBack, OnCli
     {
         switch (v.getId())
         {
+            case R.id.title_call_layout:
+                Intent intent = new Intent(getActivity(),CommunityPostTopicActivity.class);
+                startActivityForResult(intent, Constants.NUM2);
+                break;
         /**
          * 响应失败页面点击事件
          */
@@ -321,7 +325,7 @@ public class CommunityFragment extends BaseFragment implements UICallBack, OnCli
                         {
                             loadingFailedLayout.setVisibility(View.VISIBLE);
                             mPullToRefreshView.setVisibility(View.GONE);
-                            errorMessage.setText("咱未查询到");
+                            errorMessage.setText("暂未查询到信息");
                         }
                     }
                     else

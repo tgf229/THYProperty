@@ -181,9 +181,17 @@ public class CommunityListAdapter extends BaseAdapter
         {
             viewHolder.isHot.setVisibility(View.VISIBLE);
         }
+        else
+        {
+            viewHolder.isHot.setVisibility(View.INVISIBLE);
+        }
         if("2".equals(data.get(position).getType()) || "3".equals(data.get(position).getType()))
         {
             viewHolder.isVote.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            viewHolder.isVote.setVisibility(View.INVISIBLE);
         }
         
 //        if (GeneralUtils.isNotNullOrZeroLenght(data.get(position).getComment()))

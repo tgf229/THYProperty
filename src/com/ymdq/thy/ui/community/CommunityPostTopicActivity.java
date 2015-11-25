@@ -107,12 +107,14 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
     /**
      * 是否开启投票
      */
-    private LinearLayout vote;
+    private LinearLayout vote,voteCustom,voteCustomSence,voteCustomSenceItem;
     
     /**
      * 是否开启投票
      */
-    private ImageView isVote;
+    private ImageView isVote,isVoteCustom;
+    
+    private Button voteCustomAddBtn;
     
     /**
      * 拍摄图片的url地址
@@ -165,9 +167,13 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
     private HashMap<String, SoftReference<Bitmap>> imageCache;
     
     /**
-     * 是否支持投票
+     * 是否支持AB投票
      */
     private boolean isSupportVote;
+    /**
+     * 是否支持自定义投票
+     */
+    private boolean isSupportVoteCustom;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -191,14 +197,24 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
         title = (TextView)findViewById(R.id.title_name);
         postTopic = (TextView)findViewById(R.id.title_btn_call);
         postTopicLayout = (LinearLayout)findViewById(R.id.title_call_layout);
-        defaultPhoto = (ImageView)findViewById(R.id.default_photo);
         content = (EditText)findViewById(R.id.content);
         textChangeLength = (TextView)findViewById(R.id.text_change_length);
         selectPhoto = (LinearLayout)findViewById(R.id.select_photo);
+        defaultPhoto = (ImageView)findViewById(R.id.default_photo);
+        
         vote = (LinearLayout)findViewById(R.id.vote);
         isVote = (ImageView)findViewById(R.id.is_vote);
+        voteCustom = (LinearLayout)findViewById(R.id.vote_custom);
+        isVoteCustom = (ImageView)findViewById(R.id.is_vote_custom);
+        voteCustomSence = (LinearLayout)findViewById(R.id.vote_custom_sence);
+        voteCustomSenceItem = (LinearLayout)findViewById(R.id.vote_custom_sence_item);
+        
+        voteCustomAddBtn = (Button)findViewById(R.id.vote_custom_add);
+        
+        
         selectPhotoLayout = (LinearLayout)findViewById(R.id.select_photo_layout);
         selectPhotoLine = (LinearLayout)findViewById(R.id.select_photo_line);
+        
         imgNum = (TextView)findViewById(R.id.img_txt_num);
         
         /**
@@ -207,7 +223,9 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
         back.setOnClickListener(this);
         postTopicLayout.setOnClickListener(this);
         vote.setOnClickListener(this);
+        voteCustom.setOnClickListener(this);
         selectPhoto.setOnClickListener(this);
+        voteCustomAddBtn.setOnClickListener(this);
     }
     
     /**
@@ -223,15 +241,27 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
             photoPath = savedInstanceState.getString("photoPath");
             paths = (ArrayList<String>)savedInstanceState.getSerializable("paths");
             isSupportVote = savedInstanceState.getBoolean("isSupportVote");
+            isSupportVoteCustom = savedInstanceState.getBoolean("isSupportVoteCustom");
             content.setText(savedInstanceState.getString("content"));
+            if (isSupportVoteCustom)
+            {
+                isVoteCustom.setBackgroundResource(R.drawable.community_switch_on);
+                isVote.setBackgroundResource(R.drawable.community_switch_off);
+            }
+            else
+            {
+                isVoteCustom.setBackgroundResource(R.drawable.community_switch_off);
+            }
             if (isSupportVote)
             {
                 isVote.setBackgroundResource(R.drawable.community_switch_on);
+                isVoteCustom.setBackgroundResource(R.drawable.community_switch_off);
             }
             else
             {
                 isVote.setBackgroundResource(R.drawable.community_switch_off);
             }
+            
         }
 //        title.setText("发话题");
         title.setBackgroundResource(R.drawable.title_fahuati);
@@ -274,6 +304,7 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
     {
         super.onSaveInstanceState(outState);
         outState.putBoolean("isSupportVote", isSupportVote);
+        outState.putBoolean("isSupportVoteCustom", isSupportVoteCustom);
         outState.putString("photoPath", photoPath);
         outState.putSerializable("paths", paths);
         outState.putSerializable("content", content.getText().toString().trim());
@@ -545,7 +576,7 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
      * <功能详细描述>
      * @see [类、类#方法、类#成员]
      */
-    private void postTopic(String content)
+    private void reqSubmit(String content)
     {
         dailog = new NetLoadingDailog(this);
         dailog.loading();
@@ -561,18 +592,47 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
         {
             param.put("uId", SecurityUtils.encode2Str(Global.getUserId()));
             param.put("cId", SecurityUtils.encode2Str(Global.getCId()));
-            param.put("id", SecurityUtils.encode2Str(circleId));
             param.put("content", SecurityUtils.encode2Str(content));
-            if (paths.size() > 0)
-                param.put("flag", SecurityUtils.encode2Str("1"));
+            if (isSupportVote)
+            {
+                param.put("type", SecurityUtils.encode2Str(Constants.VOTE));
+            }
+            else if(isSupportVoteCustom)
+            {
+                param.put("type", SecurityUtils.encode2Str(Constants.VOTE_CUSTOM));
+                boolean hasVal = false;
+                for(int i=0; i<voteCustomSenceItem.getChildCount(); i++)
+                {
+                    LinearLayout l = (LinearLayout)voteCustomSenceItem.getChildAt(i);
+                    EditText ed = (EditText)l.getChildAt(0);
+                    String str = ed.getText().toString().trim();
+                    if(GeneralUtils.isNotNullOrZeroLenght(str))
+                    {
+                        hasVal = true;
+                        param.put("voteList"+i, SecurityUtils.encode2Str(str));
+                    }
+                }
+                //如果一个选项内容都没有，则提示用户填写
+                if(!hasVal)
+                {
+                    ToastUtil.makeText(this, "请填写自定义投票选项的内容");
+                    return;
+                }
+            }
             else
+            {
+                param.put("type", SecurityUtils.encode2Str(Constants.NORMAL));
+            }
+            if (paths.size() > 0)
+            {
+                param.put("flag", SecurityUtils.encode2Str("1"));
+            }
+            else
+            {
                 param.put("flag", SecurityUtils.encode2Str("0"));
+            }
             param.put("phoneType", SecurityUtils.encode2Str(Constants.clientType));
             param.put("model", SecurityUtils.encode2Str(android.os.Build.MODEL));
-            if (isSupportVote)
-                param.put("type", SecurityUtils.encode2Str(Constants.VOTE));
-            else
-                param.put("type", SecurityUtils.encode2Str(Constants.NORMAL));
         }
         catch (Exception e)
         {
@@ -583,7 +643,7 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
             fileParameters,
             CommunityPostTopicActivity.this,
             BaseResponse.class,
-            URLUtil.COMMUNITY_POST_TOPIC,
+            URLUtil.BUS_300702,
             Constants.ENCRYPT_SIMPLE);
     }
     
@@ -599,7 +659,7 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
                 finish();
                 break;
             /**
-             * 响应发帖按钮
+             * 发话题 提交
              */
             case R.id.title_call_layout:
                 if (GeneralUtils.isNullOrZeroLenght(content.getText().toString().trim()))
@@ -608,7 +668,7 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
                 }
                 else
                 {
-                    postTopic(content.getText().toString().trim());
+                    reqSubmit(content.getText().toString().trim());
                 }
                 break;
             /**
@@ -623,7 +683,38 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
                 else
                 {
                     isSupportVote = true;
+                    isSupportVoteCustom = false; 
                     isVote.setBackgroundResource(R.drawable.community_switch_on);
+                    isVoteCustom.setBackgroundResource(R.drawable.community_switch_off);
+                    voteCustomSence.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.vote_custom:
+                if (isSupportVoteCustom)
+                {
+                    isSupportVoteCustom = false;
+                    isVoteCustom.setBackgroundResource(R.drawable.community_switch_off);
+                    voteCustomSence.setVisibility(View.GONE);
+                }
+                else
+                {
+                    isSupportVote = false;
+                    isSupportVoteCustom = true; 
+                    isVote.setBackgroundResource(R.drawable.community_switch_off);
+                    isVoteCustom.setBackgroundResource(R.drawable.community_switch_on);
+                    voteCustomSence.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.vote_custom_add:
+                int count = voteCustomSenceItem.getChildCount();
+                if(count >= 5)
+                {
+                    ToastUtil.makeText(this, "很抱歉，无法添加更多的选项啦");
+                }
+                else
+                {
+                    View subView = LayoutInflater.from(this).inflate(R.layout.community_post_topic_vote_item, null);
+                    voteCustomSenceItem.addView(subView);
                 }
                 break;
             /**

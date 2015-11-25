@@ -232,6 +232,8 @@ public class Constants
     
     public static final String VOTE = "2";
     
+    public static final String VOTE_CUSTOM = "3";
+    
     /**
      * 已关注：1
      */

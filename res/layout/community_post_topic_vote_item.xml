@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/property_praise_tag_btn"
+        android:hint="请输入选项内容（限20字）"
+         android:layout_marginTop="1dp"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textColor="@color/person_input_hint"
+        android:textColorHint="@color/home_list_time"
+        android:textSize="16sp" />
+</LinearLayout>

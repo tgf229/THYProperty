@@ -39,6 +39,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import com.ymdq.thy.callback.INetCallBack;
+import com.ymdq.thy.constant.URLUtil;
 import com.ymdq.thy.util.CMLog;
 import com.ymdq.thy.util.FileExtensionUtil;
 import com.ymdq.thy.util.MimeTypeUtil;
@@ -282,7 +283,16 @@ public class NetWork
                             BasicNameValuePair valuePair = new BasicNameValuePair(entry.getKey(), entry.getValue());
                             StringBody strBody =
                                 new StringBody(String.valueOf(valuePair.getValue()), Charset.forName("UTF-8"));
-                            multipartEntity.addPart(valuePair.getName(), strBody);
+                            String key = valuePair.getName();
+                            //对特定接口 处理入参数组，由于要改底层Map<String, String> map为Map<String, List<String>> map 所以单独做了处理，否则整个工程要全改
+                            if(key.startsWith("voteList") && url.indexOf(URLUtil.BUS_300702) != -1)
+                            {
+                                multipartEntity.addPart("voteList", strBody);
+                            }
+                            else
+                            {
+                                multipartEntity.addPart(valuePair.getName(), strBody);
+                            }
                         }
                     }
                     
