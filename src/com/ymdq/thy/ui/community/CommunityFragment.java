@@ -32,7 +32,6 @@ import com.ymdq.thy.constant.Global;
 import com.ymdq.thy.constant.URLUtil;
 import com.ymdq.thy.network.ConnectService;
 import com.ymdq.thy.ui.BaseFragment;
-import com.ymdq.thy.ui.community.adapter.CommunityDynamicAdapter;
 import com.ymdq.thy.ui.community.adapter.CommunityListAdapter;
 import com.ymdq.thy.util.DisplayUtil;
 import com.ymdq.thy.util.GeneralUtils;
@@ -228,10 +227,10 @@ public class CommunityFragment extends BaseFragment implements UICallBack, OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-//                Intent intent = new Intent(getActivity(), CommunityTopicDetailsActivity.class);
-//                intent.putExtra("id", topics.get(position - 1).getArticleId());
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), CommunityTopicDetailsActivity.class);
+                intent.putExtra("id", mList.get(position - 1).getaId());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
         adapter = new CommunityListAdapter(mList, getActivity(), CommunityFragment.this);

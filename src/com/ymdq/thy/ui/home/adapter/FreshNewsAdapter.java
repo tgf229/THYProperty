@@ -268,7 +268,7 @@ public class FreshNewsAdapter extends BaseAdapter
                     notifyDataSetChanged();
 //                    showAnimation((ImageView)v, position);
                     showAnimation((ImageView)((LinearLayout)v).getChildAt(0), position);
-                    CommunityService.instance().addOrCancelPraise(entity.getArticleId(),
+                    CommunityService.instance().addOrCancelPraise(entity.getaId(),
                         entity.getFlag(),
                         context,
                         callBack);

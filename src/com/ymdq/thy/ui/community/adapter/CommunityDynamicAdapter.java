@@ -444,7 +444,7 @@ public class CommunityDynamicAdapter extends BaseAdapter
                     }
                     notifyDataSetChanged();
                     showAnimation((ImageView)((LinearLayout)v).getChildAt(0), position);
-                    CommunityService.instance().addOrCancelPraise(data.get(position).getArticleId(),
+                    CommunityService.instance().addOrCancelPraise(data.get(position).getaId(),
                         data.get(position).getFlag(),
                         context,
                         callBack);

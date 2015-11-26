@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,9 +27,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-import android.widget.TextView.BufferType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +41,7 @@ import com.ymdq.thy.bean.community.GroupTopicsCommentsResponse;
 import com.ymdq.thy.bean.community.Image;
 import com.ymdq.thy.bean.community.Topic;
 import com.ymdq.thy.bean.community.TopicDetailInfo;
+import com.ymdq.thy.bean.community.Vote;
 import com.ymdq.thy.callback.DialogCallBack;
 import com.ymdq.thy.callback.UICallBack;
 import com.ymdq.thy.constant.Constants;
@@ -102,7 +102,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 加载布局
      */
-    private LinearLayout loadingMore,commitTipsLayout;
+    private LinearLayout loadingMore, commitTipsLayout;
     
     /**
      * listview头
@@ -142,7 +142,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 头像
      */
-    private ImageView headImage;
+    private ImageView headImage, isHotImg, isVoteImg;
     
     /**
      * 名称
@@ -192,17 +192,9 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 反对数量
      */
-    private TextView noNum,commitTipsNum;
+    private TextView noNum, commitTipsNum;
     
-    /**
-     * 赞成图片
-     */
-    private ImageView yes;
-    
-    /**
-     * 返回图片
-     */
-    private ImageView no;
+    private RelativeLayout yes, no;
     
     /**
      * 发送块
@@ -222,7 +214,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 评价布局
      */
-    private LinearLayout chatLayout,commentAdd;
+    private LinearLayout chatLayout, commentAdd;
     
     /**
      * 分享布局
@@ -374,20 +366,24 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         chat = (TextView)findViewById(R.id.community_chat);
         praise = (ImageView)findViewById(R.id.praise);
         
-        headImage = (ImageView)headView.findViewById(R.id.head);
+        headImage = (ImageView)headView.findViewById(R.id.head_image);
         vip = (ImageView)headView.findViewById(R.id.icon_vip);
         name = (TextView)headView.findViewById(R.id.name);
         time = (TextView)headView.findViewById(R.id.time);
-        come = (TextView)headView.findViewById(R.id.come_from);
+        
+        isHotImg = (ImageView)headView.findViewById(R.id.ishot_img);
+        isVoteImg = (ImageView)headView.findViewById(R.id.isvote_img);
+        
         content = (TextView)headView.findViewById(R.id.content);
         photo = (LinearLayout)headView.findViewById(R.id.photo);
+        
         vote = (LinearLayout)headView.findViewById(R.id.yes_or_no);
         agree = (LinearLayout)headView.findViewById(R.id.agree);
         disagree = (LinearLayout)headView.findViewById(R.id.disagree);
         yesNum = (TextView)headView.findViewById(R.id.yes_num);
         noNum = (TextView)headView.findViewById(R.id.no_num);
-        yes = (ImageView)headView.findViewById(R.id.yes);
-        no = (ImageView)headView.findViewById(R.id.no);
+        yes = (RelativeLayout)headView.findViewById(R.id.yes);
+        no = (RelativeLayout)headView.findViewById(R.id.no);
         commitTipsLayout = (LinearLayout)headView.findViewById(R.id.commit_tips_layout);
         commitTipsNum = (TextView)headView.findViewById(R.id.commit_tips_num);
         
@@ -419,12 +415,12 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         {
             listView.removeHeaderView(headView);
             title.setBackgroundResource(R.drawable.title_pinglun);
-//            title.setText("评论");
+            //            title.setText("评论");
         }
         else
         {
             title.setBackgroundResource(R.drawable.title_xiangqing);
-//            title.setText("详情");
+            //            title.setText("详情");
         }
         listView.setOnScrollListener(new OnScrollListener()
         {
@@ -441,7 +437,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                     loadingMore.setVisibility(View.VISIBLE);
                     isRefreshing = true;
                     page++;
-                    queryCommunityCommentList();
+                    reqCommentList();
                 }
             }
             
@@ -589,17 +585,16 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         }
         name.setText(topic.getNickName());
         time.setText(topic.getTime());
-        come.setText(topic.getName());
         //判断是否有内容
-        if (GeneralUtils.isNotNullOrZeroLenght(topic.getComment()))
+        if (GeneralUtils.isNotNullOrZeroLenght(topic.getContent()))
         {
             content.setVisibility(View.VISIBLE);
             content.setText(topic.getContent());
-            content.setText(GeneralUtils.clickSpan(content,
-                this,
-                topic.getContent(),
-                GeneralUtils.getWebUrl(topic.getContent())),
-                BufferType.SPANNABLE);
+            //            content.setText(GeneralUtils.clickSpan(content,
+            //                this,
+            //                topic.getContent(),
+            //                GeneralUtils.getWebUrl(topic.getContent())),
+            //                BufferType.SPANNABLE);
         }
         else
         {
@@ -697,25 +692,40 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         //是否有投票界面
         if (Constants.TOPIC_TYPE_VOTE.equals(topic.getType()))
         {
+            isVoteImg.setVisibility(View.VISIBLE);
             vote.setVisibility(View.VISIBLE);
-            yesNum.setText(topic.getYes());
-            noNum.setText(topic.getNo());
-            if (Constants.NO_VOTE.equals(topic.getVoteFlag()))
+            for (Vote v : topic.getVoteList())
             {
-                yes.setBackgroundResource(R.drawable.community_agree);
-                no.setBackgroundResource(R.drawable.community_disagree);
-            }
-            else
-            {
-                if (Constants.AGREE.equals(topic.getVoteFlag()))
+                //反对项
+                if ("0".equals(v.getVoteName()))
                 {
-                    yes.setBackgroundResource(R.drawable.community_agree_clicked);
-                    no.setBackgroundResource(R.drawable.community_disagree);
+                    no.setTag(v.getVoteId());
+                    noNum.setText(v.getVoteNum());
+                    //如果我投了 no
+                    if ("1".equals(v.getMyVote()))
+                    {
+                        topic.setVoteFlag("2");
+                        no.setBackgroundResource(R.drawable.community_disagree_press);
+                    }
+                    else
+                    {
+                        no.setBackgroundResource(R.drawable.community_disagree);
+                    }
                 }
-                else
+                //赞成项
+                else if ("1".equals(v.getVoteName()))
                 {
-                    yes.setBackgroundResource(R.drawable.community_agree);
-                    no.setBackgroundResource(R.drawable.community_disagree_clicked);
+                    yes.setTag(v.getVoteId());
+                    yesNum.setText(v.getVoteNum());
+                    if ("1".equals(v.getMyVote()))
+                    {
+                        topic.setVoteFlag("1");
+                        yes.setBackgroundResource(R.drawable.community_agree_press);
+                    }
+                    else
+                    {
+                        yes.setBackgroundResource(R.drawable.community_agree);
+                    }
                 }
             }
         }
@@ -724,7 +734,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
             vote.setVisibility(View.GONE);
         }
         like.setText(topic.getPraiseNum());
-        chat.setText(topic.getComment());
+        chat.setText(topic.getCommentNum());
         //响应头像按钮点击事件
         headImage.setOnClickListener(new OnClickListener()
         {
@@ -745,15 +755,22 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
             {
                 if (Global.isLogin())
                 {
-                    if (Constants.NO_VOTE.equals(topic.getVoteFlag()))
+                    if (GeneralUtils.isNullOrZeroLenght(topic.getVoteFlag()) || "1".equals(topic.getVoteFlag()))
                     {
-                        topic.setNo((Integer.parseInt(topic.getNo()) + 1) + "");
-                        topic.setVoteFlag(Constants.DISAGREE);
-                        loadChangeView();
-                        CommunityService.instance().agreeOrDisagree(topic.getArticleId(),
-                            topic.getVoteFlag(),
-                            CommunityTopicDetailsActivity.this,
-                            CommunityTopicDetailsActivity.this);
+                        String voteId = no.getTag().toString();
+                        noNum.setText(Integer.parseInt(noNum.getText().toString()) + 1 + "");
+                        if ("1".equals(topic.getVoteFlag()))
+                        {
+                            yesNum.setText(Integer.parseInt(yesNum.getText().toString()) - 1 + "");
+                        }
+                        topic.setVoteFlag("2");
+                        no.setBackgroundResource(R.drawable.community_disagree_press);
+                        //                        topic.setNo((Integer.parseInt(topic.getNo()) + 1) + "");
+                        //                        loadChangeView();
+                        //                        CommunityService.instance().agreeOrDisagree(topic.getaId(),
+                        //                            topic.getVoteFlag(),
+                        //                            CommunityTopicDetailsActivity.this,
+                        //                            CommunityTopicDetailsActivity.this);
                     }
                 }
                 else
@@ -771,15 +788,22 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
             {
                 if (Global.isLogin())
                 {
-                    if (Constants.NO_VOTE.equals(topic.getVoteFlag()))
+                    if (GeneralUtils.isNullOrZeroLenght(topic.getVoteFlag()) || "2".equals(topic.getVoteFlag()))
                     {
-                        topic.setYes((Integer.parseInt(topic.getYes()) + 1) + "");
-                        topic.setVoteFlag(Constants.AGREE);
-                        loadChangeView();
-                        CommunityService.instance().agreeOrDisagree(topic.getArticleId(),
-                            topic.getVoteFlag(),
-                            CommunityTopicDetailsActivity.this,
-                            CommunityTopicDetailsActivity.this);
+                        String voteId = yes.getTag().toString();
+                        yesNum.setText(Integer.parseInt(yesNum.getText().toString()) + 1 + "");
+                        if ("2".equals(topic.getVoteFlag()))
+                        {
+                            noNum.setText(Integer.parseInt(noNum.getText().toString()) - 1 + "");
+                        }
+                        topic.setVoteFlag("1");
+                        yes.setBackgroundResource(R.drawable.community_agree_press);
+                        //                        topic.setYes((Integer.parseInt(topic.getYes()) + 1) + "");
+                        //                        loadChangeView();
+                        //                        CommunityService.instance().agreeOrDisagree(topic.getaId(),
+                        //                            topic.getVoteFlag(),
+                        //                            CommunityTopicDetailsActivity.this,
+                        //                            CommunityTopicDetailsActivity.this);
                     }
                 }
                 else
@@ -808,7 +832,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                     }
                     loadChangeView();
                     showAnimation((ImageView)((LinearLayout)v).getChildAt(0));
-                    CommunityService.instance().addOrCancelPraise(topic.getArticleId(),
+                    CommunityService.instance().addOrCancelPraise(topic.getaId(),
                         topic.getFlag(),
                         CommunityTopicDetailsActivity.this,
                         CommunityTopicDetailsActivity.this);
@@ -902,10 +926,10 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
      * <功能详细描述>
      * @see [类、类#方法、类#成员]
      */
-    private void queryCommunityCommentList()
+    private void reqCommentList()
     {
         Map<String, String> param = new HashMap<String, String>();
-        param.put("id", id);
+        param.put("aId", id);
         param.put("page", page + "");
         param.put("num", num + "");
         if (page > 1)
@@ -916,7 +940,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
             param,
             CommunityTopicDetailsActivity.this,
             GroupTopicsCommentsResponse.class,
-            URLUtil.COMMUNITY_COMMENT_LIST,
+            URLUtil.BUS301202,
             Constants.ENCRYPT_NONE);
     }
     
@@ -927,14 +951,14 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
      * @param content
      * @see [类、类#方法、类#成员]
      */
-    private void sendComment(String content)
+    private void reqCommentSubmit(String content)
     {
         dailog = new NetLoadingDailog(this);
         dailog.loading();
         Map<String, String> param = new HashMap<String, String>();
         try
         {
-            param.put("id", SecurityUtils.encode2Str(topic.getArticleId()));
+            param.put("aId", SecurityUtils.encode2Str(topic.getaId()));
             param.put("uId", SecurityUtils.encode2Str(Global.getUserId()));
             param.put("cId", SecurityUtils.encode2Str(Global.getCId()));
             param.put("content", SecurityUtils.encode2Str(content));
@@ -960,7 +984,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
             param,
             CommunityTopicDetailsActivity.this,
             GroupAddTopicCommentResponse.class,
-            URLUtil.COMMUNITY_ADD_COMMENT,
+            URLUtil.BUS301102,
             Constants.ENCRYPT_SIMPLE);
     }
     
@@ -982,7 +1006,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                     }
                     else
                     {
-                        sendComment(inputContent.getText().toString().trim());
+                        reqCommentSubmit(inputContent.getText().toString().trim());
                     }
                 }
                 else
@@ -1093,7 +1117,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                 if (Constants.SUCESS_CODE.equals(topic.getRetcode()))
                 {
                     isFirstInfo = false;
-                    queryCommunityCommentList();
+                    reqCommentList();
                     refreshView();
                 }
                 else
@@ -1108,7 +1132,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                     }
                     else
                     {
-                        queryCommunityCommentList();
+                        reqCommentList();
                     }
                 }
             }
@@ -1124,7 +1148,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                 }
                 else
                 {
-                    queryCommunityCommentList();
+                    reqCommentList();
                 }
             }
         }
@@ -1155,7 +1179,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                             adapter.notifyDataSetChanged();
                             
                             commitTipsLayout.setVisibility(View.VISIBLE);
-                            commitTipsNum.setText(topic.getComment());
+                            commitTipsNum.setText(topic.getCommentNum());
                         }
                         else
                         {

@@ -116,25 +116,6 @@ public class Topic extends BaseResponse implements Serializable
     private String type;
     
     /**
-     * 支持数量
-     */
-    private String yes;
-    
-    /**
-     * 反对数量
-     */
-    private String no;
-    
-    /**
-     * 是否投票
-     * 当前用户是否投票过此话题
-     * 未投：0
-     * 已投赞成：1
-     * 已投反对：2
-     */
-    private String voteFlag;
-    
-    /**
      * 话题是否置顶
      * 0 否
      * 1 是
@@ -190,6 +171,22 @@ public class Topic extends BaseResponse implements Serializable
      */
     private ArrayList<Image> imageList;
     
+    private ArrayList<Vote> voteList;
+    
+    private String voteFlag;
+    private String yes;
+    private String no;
+    
+    public ArrayList<Vote> getVoteList()
+    {
+        return voteList;
+    }
+
+    public void setVoteList(ArrayList<Vote> voteList)
+    {
+        this.voteList = voteList;
+    }
+
     public String getuId()
     {
         return uId;
