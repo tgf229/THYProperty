@@ -344,6 +344,11 @@ public class Constants
     public static final String LOGIN_SUCCESS_BROADCAST = "com.ymdq.thy.login.success";
     
     /**
+     * 话题投票成功
+     */
+    public static final String COMMUNITY_VOTE_SUCCESS_BROADCAST = "com.ymdq.thy.community_vote_success";
+    
+    /**
      * 登出成功后发送广播
      */
     public static final String LOGINOUT_SUCCESS_BROADCAST = "com.ymdq.thy.logout.success";

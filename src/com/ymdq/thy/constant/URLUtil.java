@@ -334,25 +334,13 @@ public class URLUtil
      */
     public static final String BUS_200801 = "Bus200801";
     
-    /**
-     * 3.3.11社区—小区话题列表查询v2.0 
-     */
-    public static final String BUS_302301 = "Bus302301";
+
 
     /**
      * 3.3.1    话题—发表话题V2.0
      */
     public static final String BUS_300702 = "Bus300702";
     
-    /**
-     * 3.3.8    话题—话题详情查询V2.0
-     */
-    public static final String BUS301902 = "Bus301902";
-    
-    /**
-     * 3.3.5    话题—话题评论列表查询V2.0
-     */
-    public static final String BUS301202 = "Bus301202";
     
     /**
      * 3.3.2    话题—话题点赞&取消赞V2.0
@@ -360,7 +348,29 @@ public class URLUtil
     public static final String BUS300802 = "Bus300802";
     
     /**
+     * 3.3.3    话题—话题投票V2.0
+     */
+    public static final String BUS301002 = "Bus301002";
+    
+    /**
      * 3.3.4    话题—话题评论&回复V2.0
      */
     public static final String BUS301102 = "Bus301102";
+    
+    /**
+     * 3.3.5    话题—话题评论列表查询V2.0
+     */
+    public static final String BUS301202 = "Bus301202";
+    
+    /**
+     * 3.3.8    话题—话题详情查询V2.0
+     */
+    public static final String BUS301902 = "Bus301902";
+    
+    /**
+     * 3.3.11社区—小区话题列表查询v2.0 
+     */
+    public static final String BUS_302301 = "Bus302301";
+    
+    
 }

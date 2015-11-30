@@ -10,9 +10,9 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-    	 android:paddingLeft="15dp"
-   	 	android:paddingRight="15dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -35,8 +35,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -92,12 +92,12 @@
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
-     	 android:paddingLeft="15dp"
-    	android:paddingRight="15dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:maxLines="2"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:text="旅行时时旅行时"
         android:textColor="@color/home_title"
         android:textSize="15sp" />
@@ -106,10 +106,10 @@
         android:id="@+id/photo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-    android:paddingRight="15dp"
+        android:orientation="vertical"
         android:paddingBottom="15dp"
-        android:orientation="vertical" />
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
 
     <LinearLayout
         android:id="@+id/yes_or_no"
@@ -117,9 +117,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-            android:paddingLeft="15dp"
-    	android:paddingRight="15dp"
-        android:paddingBottom="15dp">
+        android:visibility="gone"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
 
         <LinearLayout
             android:id="@+id/agree"
@@ -171,8 +172,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:clickable="false"
                     android:layout_centerHorizontal="true"
+                    android:clickable="false"
                     android:text="123" />
             </RelativeLayout>
 
@@ -185,6 +186,19 @@
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <com.ymdq.thy.view.MyListView
+        android:id="@+id/vote_custom_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbars="none" >
+    </com.ymdq.thy.view.MyListView>
 
     <ImageView
         android:layout_width="fill_parent"

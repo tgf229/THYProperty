@@ -77,15 +77,15 @@ public class CommunityService
      * @param position
      * @see [类、类#方法、类#成员]
      */
-    public void agreeOrDisagree(String id, String type, Context context, UICallBack callback)
+    public void agreeOrDisagree(String id, String voteId, Context context, UICallBack callback)
     {
         Map<String, String> param = new HashMap<String, String>();
         try
         {
             param.put("uId", SecurityUtils.encode2Str(Global.getUserId()));
             param.put("cId", SecurityUtils.encode2Str(Global.getCId()));
-            param.put("id", SecurityUtils.encode2Str(id));
-            param.put("type", SecurityUtils.encode2Str(type));
+            param.put("aId", SecurityUtils.encode2Str(id));
+            param.put("voteId", SecurityUtils.encode2Str(voteId));
         }
         catch (Exception e)
         {
@@ -95,7 +95,7 @@ public class CommunityService
             param,
             callback,
             GroupPraiseResponse.class,
-            URLUtil.COMMUNITY_TOPIC_ARGEE,
+            URLUtil.BUS301002,
             Constants.ENCRYPT_SIMPLE);
     }
     

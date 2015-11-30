@@ -5,11 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +24,10 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -51,6 +60,7 @@ import com.ymdq.thy.network.ConnectService;
 import com.ymdq.thy.ui.BaseActivity;
 import com.ymdq.thy.ui.ViewPagerActivity;
 import com.ymdq.thy.ui.community.adapter.CommentAdapter;
+import com.ymdq.thy.ui.community.adapter.CommunityDetailVoteListAdapter;
 import com.ymdq.thy.ui.community.service.CommunityService;
 import com.ymdq.thy.util.DialogUtil;
 import com.ymdq.thy.util.DisplayUtil;
@@ -58,6 +68,7 @@ import com.ymdq.thy.util.GeneralUtils;
 import com.ymdq.thy.util.NetLoadingDailog;
 import com.ymdq.thy.util.SecurityUtils;
 import com.ymdq.thy.util.ToastUtil;
+import com.ymdq.thy.view.MyListView;
 import com.ymdq.thy.view.PullToRefreshView;
 import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
 
@@ -71,6 +82,7 @@ import com.ymdq.thy.view.PullToRefreshView.OnHeaderRefreshListener;
  * @see  [相关类/方法]
  * @since  [产品/模块版本]
  */
+@SuppressLint("JavascriptInterface")
 public class CommunityTopicDetailsActivity extends BaseActivity implements UICallBack, OnClickListener,
     OnHeaderRefreshListener
 {
@@ -102,12 +114,12 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 加载布局
      */
-    private LinearLayout loadingMore, commitTipsLayout;
+    private LinearLayout loadingMore, commitTipsLayout,commitTipsLayoutWeb;
     
     /**
      * listview头
      */
-    private View headView;
+    private View headView, webView;
     
     /**
      * 每页展示条数
@@ -169,6 +181,8 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
      */
     private LinearLayout photo;
     
+    private WebView web;
+    
     /**
      * 是否支持赞成反对
      */
@@ -192,7 +206,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 反对数量
      */
-    private TextView noNum, commitTipsNum;
+    private TextView noNum, commitTipsNum,commitTipsNumWeb;
     
     private RelativeLayout yes, no;
     
@@ -299,7 +313,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     /**
      * 登陆成功广播
      */
-    private LoginSuccessBroard loginBroardcast;
+    private VoteSuccessBroard voteBroardcast;
     
     /**
      * 分享时候需要这个静态变量
@@ -320,6 +334,12 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
      * 被回复的用户昵称
      */
     private String replyNickName;
+    
+    private MyListView vote_custom;
+    
+    private Handler mHandler = new Handler();
+    
+    public String voteCustomId = "";
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -351,8 +371,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         loadingFooterView =
             ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.loading, null);
         loadingMore = (LinearLayout)loadingFooterView.findViewById(R.id.loading_more);
-        listView.addFooterView(loadingFooterView);
-        listView.addHeaderView(headView);
+        
         loadingMore.setVisibility(View.GONE);
         sendLinear = (LinearLayout)findViewById(R.id.send_linear);
         inputContent = (EditText)findViewById(R.id.input_content);
@@ -386,6 +405,14 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         no = (RelativeLayout)headView.findViewById(R.id.no);
         commitTipsLayout = (LinearLayout)headView.findViewById(R.id.commit_tips_layout);
         commitTipsNum = (TextView)headView.findViewById(R.id.commit_tips_num);
+        
+        vote_custom = (MyListView)headView.findViewById(R.id.vote_custom_listview);
+        
+        webView =
+            ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.community_topic_webview,
+                null);
+        commitTipsLayoutWeb = (LinearLayout)webView.findViewById(R.id.commit_tips_layout);
+        commitTipsNumWeb = (TextView)webView.findViewById(R.id.commit_tips_num);
         
         /**
          * 添加按钮点击事件
@@ -549,6 +576,44 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         }
     }
     
+    private void loadWebView(String url)
+    {
+        web = (WebView)webView.findViewById(R.id.webview_helper_web);
+        loadurl(web, url);
+        
+        web.setWebChromeClient(new CustomWebChromeClient());
+        web.addJavascriptInterface(new JavaScriptInterface(), "jsExtend");
+        web.setWebViewClient(new WebViewClient()
+        {
+            
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            {
+                loadurl(view, url.trim());// 载入网页
+                return true;
+            }
+            
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
+            {
+                dailog.dismissDialog();
+                super.onReceivedError(view, errorCode, description, failingUrl);
+            }
+            
+            public void onPageStarted(WebView view, String url, Bitmap favicon)
+            {
+                super.onPageStarted(view, url, favicon);
+                dailog.dismissDialog();
+            }
+            
+            public void onPageFinished(WebView view, String url)
+            {
+                super.onPageFinished(view, url);
+                dailog.dismissDialog();
+            }
+        });
+    }
+    
     /**
      * 
      * <刷新界面>
@@ -690,10 +755,11 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         }
         
         //是否有投票界面
-        if (Constants.TOPIC_TYPE_VOTE.equals(topic.getType()))
+        if ("2".equals(topic.getType()))
         {
             isVoteImg.setVisibility(View.VISIBLE);
             vote.setVisibility(View.VISIBLE);
+            vote_custom.setVisibility(View.GONE);
             for (Vote v : topic.getVoteList())
             {
                 //反对项
@@ -729,24 +795,41 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                 }
             }
         }
+        else if ("3".equals(topic.getType()))
+        {
+            isVoteImg.setVisibility(View.VISIBLE);
+            vote.setVisibility(View.GONE);
+            vote_custom.setVisibility(View.VISIBLE);
+            
+            int sumVote = 0;
+            for (Vote v : topic.getVoteList())
+            {
+                sumVote += Integer.parseInt(v.getVoteNum().trim());
+            }
+            
+            CommunityDetailVoteListAdapter voteAdapter =
+                new CommunityDetailVoteListAdapter(topic.getVoteList(), this, this, sumVote);
+            vote_custom.setAdapter(voteAdapter);
+        }
         else
         {
             vote.setVisibility(View.GONE);
+            vote_custom.setVisibility(View.GONE);
         }
         like.setText(topic.getPraiseNum());
         chat.setText(topic.getCommentNum());
         //响应头像按钮点击事件
-        headImage.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(CommunityTopicDetailsActivity.this, CommunityPersonDetailActivity.class);
-                intent.putExtra("queryUId", topic.getuId());
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        //        headImage.setOnClickListener(new OnClickListener()
+        //        {
+        //            @Override
+        //            public void onClick(View v)
+        //            {
+        //                Intent intent = new Intent(CommunityTopicDetailsActivity.this, CommunityPersonDetailActivity.class);
+        //                intent.putExtra("queryUId", topic.getuId());
+        //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //                startActivity(intent);
+        //            }
+        //        });
         //响应反对按钮事件
         disagree.setOnClickListener(new OnClickListener()
         {
@@ -765,12 +848,13 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                         }
                         topic.setVoteFlag("2");
                         no.setBackgroundResource(R.drawable.community_disagree_press);
+                        yes.setBackgroundResource(R.drawable.community_agree);
                         //                        topic.setNo((Integer.parseInt(topic.getNo()) + 1) + "");
                         //                        loadChangeView();
-                        //                        CommunityService.instance().agreeOrDisagree(topic.getaId(),
-                        //                            topic.getVoteFlag(),
-                        //                            CommunityTopicDetailsActivity.this,
-                        //                            CommunityTopicDetailsActivity.this);
+                        CommunityService.instance().agreeOrDisagree(topic.getaId(),
+                            voteId,
+                            CommunityTopicDetailsActivity.this,
+                            CommunityTopicDetailsActivity.this);
                     }
                 }
                 else
@@ -798,12 +882,13 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                         }
                         topic.setVoteFlag("1");
                         yes.setBackgroundResource(R.drawable.community_agree_press);
+                        no.setBackgroundResource(R.drawable.community_disagree);
                         //                        topic.setYes((Integer.parseInt(topic.getYes()) + 1) + "");
                         //                        loadChangeView();
-                        //                        CommunityService.instance().agreeOrDisagree(topic.getaId(),
-                        //                            topic.getVoteFlag(),
-                        //                            CommunityTopicDetailsActivity.this,
-                        //                            CommunityTopicDetailsActivity.this);
+                        CommunityService.instance().agreeOrDisagree(topic.getaId(),
+                            voteId,
+                            CommunityTopicDetailsActivity.this,
+                            CommunityTopicDetailsActivity.this);
                     }
                 }
                 else
@@ -1116,9 +1201,26 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
             {
                 if (Constants.SUCESS_CODE.equals(topic.getRetcode()))
                 {
-                    isFirstInfo = false;
                     reqCommentList();
-                    refreshView();
+                    if ("4".equals(topic.getType()) || "5".equals(topic.getType()))
+                    {
+                        if (isFirstInfo)
+                        {
+                            listView.addHeaderView(webView);
+                            loadWebView(topic.getContent());
+                        }
+                        loadChangeView();
+                    }
+                    else
+                    {
+                        if (isFirstInfo)
+                        {
+                            listView.addFooterView(loadingFooterView);
+                            listView.addHeaderView(headView);
+                        }
+                        refreshView();
+                    }
+                    isFirstInfo = false;
                 }
                 else
                 {
@@ -1180,10 +1282,13 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                             
                             commitTipsLayout.setVisibility(View.VISIBLE);
                             commitTipsNum.setText(topic.getCommentNum());
+                            commitTipsLayoutWeb.setVisibility(View.VISIBLE);
+                            commitTipsNumWeb.setText(topic.getCommentNum());
                         }
                         else
                         {
                             commitTipsLayout.setVisibility(View.GONE);
+                            commitTipsLayoutWeb.setVisibility(View.GONE);
                         }
                     }
                     else
@@ -1284,7 +1389,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
     public void onDestroy()
     {
         super.onDestroy();
-        this.unregisterReceiver(loginBroardcast);
+        this.unregisterReceiver(voteBroardcast);
     }
     
     /**
@@ -1295,32 +1400,132 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
      */
     private void registreBroadcast()
     {
-        IntentFilter loginFilter = new IntentFilter();
-        loginFilter.addAction(Constants.LOGIN_SUCCESS_BROADCAST);
-        loginBroardcast = new LoginSuccessBroard();
-        this.registerReceiver(loginBroardcast, loginFilter);
+        //        IntentFilter loginFilter = new IntentFilter();
+        //        loginFilter.addAction(Constants.LOGIN_SUCCESS_BROADCAST);
+        //        loginBroardcast = new LoginSuccessBroard();
+        //        this.registerReceiver(loginBroardcast, loginFilter);
+        
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constants.COMMUNITY_VOTE_SUCCESS_BROADCAST);
+        voteBroardcast = new VoteSuccessBroard();
+        this.registerReceiver(voteBroardcast, filter);
     }
     
-    /**
-     * 
-     * <登陆成功刷新>
-     * <功能详细描述>
-     * 
-     * @author  cyf
-     * @version  [版本号, 2014-12-5]
-     * @see  [相关类/方法]
-     * @since  [产品/模块版本]
-     */
-    class LoginSuccessBroard extends BroadcastReceiver
+    class VoteSuccessBroard extends BroadcastReceiver
     {
         @Override
         public void onReceive(Context context, Intent intent)
         {
-            //登录成功
-            if (Constants.LOGIN_SUCCESS_BROADCAST.equals(intent.getAction()))
+            if (Constants.COMMUNITY_VOTE_SUCCESS_BROADCAST.equals(intent.getAction()))
             {
-                refresh();
+                CommunityService.instance().agreeOrDisagree(topic.getaId(),
+                    voteCustomId,
+                    CommunityTopicDetailsActivity.this,
+                    CommunityTopicDetailsActivity.this);
             }
+        }
+    }
+    
+    //    class LoginSuccessBroard extends BroadcastReceiver
+    //    {
+    //        @Override
+    //        public void onReceive(Context context, Intent intent)
+    //        {
+    //            //登录成功
+    //            if (Constants.LOGIN_SUCCESS_BROADCAST.equals(intent.getAction()))
+    //            {
+    //                refresh();
+    //            }
+    //        }
+    //    }
+    
+    private void loadurl(final WebView view, final String url)
+    {
+        view.loadUrl(url);// 载入网页
+    }
+    
+    final class CustomWebChromeClient extends WebChromeClient
+    {
+        public boolean onJsAlert(WebView view, String url, String message, final JsResult result)
+        {
+            // Log.d(TAG, message);
+            new AlertDialog.Builder(CommunityTopicDetailsActivity.this).setTitle(R.string.app_name)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new AlertDialog.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        result.confirm();
+                    }
+                })
+                .setCancelable(false)
+                .create()
+                .show();
+            return true;
+            // result.confirm();
+            // return true;
+        }
+        
+        public boolean onJsConfirm(WebView view, String url, String message, final JsResult result)
+        {
+            new AlertDialog.Builder(CommunityTopicDetailsActivity.this).setTitle(R.string.app_name)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        result.confirm();
+                        // finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        result.cancel();
+                    }
+                })
+                .create()
+                .show();
+            return true;
+        }
+        
+        @Override
+        public void onReceivedTitle(WebView view, String title)
+        {
+            super.onReceivedTitle(view, title);
+        };
+    }
+    
+    final class JavaScriptInterface
+    {
+        JavaScriptInterface()
+        {
+        }
+        
+        /**
+         * This is not called on the UI thread. Post a runnable to invoke
+         * loadUrl on the UI thread.
+         */
+        public void clickOnAndroid()
+        {
+            mHandler.post(new Runnable()
+            {
+                public void run()
+                {
+                    web.loadUrl("javascript:wave()");
+                }
+            });
+        }
+        
+        public void exit()
+        {
+            finish();
+        }
+        
+        public String getConfirmMsg()
+        {
+            return "确定要退出吗?";
         }
     }
     

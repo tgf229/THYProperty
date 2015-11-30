@@ -578,8 +578,6 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
      */
     private void reqSubmit(String content)
     {
-        dailog = new NetLoadingDailog(this);
-        dailog.loading();
         Map<String, List<File>> fileParameters = new HashMap<String, List<File>>();
         List<File> files = new ArrayList<File>();
         for (String path : paths)
@@ -638,6 +636,8 @@ public class CommunityPostTopicActivity extends BaseActivity implements OnClickL
         {
             e.printStackTrace();
         }
+        dailog = new NetLoadingDailog(this);
+        dailog.loading();
         ConnectService.instance().connectServiceUploadFile(CommunityPostTopicActivity.this,
             param,
             fileParameters,
