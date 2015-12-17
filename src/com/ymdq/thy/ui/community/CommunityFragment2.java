@@ -125,7 +125,7 @@ public class CommunityFragment2 extends BaseFragment implements OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        view = inflater.inflate(R.layout.community_fragment, null);
+        view = inflater.inflate(R.layout.community_fragment2, null);
         return view;
     }
     

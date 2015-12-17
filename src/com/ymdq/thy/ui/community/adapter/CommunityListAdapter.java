@@ -119,307 +119,348 @@ public class CommunityListAdapter extends BaseAdapter
     {
         final Topic entity = data.get(position);
         ViewHolder viewHolder;
-        if (convertView == null)
+        if ("4".equals(entity.getType()))
         {
-            viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(this.context).inflate(R.layout.community_list_item, null);
-            viewHolder.headImage = (ImageView)convertView.findViewById(R.id.head_image);
-            viewHolder.vip = (ImageView)convertView.findViewById(R.id.icon_vip);
-            viewHolder.name = (TextView)convertView.findViewById(R.id.name);
-            viewHolder.time = (TextView)convertView.findViewById(R.id.time);
-            viewHolder.content = (TextView)convertView.findViewById(R.id.content);
-            viewHolder.photo = (LinearLayout)convertView.findViewById(R.id.photo);
+//            if (convertView == null)
+//            {
+                viewHolder = new ViewHolder();
+                convertView = LayoutInflater.from(this.context).inflate(R.layout.community_list_official_item, null);
+                
+                viewHolder.volTxt = (TextView)convertView.findViewById(R.id.vol_txt);
+                viewHolder.titleTxt = (TextView)convertView.findViewById(R.id.title_txt);
+                viewHolder.subTitleTxt = (TextView)convertView.findViewById(R.id.subTitle_txt);
+                
+                viewHolder.likeLayout = (LinearLayout)convertView.findViewById(R.id.like_layout);
+                viewHolder.likeImg = (ImageView)convertView.findViewById(R.id.like_img);
+                viewHolder.likeNum = (TextView)convertView.findViewById(R.id.like_num);
+                viewHolder.commentLayout = (LinearLayout)convertView.findViewById(R.id.comment_layout);
+                viewHolder.commentNum = (TextView)convertView.findViewById(R.id.comment_num);
+                viewHolder.moreLayout = (LinearLayout)convertView.findViewById(R.id.more_layout);
+//                convertView.setTag(viewHolder);
+//            }
+//            else
+//            {
+//                viewHolder = (ViewHolder)convertView.getTag();
+//            }
             
-            viewHolder.isHot = (ImageView)convertView.findViewById(R.id.ishot_img);
-            viewHolder.isVote = (ImageView)convertView.findViewById(R.id.isvote_img);
-             
-            viewHolder.likeLayout = (LinearLayout)convertView.findViewById(R.id.like_layout);
-            viewHolder.likeImg = (ImageView)convertView.findViewById(R.id.like_img);
-            viewHolder.likeNum = (TextView)convertView.findViewById(R.id.like_num);
-            viewHolder.commentLayout = (LinearLayout)convertView.findViewById(R.id.comment_layout);
-            viewHolder.commentNum = (TextView)convertView.findViewById(R.id.comment_num);
-            viewHolder.moreLayout = (LinearLayout)convertView.findViewById(R.id.more_layout);
-            
-            convertView.setTag(viewHolder);
+            viewHolder.volTxt.setText("VOL  " + entity.getVol());
+            viewHolder.titleTxt.setText(entity.getTitle());
+            viewHolder.subTitleTxt.setText(entity.getSubTitle());
         }
         else
         {
-            viewHolder = (ViewHolder)convertView.getTag();
+//            if (convertView == null)
+//            {
+                viewHolder = new ViewHolder();
+                convertView = LayoutInflater.from(this.context).inflate(R.layout.community_list_item, null);
+                viewHolder.headImage = (ImageView)convertView.findViewById(R.id.head_image);
+                viewHolder.vip = (ImageView)convertView.findViewById(R.id.icon_vip);
+                viewHolder.name = (TextView)convertView.findViewById(R.id.name);
+                viewHolder.time = (TextView)convertView.findViewById(R.id.time);
+                viewHolder.content = (TextView)convertView.findViewById(R.id.content);
+                viewHolder.photo = (LinearLayout)convertView.findViewById(R.id.photo);
+                
+                viewHolder.isHot = (ImageView)convertView.findViewById(R.id.ishot_img);
+                viewHolder.isVote = (ImageView)convertView.findViewById(R.id.isvote_img);
+                
+                viewHolder.likeLayout = (LinearLayout)convertView.findViewById(R.id.like_layout);
+                viewHolder.likeImg = (ImageView)convertView.findViewById(R.id.like_img);
+                viewHolder.likeNum = (TextView)convertView.findViewById(R.id.like_num);
+                viewHolder.commentLayout = (LinearLayout)convertView.findViewById(R.id.comment_layout);
+                viewHolder.commentNum = (TextView)convertView.findViewById(R.id.comment_num);
+                viewHolder.moreLayout = (LinearLayout)convertView.findViewById(R.id.more_layout);
+                
+//                convertView.setTag(viewHolder);
+//            }
+//            else
+//            {
+//                viewHolder = (ViewHolder)convertView.getTag();
+//            }
+            
+            ImageLoader.getInstance().displayImage(data.get(position).getImageUrl(),
+                viewHolder.headImage,
+                JRApplication.setRoundDisplayImageOptions(context,
+                    "default_head_pic_round",
+                    "default_head_pic_round",
+                    "default_head_pic_round"));
+            if (Constants.LEVEL_VIP.equals(data.get(position).getUserLevel()))
+            {
+                viewHolder.vip.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                viewHolder.vip.setVisibility(View.GONE);
+            }
+            viewHolder.name.setText(data.get(position).getNickName());
+            viewHolder.time.setText(data.get(position).getTime());
+            //判断是否有内容
+            viewHolder.content.setMovementMethod(null);
+            viewHolder.content.setText(data.get(position).getContent());
+            
+            if ("1".equals(data.get(position).getIsHot()))
+            {
+                viewHolder.isHot.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                viewHolder.isHot.setVisibility(View.INVISIBLE);
+            }
+            if ("2".equals(data.get(position).getType()) || "3".equals(data.get(position).getType()))
+            {
+                viewHolder.isVote.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                viewHolder.isVote.setVisibility(View.INVISIBLE);
+            }
+            
+            //        if (GeneralUtils.isNotNullOrZeroLenght(data.get(position).getComment()))
+            //        {
+            //            viewHolder.content.setVisibility(View.VISIBLE);
+            //            viewHolder.content.setText(GeneralUtils.clickSpan(viewHolder.content, context, data.get(position)
+            //                .getContent(), GeneralUtils.getWebUrl(data.get(position).getContent())), BufferType.SPANNABLE);
+            //        }
+            //        else
+            //        {
+            //            viewHolder.content.setVisibility(View.GONE);
+            //        }
+            //        if (entity.getImageList() != null && entity.getImageList().size() > 0)
+            //        {
+            //            viewHolder.imgLayout.setVisibility(View.VISIBLE);
+            //            ImageLoader.getInstance().displayImage(entity.getImageList().get(0).getImageUrlS(),
+            //                viewHolder.imgFirst,
+            //                JRApplication.setAllDisplayImageOptions(context, "community_default", "community_default",
+            //                    "community_default"));
+            //            
+            //            viewHolder.imgFirst.setOnClickListener(new OnClickListener()
+            //            {
+            //                @Override
+            //                public void onClick(View arg0)
+            //                {
+            //                    photoUrls =  new ArrayList<String>();
+            //                    for (Image image : entity.getImageList())
+            //                    {
+            //                        photoUrls.add(image.getImageUrlL());
+            //                    }
+            //                    Intent intent = new Intent(context, ViewPagerActivity.class);
+            //                    intent.putExtra("currentItem", 0);
+            //                    intent.putStringArrayListExtra("photoUrls", photoUrls);
+            //                    context.startActivity(intent);
+            //                }
+            //            });
+            //        }
+            //        else
+            //        {
+            //            viewHolder.imgLayout.setVisibility(View.GONE);
+            //        }
+            viewHolder.photo.removeAllViews();
+            //判断是否有图片
+            if (GeneralUtils.isNotNullOrZeroSize(data.get(position).getImageList()))
+            {
+                viewHolder.photo.setVisibility(View.VISIBLE);
+                LinearLayout photoLineOne = null;
+                LinearLayout photoLineTwo = null;
+                final ArrayList<String> photoUrls = new ArrayList<String>();
+                for (Image image : data.get(position).getImageList())
+                {
+                    photoUrls.add(image.getImageUrlL());
+                }
+                for (int i = 0; i < data.get(position).getImageList().size(); i++)
+                {
+                    final int currentItem = i;
+                    if (i == 0)
+                    {
+                        photoLineOne = new LinearLayout(context);
+                        photoLineOne.setPadding(0, 0, 0, DisplayUtil.dip2px(context, 3));
+                        viewHolder.photo.addView(photoLineOne);
+                    }
+                    if (i == 3)
+                    {
+                        photoLineTwo = new LinearLayout(context);
+                        viewHolder.photo.addView(photoLineTwo);
+                    }
+                    ImageView pic = new ImageView(context);
+                    pic.setImageResource(R.drawable.community_default);
+                    pic.setScaleType(ScaleType.CENTER_CROP);
+                    if (i < 3)
+                    {
+                        photoLineOne.addView(pic);
+                    }
+                    else
+                    {
+                        photoLineTwo.addView(pic);
+                    }
+                    LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams)pic.getLayoutParams(); //取控件textView当前的布局参数  
+                    linearParams.width =
+                        (context.getResources().getDisplayMetrics().widthPixels - DisplayUtil.dip2px(context, 75)) / 3;
+                    linearParams.height = linearParams.width;
+                    if (i != 2 || i != 5)
+                        linearParams.setMargins(0, 0, DisplayUtil.dip2px(context, 3), 0);
+                    pic.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
+                    ImageLoader.getInstance().displayImage(data.get(position).getImageList().get(i).getImageUrlS(),
+                        pic,
+                        JRApplication.setAllDisplayImageOptions(context,
+                            "community_default",
+                            "community_default",
+                            "community_default"));
+                    pic.setOnClickListener(new OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View arg0)
+                        {
+                            //普通话题
+                            Intent intent = new Intent(context, ViewPagerActivity.class);
+                            intent.putExtra("currentItem", currentItem);
+                            intent.putStringArrayListExtra("photoUrls", photoUrls);
+                            context.startActivity(intent);
+                        }
+                    });
+                }
+            }
+            else
+            {
+                viewHolder.photo.setVisibility(View.GONE);
+            }
+            //圈子详情界面,如果是本人的圈子,则显示置顶等操作
+            //        if (Constants.COMMUNITY_DETAIL.equals(type) || Constants.COMMUNITY_DETAIL_OWNER.equals(type))
+            //        {
+            //            viewHolder.comeText.setVisibility(View.GONE);
+            //            viewHolder.come.setVisibility(View.GONE);
+            //            viewHolder.admin.setVisibility(View.VISIBLE);
+            //            if (userId.equals(data.get(position).getuId()))
+            //            {
+            //                viewHolder.admin.setText("圈主");
+            //                viewHolder.admin.setBackgroundResource(R.drawable.community_quzhu_bg);
+            //            }
+            //            else
+            //            {
+            //                viewHolder.admin.setText("用户");
+            //                viewHolder.admin.setBackgroundResource(R.drawable.communiyt_user_bg);
+            //            }
+            //            if (Constants.ISTOP.equals(data.get(position).getIsTop()))
+            //            {
+            //                viewHolder.upToTop.setVisibility(View.VISIBLE);
+            //            }
+            //            else
+            //            {
+            //                viewHolder.upToTop.setVisibility(View.GONE);
+            //            }
+            //        }
+            //是否有投票界面
+            //        if (Constants.TOPIC_TYPE_VOTE.equals(data.get(position).getType()))
+            //        {
+            //            viewHolder.vote.setVisibility(View.VISIBLE);
+            //            viewHolder.yesNum.setText(data.get(position).getYes());
+            //            viewHolder.noNum.setText(data.get(position).getNo());
+            //            if (Constants.NO_VOTE.equals(data.get(position).getVoteFlag()))
+            //            {
+            //                viewHolder.yes.setBackgroundResource(R.drawable.community_agree);
+            //                viewHolder.no.setBackgroundResource(R.drawable.community_disagree);
+            //            }
+            //            else
+            //            {
+            //                if (Constants.AGREE.equals(data.get(position).getVoteFlag()))
+            //                {
+            //                    viewHolder.yes.setBackgroundResource(R.drawable.community_agree_clicked);
+            //                    viewHolder.no.setBackgroundResource(R.drawable.community_disagree);
+            //                }
+            //                else
+            //                {
+            //                    viewHolder.yes.setBackgroundResource(R.drawable.community_agree);
+            //                    viewHolder.no.setBackgroundResource(R.drawable.community_disagree_clicked);
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            viewHolder.vote.setVisibility(View.GONE);
+            //        }
+            //响应头像按钮点击事件
+            //        viewHolder.headImage.setOnClickListener(new OnClickListener()
+            //        {
+            //            @Override
+            //            public void onClick(View v)
+            //            {
+            //                if (!Constants.COMMUNITU_PERSON_CENTER.equals(type))
+            //                {
+            //                    Intent intent = new Intent(context, CommunityPersonDetailActivity.class);
+            //                    intent.putExtra("queryUId", data.get(position).getuId());
+            //                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //                    context.startActivity(intent);
+            //                }
+            //            }
+            //        });
+            //响应反对按钮事件
+            //        viewHolder.disagree.setOnClickListener(new OnClickListener()
+            //        {
+            //            @Override
+            //            public void onClick(View v)
+            //            {
+            //                if (Global.isLogin())
+            //                {
+            //                    if (Constants.NO_VOTE.equals(data.get(position).getVoteFlag()))
+            //                    {
+            //                        data.get(position).setNo((Integer.parseInt(data.get(position).getNo()) + 1) + "");
+            //                        data.get(position).setVoteFlag(Constants.DISAGREE);
+            //                        notifyDataSetChanged();
+            //                        CommunityService.instance().agreeOrDisagree(data.get(position).getArticleId(),
+            //                            data.get(position).getVoteFlag(),
+            //                            context,
+            //                            callBack);
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    DialogUtil.TwoButtonDialogGTLogin(context);
+            //                }
+            //            }
+            //        });
+            //响应赞成按钮点击
+            //        viewHolder.agree.setOnClickListener(new OnClickListener()
+            //        {
+            //            @Override
+            //            public void onClick(View v)
+            //            {
+            //                if (Global.isLogin())
+            //                {
+            //                    if (Constants.NO_VOTE.equals(data.get(position).getVoteFlag()))
+            //                    {
+            //                        data.get(position).setYes((Integer.parseInt(data.get(position).getYes()) + 1) + "");
+            //                        data.get(position).setVoteFlag(Constants.AGREE);
+            //                        notifyDataSetChanged();
+            //                        CommunityService.instance().agreeOrDisagree(data.get(position).getArticleId(),
+            //                            data.get(position).getVoteFlag(),
+            //                            context,
+            //                            callBack);
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    DialogUtil.TwoButtonDialogGTLogin(context);
+            //                }
+            //            }
+            //        });
+            
         }
-        ImageLoader.getInstance().displayImage(data.get(position).getImageUrl(),
-            viewHolder.headImage,
-            JRApplication.setRoundDisplayImageOptions(context,
-                "default_head_pic_round",
-                "default_head_pic_round",
-                "default_head_pic_round"));
-        if (Constants.LEVEL_VIP.equals(data.get(position).getUserLevel()))
-        {
-            viewHolder.vip.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            viewHolder.vip.setVisibility(View.GONE);
-        }
-        viewHolder.name.setText(data.get(position).getNickName());
-        viewHolder.time.setText(data.get(position).getTime());
+        
+        viewHolder.likeNum.setText(data.get(position).getPraiseNum());
+        viewHolder.commentNum.setText(data.get(position).getCommentNum());
         //未赞
         if (Constants.CANCEL_PRAISE.equals(data.get(position).getFlag()))
         {
-            viewHolder.likeImg.setImageResource(R.drawable.btn_zan);
+            if("4".equals(entity.getType()))
+            {
+                viewHolder.likeImg.setImageResource(R.drawable.community_list_official_like);
+            }
+            else
+            {
+                viewHolder.likeImg.setImageResource(R.drawable.btn_zan);
+            }
         }
         else
         {
             viewHolder.likeImg.setImageResource(R.drawable.btn_zan_press);
         }
-        //判断是否有内容
-        viewHolder.content.setMovementMethod(null);
-        viewHolder.content.setText(data.get(position).getContent());
-        viewHolder.likeNum.setText(data.get(position).getPraiseNum());
-        viewHolder.commentNum.setText(data.get(position).getCommentNum());
-        
-        if("1".equals(data.get(position).getIsHot()))
-        {
-            viewHolder.isHot.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            viewHolder.isHot.setVisibility(View.INVISIBLE);
-        }
-        if("2".equals(data.get(position).getType()) || "3".equals(data.get(position).getType()))
-        {
-            viewHolder.isVote.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            viewHolder.isVote.setVisibility(View.INVISIBLE);
-        }
-        
-//        if (GeneralUtils.isNotNullOrZeroLenght(data.get(position).getComment()))
-//        {
-//            viewHolder.content.setVisibility(View.VISIBLE);
-//            viewHolder.content.setText(GeneralUtils.clickSpan(viewHolder.content, context, data.get(position)
-//                .getContent(), GeneralUtils.getWebUrl(data.get(position).getContent())), BufferType.SPANNABLE);
-//        }
-//        else
-//        {
-//            viewHolder.content.setVisibility(View.GONE);
-//        }
-//        if (entity.getImageList() != null && entity.getImageList().size() > 0)
-//        {
-//            viewHolder.imgLayout.setVisibility(View.VISIBLE);
-//            ImageLoader.getInstance().displayImage(entity.getImageList().get(0).getImageUrlS(),
-//                viewHolder.imgFirst,
-//                JRApplication.setAllDisplayImageOptions(context, "community_default", "community_default",
-//                    "community_default"));
-//            
-//            viewHolder.imgFirst.setOnClickListener(new OnClickListener()
-//            {
-//                @Override
-//                public void onClick(View arg0)
-//                {
-//                    photoUrls =  new ArrayList<String>();
-//                    for (Image image : entity.getImageList())
-//                    {
-//                        photoUrls.add(image.getImageUrlL());
-//                    }
-//                    Intent intent = new Intent(context, ViewPagerActivity.class);
-//                    intent.putExtra("currentItem", 0);
-//                    intent.putStringArrayListExtra("photoUrls", photoUrls);
-//                    context.startActivity(intent);
-//                }
-//            });
-//        }
-//        else
-//        {
-//            viewHolder.imgLayout.setVisibility(View.GONE);
-//        }
-        viewHolder.photo.removeAllViews();
-        //判断是否有图片
-        if (GeneralUtils.isNotNullOrZeroSize(data.get(position).getImageList()))
-        {
-            viewHolder.photo.setVisibility(View.VISIBLE);
-            LinearLayout photoLineOne = null;
-            LinearLayout photoLineTwo = null;
-            final ArrayList<String> photoUrls = new ArrayList<String>();
-            for (Image image : data.get(position).getImageList())
-            {
-                photoUrls.add(image.getImageUrlL());
-            }
-            for (int i = 0; i < data.get(position).getImageList().size(); i++)
-            {
-                final int currentItem = i;
-                if (i == 0)
-                {
-                    photoLineOne = new LinearLayout(context);
-                    photoLineOne.setPadding(0, 0, 0, DisplayUtil.dip2px(context, 7));
-                    viewHolder.photo.addView(photoLineOne);
-                }
-                if (i == 3)
-                {
-                    photoLineTwo = new LinearLayout(context);
-                    viewHolder.photo.addView(photoLineTwo);
-                }
-                ImageView pic = new ImageView(context);
-                pic.setImageResource(R.drawable.community_default);
-                pic.setScaleType(ScaleType.CENTER_CROP);
-                if (i < 3)
-                {
-                    photoLineOne.addView(pic);
-                }
-                else
-                {
-                    photoLineTwo.addView(pic);
-                }
-                LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams)pic.getLayoutParams(); //取控件textView当前的布局参数  
-                linearParams.width =
-                    (context.getResources().getDisplayMetrics().widthPixels - DisplayUtil.dip2px(context, 44)) / 3;
-                linearParams.height = linearParams.width;
-                if (i != 2 || i != 5)
-                    linearParams.setMargins(0, 0, DisplayUtil.dip2px(context, 7), 0);
-                pic.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
-                ImageLoader.getInstance().displayImage(data.get(position).getImageList().get(i).getImageUrlS(),
-                    pic,
-                    JRApplication.setAllDisplayImageOptions(context,
-                        "community_default",
-                        "community_default",
-                        "community_default"));
-                pic.setOnClickListener(new OnClickListener()
-                {
-                    @Override
-                    public void onClick(View arg0)
-                    {
-                        //普通话题
-                        Intent intent = new Intent(context, ViewPagerActivity.class);
-                        intent.putExtra("currentItem", currentItem);
-                        intent.putStringArrayListExtra("photoUrls", photoUrls);
-                        context.startActivity(intent);
-                    }
-                });
-            }
-        }
-        else
-        {
-            viewHolder.photo.setVisibility(View.GONE);
-        }
-        //圈子详情界面,如果是本人的圈子,则显示置顶等操作
-//        if (Constants.COMMUNITY_DETAIL.equals(type) || Constants.COMMUNITY_DETAIL_OWNER.equals(type))
-//        {
-//            viewHolder.comeText.setVisibility(View.GONE);
-//            viewHolder.come.setVisibility(View.GONE);
-//            viewHolder.admin.setVisibility(View.VISIBLE);
-//            if (userId.equals(data.get(position).getuId()))
-//            {
-//                viewHolder.admin.setText("圈主");
-//                viewHolder.admin.setBackgroundResource(R.drawable.community_quzhu_bg);
-//            }
-//            else
-//            {
-//                viewHolder.admin.setText("用户");
-//                viewHolder.admin.setBackgroundResource(R.drawable.communiyt_user_bg);
-//            }
-//            if (Constants.ISTOP.equals(data.get(position).getIsTop()))
-//            {
-//                viewHolder.upToTop.setVisibility(View.VISIBLE);
-//            }
-//            else
-//            {
-//                viewHolder.upToTop.setVisibility(View.GONE);
-//            }
-//        }
-        //是否有投票界面
-//        if (Constants.TOPIC_TYPE_VOTE.equals(data.get(position).getType()))
-//        {
-//            viewHolder.vote.setVisibility(View.VISIBLE);
-//            viewHolder.yesNum.setText(data.get(position).getYes());
-//            viewHolder.noNum.setText(data.get(position).getNo());
-//            if (Constants.NO_VOTE.equals(data.get(position).getVoteFlag()))
-//            {
-//                viewHolder.yes.setBackgroundResource(R.drawable.community_agree);
-//                viewHolder.no.setBackgroundResource(R.drawable.community_disagree);
-//            }
-//            else
-//            {
-//                if (Constants.AGREE.equals(data.get(position).getVoteFlag()))
-//                {
-//                    viewHolder.yes.setBackgroundResource(R.drawable.community_agree_clicked);
-//                    viewHolder.no.setBackgroundResource(R.drawable.community_disagree);
-//                }
-//                else
-//                {
-//                    viewHolder.yes.setBackgroundResource(R.drawable.community_agree);
-//                    viewHolder.no.setBackgroundResource(R.drawable.community_disagree_clicked);
-//                }
-//            }
-//        }
-//        else
-//        {
-//            viewHolder.vote.setVisibility(View.GONE);
-//        }
-        //响应头像按钮点击事件
-//        viewHolder.headImage.setOnClickListener(new OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (!Constants.COMMUNITU_PERSON_CENTER.equals(type))
-//                {
-//                    Intent intent = new Intent(context, CommunityPersonDetailActivity.class);
-//                    intent.putExtra("queryUId", data.get(position).getuId());
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    context.startActivity(intent);
-//                }
-//            }
-//        });
-        //响应反对按钮事件
-//        viewHolder.disagree.setOnClickListener(new OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (Global.isLogin())
-//                {
-//                    if (Constants.NO_VOTE.equals(data.get(position).getVoteFlag()))
-//                    {
-//                        data.get(position).setNo((Integer.parseInt(data.get(position).getNo()) + 1) + "");
-//                        data.get(position).setVoteFlag(Constants.DISAGREE);
-//                        notifyDataSetChanged();
-//                        CommunityService.instance().agreeOrDisagree(data.get(position).getArticleId(),
-//                            data.get(position).getVoteFlag(),
-//                            context,
-//                            callBack);
-//                    }
-//                }
-//                else
-//                {
-//                    DialogUtil.TwoButtonDialogGTLogin(context);
-//                }
-//            }
-//        });
-        //响应赞成按钮点击
-//        viewHolder.agree.setOnClickListener(new OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                if (Global.isLogin())
-//                {
-//                    if (Constants.NO_VOTE.equals(data.get(position).getVoteFlag()))
-//                    {
-//                        data.get(position).setYes((Integer.parseInt(data.get(position).getYes()) + 1) + "");
-//                        data.get(position).setVoteFlag(Constants.AGREE);
-//                        notifyDataSetChanged();
-//                        CommunityService.instance().agreeOrDisagree(data.get(position).getArticleId(),
-//                            data.get(position).getVoteFlag(),
-//                            context,
-//                            callBack);
-//                    }
-//                }
-//                else
-//                {
-//                    DialogUtil.TwoButtonDialogGTLogin(context);
-//                }
-//            }
-//        });
         //响应点赞按钮
         viewHolder.likeLayout.setOnClickListener(new OnClickListener()
         {
@@ -588,6 +629,7 @@ public class CommunityListAdapter extends BaseAdapter
                     });
             }
         });
+        
         return convertView;
     }
     
@@ -617,7 +659,7 @@ public class CommunityListAdapter extends BaseAdapter
         
         private TextView likeNum;
         
-        private TextView commentNum;
+        private TextView commentNum, volTxt, titleTxt, subTitleTxt;
         
         private LinearLayout moreLayout;
     }

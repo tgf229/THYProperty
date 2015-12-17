@@ -136,36 +136,84 @@ public class Topic extends BaseResponse implements Serializable
      */
     private String userLevel;
     
+    private String vol;
+    
+    private String title;
+    
+    private String subTitle;
+    
+    private String pic;
+    
+    public String getVol()
+    {
+        return vol;
+    }
+    
+    public void setVol(String vol)
+    {
+        this.vol = vol;
+    }
+    
+    public String getTitle()
+    {
+        return title;
+    }
+    
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+    
+    public String getSubTitle()
+    {
+        return subTitle;
+    }
+    
+    public void setSubTitle(String subTitle)
+    {
+        this.subTitle = subTitle;
+    }
+    
+    public String getPic()
+    {
+        return pic;
+    }
+    
+    public void setPic(String pic)
+    {
+        this.pic = pic;
+    }
+    
     public String getaId()
     {
         return aId;
     }
-
+    
     public void setaId(String aId)
     {
         this.aId = aId;
     }
-
+    
     public String getCommentNum()
     {
         return commentNum;
     }
-
+    
     public void setCommentNum(String commentNum)
     {
         this.commentNum = commentNum;
     }
-
+    
     public String getIsHot()
     {
         return isHot;
     }
-
+    
     public void setIsHot(String isHot)
     {
         this.isHot = isHot;
     }
-
+    
     /**
      * 图片列表
      */
@@ -174,19 +222,21 @@ public class Topic extends BaseResponse implements Serializable
     private ArrayList<Vote> voteList;
     
     private String voteFlag;
+    
     private String yes;
+    
     private String no;
     
     public ArrayList<Vote> getVoteList()
     {
         return voteList;
     }
-
+    
     public void setVoteList(ArrayList<Vote> voteList)
     {
         this.voteList = voteList;
     }
-
+    
     public String getuId()
     {
         return uId;
@@ -321,12 +371,12 @@ public class Topic extends BaseResponse implements Serializable
     {
         return date;
     }
-
+    
     public void setDate(String date)
     {
         this.date = date;
     }
-
+    
     public String getType()
     {
         return type;

@@ -320,6 +320,7 @@ public class NetWork
                 }
                 else
                 {
+//                    httpPost.setHeader("Content-Type", "multipart/form-data; charset=utf-8");
                     httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
                     List<BasicNameValuePair> nameValuePairs = new ArrayList<BasicNameValuePair>();
                     if (map != null)

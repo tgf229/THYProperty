@@ -650,6 +650,10 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
         }
         name.setText(topic.getNickName());
         time.setText(topic.getTime());
+        if("1".equals(topic.getIsHot()))
+        {
+            isHotImg.setVisibility(View.VISIBLE);
+        }
         //判断是否有内容
         if (GeneralUtils.isNotNullOrZeroLenght(topic.getContent()))
         {
@@ -1202,7 +1206,7 @@ public class CommunityTopicDetailsActivity extends BaseActivity implements UICal
                 if (Constants.SUCESS_CODE.equals(topic.getRetcode()))
                 {
                     reqCommentList();
-                    if ("4".equals(topic.getType()) || "5".equals(topic.getType()))
+                    if ("4".equals(topic.getType()))
                     {
                         if (isFirstInfo)
                         {
