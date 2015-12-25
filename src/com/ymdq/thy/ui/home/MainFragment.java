@@ -10,13 +10,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,15 +20,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.ymdq.thy.JRApplication;
 import com.ymdq.thy.R;
-import com.ymdq.thy.bean.community.Topic;
-import com.ymdq.thy.bean.home.FreshNewsResponse;
 import com.ymdq.thy.bean.home.InitResponse;
 import com.ymdq.thy.bean.home.LoopAdvertisementDoc;
 import com.ymdq.thy.bean.home.LoopAdvertisementResponse;
@@ -46,6 +37,9 @@ import com.ymdq.thy.bean.home.QueryCommunityListResponse;
 import com.ymdq.thy.bean.home.QueryCommunityResponse;
 import com.ymdq.thy.bean.personcenter.LoginResponse;
 import com.ymdq.thy.bean.personcenter.UpdateVersionResponse;
+import com.ymdq.thy.bean.propertyservice.PraiseListDoc;
+import com.ymdq.thy.bean.propertyservice.ServiceItemDoc;
+import com.ymdq.thy.bean.propertyservice.ServiceItemResponse;
 import com.ymdq.thy.callback.DialogCallBack;
 import com.ymdq.thy.constant.Constants;
 import com.ymdq.thy.constant.Global;
@@ -54,10 +48,10 @@ import com.ymdq.thy.database.MycentralMessageDB;
 import com.ymdq.thy.network.ConnectService;
 import com.ymdq.thy.sharepref.SharePref;
 import com.ymdq.thy.ui.BaseFragment;
-import com.ymdq.thy.ui.home.adapter.FreshNewsAdapter;
 import com.ymdq.thy.ui.home.adapter.HomeImagePagerAdapter;
 import com.ymdq.thy.ui.personcenter.LoginActivity;
 import com.ymdq.thy.ui.propertyservice.PraiseListActivity;
+import com.ymdq.thy.ui.propertyservice.adapter.ServiceItemListAdapter;
 import com.ymdq.thy.util.DialogUtil;
 import com.ymdq.thy.util.DownApkUtil;
 import com.ymdq.thy.util.GeneralUtils;
@@ -75,12 +69,14 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
     /**
      * 头部小区名
      */
-    private TextView titteName,homeTitTitle;
+    private TextView titteName, homeTitTitle, property_name_txt, property_address_txt;
     
     /**
      * 选择小区布局
      */
     private RelativeLayout titleBar;
+    
+    private LinearLayout property_info, property_list, property_call;
     
     /**
      * 选择小区下拉图片
@@ -172,10 +168,6 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
         }
     };
     
-    private List<Topic> freshNewsList;
-    
-    private FreshNewsAdapter freshNewsAdapter;
-    
     /**
      * 快递的未读消息提示
      */
@@ -188,7 +180,9 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
     
     private LoginSuccessBroard broardcast;
     
-    private View footView, homeTitRightLine;
+    private com.ymdq.thy.view.MyGridView service_item_grid;
+    private ServiceItemListAdapter serviceItemListAdapter;
+    private List<ServiceItemDoc> serviceItemList;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -205,7 +199,7 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
         reqInit();
         reqCommunity();
         reqLoopAdvert();
-        reqFreshNews();
+        reqServiceList();
         reqMyDeliverty();
         registreBroadcast();
         mContext = getActivity();
@@ -249,30 +243,28 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
         titleBar.setClickable(false);
         titleBar.setOnClickListener(this);
         
-        View listview_head = LayoutInflater.from(getActivity()).inflate(R.layout.main_fragment_listview_head, null);
-        homeTitTitle = (TextView)listview_head.findViewById(R.id.home_tit_title);
-        Resources res = getResources();
-        Bitmap img = BitmapFactory.decodeResource(res, R.drawable.home_titline);
-        Matrix matrix = new Matrix();
-        matrix.postRotate(180);        /*翻转180度*/
-        int width = img.getWidth();
-        int height = img.getHeight();
-        img = Bitmap.createBitmap(img, 0, 0, width, height, matrix, true);
-        Drawable drawable =new BitmapDrawable(img);
-        homeTitRightLine = listview_head.findViewById(R.id.home_tit_right_line);
-        homeTitRightLine.setBackground(drawable);
-        
-        banner_Pager = (ViewPager)listview_head.findViewById(R.id.circlepager);
+        banner_Pager = (ViewPager)view.findViewById(R.id.circlepager);
         banner_Pager.setVisibility(View.VISIBLE);
-        default_img = (MyImageView)listview_head.findViewById(R.id.default_load_img);
+        default_img = (MyImageView)view.findViewById(R.id.default_load_img);
         default_img.setVisibility(View.VISIBLE);
         businessPlans = new ArrayList<LoopAdvertisementDoc>();
         circleImagePagerAdapter = new HomeImagePagerAdapter(getActivity(), businessPlans);
         banner_Pager.setAdapter(circleImagePagerAdapter);
-        banner_indicator = (CirclePageIndicator)listview_head.findViewById(R.id.circleindicator);
+        banner_indicator = (CirclePageIndicator)view.findViewById(R.id.circleindicator);
         banner_indicator.setViewPager(banner_Pager);
         handler.sendEmptyMessageDelayed(0, SKIP_TIME);
         
+        property_info = (LinearLayout)view.findViewById(R.id.property_info);
+        property_name_txt = (TextView)view.findViewById(R.id.property_name_txt);
+        property_address_txt = (TextView)view.findViewById(R.id.property_address_txt);
+        property_list = (LinearLayout)view.findViewById(R.id.property_list);
+        property_call = (LinearLayout)view.findViewById(R.id.property_call);
+        service_item_grid = (com.ymdq.thy.view.MyGridView)view.findViewById(R.id.service_item_grid);
+        serviceItemList = new ArrayList<ServiceItemDoc>();
+        serviceItemListAdapter = new ServiceItemListAdapter(getActivity(), serviceItemList, this);
+        service_item_grid.setAdapter(serviceItemListAdapter);
+        
+        View listview_head = LayoutInflater.from(getActivity()).inflate(R.layout.main_fragment_listview_head, null);
         Button centralDeliveryBtn = (Button)listview_head.findViewById(R.id.my_central_delivery);
         centralDeliveryBtn.setOnClickListener(this);
         Button centralMessageBtn = (Button)listview_head.findViewById(R.id.my_central_message);
@@ -281,30 +273,19 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
         centralcardBtn.setOnClickListener(this);
         Button centralListBtn = (Button)listview_head.findViewById(R.id.my_central_lists);
         centralListBtn.setOnClickListener(this);
-        
         delivertyNum = (TextView)listview_head.findViewById(R.id.deliverty_num);
         messageNum = (TextView)listview_head.findViewById(R.id.message_num);
         
-        //新鲜事
-        ListView freshNewsListView = (ListView)view.findViewById(R.id.fresh_news_listview);
-        freshNewsListView.addHeaderView(listview_head);
-        freshNewsList = new ArrayList<Topic>();
-        freshNewsAdapter = new FreshNewsAdapter(getActivity(), freshNewsList, this);
-        freshNewsListView.setAdapter(freshNewsAdapter);
-        //解决listview和scrollview抢焦点问题
-        //        freshNewsListView.setFocusable(false);
-        footView = LayoutInflater.from(getActivity()).inflate(R.layout.end_tips_layout, null);
-        footView.setVisibility(View.GONE);
-        freshNewsListView.addFooterView(footView);
-        freshNewsListView.setHeaderDividersEnabled(false);
+        property_info.setOnClickListener(this);
+        property_list.setOnClickListener(this);
+        property_call.setOnClickListener(this);
     }
     
     @Override
     public void onHeaderRefresh(PullToRefreshView view)
     {
-//        login();
         reqLoopAdvert();
-        reqFreshNews();
+        reqServiceList();
         reqMyDeliverty();
         reqMyMessage();
         reqCommunity();
@@ -329,6 +310,18 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
             MainFragment.this,
             InitResponse.class,
             URLUtil.INIT,
+            Constants.ENCRYPT_NONE);
+    }
+    
+    private void reqServiceList()
+    {
+        Map<String, String> param = new HashMap<String, String>();
+        param.put("cId", Global.getCId());
+        ConnectService.instance().connectServiceReturnResponse(getActivity(),
+            param,
+            MainFragment.this,
+            ServiceItemResponse.class,
+            URLUtil.BUS_200901,
             Constants.ENCRYPT_NONE);
     }
     
@@ -383,25 +376,6 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
             MainFragment.this,
             LoopAdvertisementResponse.class,
             URLUtil.LOOP_ADVERT,
-            Constants.ENCRYPT_NONE);
-    }
-    
-    /**
-     * 
-     * <新鲜事儿查询>
-     * <功能详细描述>
-     * @see [类、类#方法、类#成员]
-     */
-    private void reqFreshNews()
-    {
-        Map<String, String> param = new HashMap<String, String>();
-        param.put("cId", Global.getCId());
-        param.put("uId", Global.getUserId());
-        ConnectService.instance().connectServiceReturnResponse(getActivity(),
-            param,
-            MainFragment.this,
-            FreshNewsResponse.class,
-            URLUtil.FRESH_NEWS,
             Constants.ENCRYPT_NONE);
     }
     
@@ -541,9 +515,18 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
             {
                 if (Constants.SUCESS_CODE.equals(initresp.getRetcode()))
                 {
-                    SharePref.saveString("address", initresp.getAddress());
-                    SharePref.saveString("tel", initresp.getTel());
+                    SharePref.saveString(SharePref.PROPERTY_NAME, initresp.getName());
+                    SharePref.saveString(SharePref.PROPERTY_ADDRESS, initresp.getAddress());
+                    SharePref.saveString(SharePref.PROPERTY_TEL, initresp.getTel());
+                    SharePref.saveString(SharePref.PROPERTY_LOGO, initresp.getLogo());
+                    SharePref.saveString(SharePref.PROPERTY_CONTENT, initresp.getContent());
+                    SharePref.saveString(SharePref.PROPERTY_TITLE, initresp.getTitle());
+                    SharePref.saveString(SharePref.PROPERTY_TITLEURL, initresp.getTitleUrl());
                     String flag = initresp.getFlag();
+                    
+                    property_name_txt.setText(SharePref.getString(SharePref.PROPERTY_NAME, "暂无"));
+                    property_address_txt.setText(SharePref.getString(SharePref.PROPERTY_ADDRESS, "暂无"));
+                    
                     if (flag != null && flag.equals(Constants.EXIT_APP))
                     {
                         JRApplication.jrApplication.onTerminate();
@@ -564,7 +547,7 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                     {
                         businessPlans.clear();
                         int width = getResources().getDisplayMetrics().widthPixels;
-                        int height = width * 8/ 15;
+                        int height = width * 8 / 15;
                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
                         banner_Pager.setLayoutParams(params);
                         
@@ -601,25 +584,20 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                 banner_indicator.notifyDataSetChanged();
             }
         }
-        //新鲜事儿查询
-        else if (ob instanceof FreshNewsResponse)
+        else if(ob instanceof ServiceItemResponse)
         {
-            FreshNewsResponse freshNewsResp = (FreshNewsResponse)ob;
-            if (GeneralUtils.isNotNullOrZeroLenght(freshNewsResp.getRetcode()))
+            ServiceItemResponse resp = (ServiceItemResponse)ob;
+            if (GeneralUtils.isNotNullOrZeroLenght(resp.getRetcode()))
             {
-                if (Constants.SUCESS_CODE.equals(freshNewsResp.getRetcode()))
+                if (Constants.SUCESS_CODE.equals(resp.getRetcode()))
                 {
-                    freshNewsList.clear();
-                    if (freshNewsResp.getDoc() != null && freshNewsResp.getDoc().size() > 0)
+                    List<ServiceItemDoc> doc = resp.getDoc();
+                    if (GeneralUtils.isNotNullOrZeroSize(doc))
                     {
-                        freshNewsList.addAll(freshNewsResp.getDoc());
-                        footView.setVisibility(View.VISIBLE);
+                        serviceItemList.clear();
+                        serviceItemList.addAll(doc);
+                        serviceItemListAdapter.notifyDataSetChanged();
                     }
-                    else
-                    {
-                        footView.setVisibility(View.GONE);
-                    }
-                    freshNewsAdapter.notifyDataSetChanged();
                 }
             }
         }
@@ -821,7 +799,7 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                 break;
             //便民信息
             case R.id.my_central_lists:
-//                Intent mylist = new Intent(getActivity(), MyCentralListsActivity.class);
+                //                Intent mylist = new Intent(getActivity(), MyCentralListsActivity.class);
                 Intent mylist = new Intent(getActivity(), PraiseListActivity.class);
                 startActivity(mylist);
                 break;
@@ -883,7 +861,7 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                     Global.saveCId(c_id);
                     reqInit();
                     reqLoopAdvert();
-                    reqFreshNews();
+                    reqServiceList();
                     if (Global.isLogin())
                     {
                         reqMyDeliverty();
@@ -919,9 +897,9 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                 if (intent.getBooleanExtra("replace_cid", false))
                 {
                     reqLoopAdvert();
-                    reqFreshNews();
                 }
                 reqInit();
+                reqServiceList();
                 reqMyDeliverty();
                 reqMyMessage();
                 reqCommunity();

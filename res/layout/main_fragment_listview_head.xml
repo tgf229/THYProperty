@@ -140,44 +140,4 @@
         android:layout_height="1px"
         android:background="@drawable/line_grey" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/home_xinxianshi_bg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="12dip"
-        android:paddingLeft="25dip"
-        android:paddingRight="25dip"
-        android:paddingTop="12dip" >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dip"
-            android:layout_weight="1"
-            android:background="@drawable/home_titline" />
-
-        <TextView
-            android:id="@+id/home_tit_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dip"
-            android:layout_marginRight="14dip"
-            android:textColor="@color/home_tit_xinxianshi"
-            android:textSize="15sp"
-            android:text="小区新鲜事" />
-
-        <View
-            android:id="@+id/home_tit_right_line"
-            android:layout_width="match_parent"
-            android:layout_height="6dip"
-            android:layout_weight="1"
-            android:background="@drawable/home_titline" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/line_grey" />
-
 </LinearLayout>

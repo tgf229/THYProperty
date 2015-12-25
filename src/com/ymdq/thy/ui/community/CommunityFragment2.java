@@ -181,15 +181,15 @@ public class CommunityFragment2 extends BaseFragment implements OnClickListener
         fragmentManager = getActivity().getSupportFragmentManager();
         bitmapWeight = DisplayUtil.dip2px(getActivity(), bitmapWeight);
         tags = new String[] {getString(R.string.community_dynamic), getString(R.string.community_square)};
-        if (((HomeFragmentActivity)getActivity()).getMessageNumber() > 0)
-        {
-            community_message_number.setVisibility(View.VISIBLE);
-            community_message_number.setText(((HomeFragmentActivity)getActivity()).getMessageNumber() + "");
-        }
-        else
-        {
-            community_message_number.setVisibility(View.GONE);
-        }
+//        if (((HomeFragmentActivity)getActivity()).getMessageNumber() > 0)
+//        {
+//            community_message_number.setVisibility(View.VISIBLE);
+//            community_message_number.setText(((HomeFragmentActivity)getActivity()).getMessageNumber() + "");
+//        }
+//        else
+//        {
+//            community_message_number.setVisibility(View.GONE);
+//        }
     }
     
     /**

@@ -334,8 +334,11 @@ public class URLUtil
      */
     public static final String BUS_200801 = "Bus200801";
     
-
-
+    /**
+     * 3.2.9    物业服务—小区物业服务配置项查询 v2.0
+     */
+    public static final String BUS_200901 = "Bus200901";
+    
     /**
      * 3.3.1    话题—发表话题V2.0
      */

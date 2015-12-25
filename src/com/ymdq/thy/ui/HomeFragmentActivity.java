@@ -55,19 +55,13 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     /**
      * Tab标签
      */
-    private RelativeLayout home_menu_home, home_menu_property_service, home_menu_community, home_menu_person_center;
+    private RelativeLayout home_menu_home, home_menu_community, home_menu_person_center;
     
     /**
      * 标签的图片
      */
-    private ImageView home_menu_home_img, home_menu_property_service_img, home_menu_community_img,
+    private ImageView home_menu_home_img, home_menu_community_img,
         home_menu_person_center_img;
-    
-    /**
-     * 标签文本
-     */
-    private ImageView home_menu_home_txt, home_menu_property_service_txt, home_menu_community_txt,
-        home_menu_person_center_txt;
     
     /**
      * 用于对Fragment进行管理
@@ -89,12 +83,12 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     /**
      * 未读消息数量
      */
-    private TextView community_message_number;
+//    private TextView community_message_number;
     
     /**
      * 登陆成功广播
      */
-    private CommunityMessageBroard communityMessageBroard;
+//    private CommunityMessageBroard communityMessageBroard;
     
     @Override
     protected void onCreate(Bundle arg0)
@@ -125,27 +119,17 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     private void init()
     {
         home_menu_home = (RelativeLayout)findViewById(R.id.home_menu_home);
-        home_menu_property_service = (RelativeLayout)findViewById(R.id.home_menu_property_service);
         home_menu_community = (RelativeLayout)findViewById(R.id.home_menu_community);
         home_menu_person_center = (RelativeLayout)findViewById(R.id.home_menu_person_center);
         
         home_menu_home_img = (ImageView)findViewById(R.id.home_menu_home_img);
-        home_menu_property_service_img = (ImageView)findViewById(R.id.home_menu_property_service_img);
         home_menu_community_img = (ImageView)findViewById(R.id.home_menu_community_img);
         home_menu_person_center_img = (ImageView)findViewById(R.id.home_menu_person_center_img);
-        
-        home_menu_home_txt = (ImageView)findViewById(R.id.home_menu_home_txt);
-        home_menu_property_service_txt = (ImageView)findViewById(R.id.home_menu_property_service_txt);
-        home_menu_community_txt = (ImageView)findViewById(R.id.home_menu_community_txt);
-        home_menu_person_center_txt = (ImageView)findViewById(R.id.home_menu_person_center_txt);
-        
-        community_message_number = (TextView)findViewById(R.id.community_message_number);
         
         /**
          * 添加按钮点击事件
          */
         home_menu_home.setOnClickListener(this);
-        home_menu_property_service.setOnClickListener(this);
         home_menu_community.setOnClickListener(this);
         home_menu_person_center.setOnClickListener(this);
     }
@@ -179,10 +163,10 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
      */
     private void registreBroadcast()
     {
-        IntentFilter loginFilter = new IntentFilter();
-        loginFilter.addAction(Constants.COMMUNITY_MESSAGE_NUMBER_BROADCAST);
-        communityMessageBroard = new CommunityMessageBroard();
-        registerReceiver(communityMessageBroard, loginFilter);
+//        IntentFilter loginFilter = new IntentFilter();
+//        loginFilter.addAction(Constants.COMMUNITY_MESSAGE_NUMBER_BROADCAST);
+//        communityMessageBroard = new CommunityMessageBroard();
+//        registerReceiver(communityMessageBroard, loginFilter);
     }
     
     /**
@@ -240,14 +224,14 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
                 mFragment = new MainFragment();
             }
         }
-        if (TextUtils.equals(tag, getString(R.string.home_menu_property_service)))
-        {
-            setSelection(R.id.home_menu_property_service);
-            if (mFragment == null)
-            {
-                mFragment = new PropertyServiceFragment();
-            }
-        }
+//        if (TextUtils.equals(tag, getString(R.string.home_menu_property_service)))
+//        {
+//            setSelection(R.id.home_menu_property_service);
+//            if (mFragment == null)
+//            {
+//                mFragment = new PropertyServiceFragment();
+//            }
+//        }
         if (TextUtils.equals(tag, getString(R.string.home_menu_community)))
         {
             setSelection(R.id.home_menu_community);
@@ -344,10 +328,10 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
                 home_menu_home_img.setImageResource(R.drawable.home_icon_home_press);
                 //home_menu_home_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
                 break;
-            case R.id.home_menu_property_service:
-                home_menu_property_service_img.setImageResource(R.drawable.home_icon_service_press);
+//            case R.id.home_menu_property_service:
+//                home_menu_property_service_img.setImageResource(R.drawable.home_icon_service_press);
                 //home_menu_property_service_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
-                break;
+//                break;
             case R.id.home_menu_community:
                 home_menu_community_img.setImageResource(R.drawable.home_icon_neighbor_press);
                 //home_menu_community_txt.setTextColor(getResources().getColor(R.color.home_menu_normal));
@@ -368,7 +352,6 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     private void clearSelection()
     {
         home_menu_home_img.setImageResource(R.drawable.home_icon_home);
-        home_menu_property_service_img.setImageResource(R.drawable.home_icon_service);
         home_menu_community_img.setImageResource(R.drawable.home_icon_neighbor);
         home_menu_person_center_img.setImageResource(R.drawable.home_icon_myhome);
     }
@@ -380,9 +363,6 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
         {
             case R.id.home_menu_home:
                 setTabSelection(getString(R.string.home_menu_home));
-                break;
-            case R.id.home_menu_property_service:
-                setTabSelection(getString(R.string.home_menu_property_service));
                 break;
             case R.id.home_menu_community:
                 setTabSelection(getString(R.string.home_menu_community));
@@ -424,7 +404,7 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
     protected void onDestroy()
     {
         super.onDestroy();
-        unregisterReceiver(communityMessageBroard);
+//        unregisterReceiver(communityMessageBroard);
         JRApplication.jrApplication.deleteActivity(this);
     }
     
@@ -458,27 +438,27 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
      * @see  [相关类/方法]
      * @since  [产品/模块版本]
      */
-    class CommunityMessageBroard extends BroadcastReceiver
-    {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            //登录成功
-            if (Constants.COMMUNITY_MESSAGE_NUMBER_BROADCAST.equals(intent.getAction()))
-            {
-                String number = intent.getStringExtra("number");
-                if (Integer.valueOf(number) > 0)
-                {
-                    community_message_number.setVisibility(View.VISIBLE);
-                    community_message_number.setText(number);
-                }
-                else
-                {
-                    community_message_number.setVisibility(View.GONE);
-                }
-            }
-        }
-    }
+//    class CommunityMessageBroard extends BroadcastReceiver
+//    {
+//        @Override
+//        public void onReceive(Context context, Intent intent)
+//        {
+//            //登录成功
+//            if (Constants.COMMUNITY_MESSAGE_NUMBER_BROADCAST.equals(intent.getAction()))
+//            {
+//                String number = intent.getStringExtra("number");
+//                if (Integer.valueOf(number) > 0)
+//                {
+//                    community_message_number.setVisibility(View.VISIBLE);
+//                    community_message_number.setText(number);
+//                }
+//                else
+//                {
+//                    community_message_number.setVisibility(View.GONE);
+//                }
+//            }
+//        }
+//    }
     
     /**
      * 
@@ -487,9 +467,9 @@ public class HomeFragmentActivity extends FragmentActivity implements UICallBack
      * @return
      * @see [类、类#方法、类#成员]
      */
-    public int getMessageNumber()
-    {
-        return Integer.valueOf("".equals(community_message_number.getText().toString()) ? "0"
-            : community_message_number.getText().toString());
-    }
+//    public int getMessageNumber()
+//    {
+//        return Integer.valueOf("".equals(community_message_number.getText().toString()) ? "0"
+//            : community_message_number.getText().toString());
+//    }
 }

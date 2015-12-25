@@ -48,7 +48,7 @@ public class PropertyServiceFragment extends BaseFragment implements OnClickList
     private void initView()
     {
         address = (TextView)view.findViewById(R.id.property_address);
-        address.setText(SharePref.getString("address", "暂无"));
+        address.setText(SharePref.getString(SharePref.PROPERTY_ADDRESS, "暂无"));
         
         Button ticketBtn = (Button)view.findViewById(R.id.my_ticket);
         ticketBtn.setOnClickListener(this);
@@ -78,7 +78,7 @@ public class PropertyServiceFragment extends BaseFragment implements OnClickList
     {
         super.onHiddenChanged(hidden);
         if(!hidden)
-            address.setText(SharePref.getString("address", "暂无"));
+            address.setText(SharePref.getString(SharePref.PROPERTY_ADDRESS, "暂无"));
     }
     
     @Override
@@ -100,18 +100,18 @@ public class PropertyServiceFragment extends BaseFragment implements OnClickList
                 break;
                 //一键呼叫
             case R.id.call:
-                if(GeneralUtils.isNullOrZeroLenght(SharePref.getString("tel", "")))
+                if(GeneralUtils.isNullOrZeroLenght(SharePref.getString(SharePref.PROPERTY_TEL, "")))
                 {
                     ToastUtil.makeText(getActivity(), "暂无号码信息");
                     break;
                 }
-                DialogUtil.showTwoButtonDialog(getActivity(),"您是否拨打物业号码：\n"+SharePref.getString("tel", ""),
+                DialogUtil.showTwoButtonDialog(getActivity(),"您是否拨打物业号码：\n"+SharePref.getString(SharePref.PROPERTY_TEL, ""),
                     new DialogCallBack(){
 
                     @Override
                     public void dialogBack()
                     {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+SharePref.getString("tel", "")));
+                        Intent callIntent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+SharePref.getString(SharePref.PROPERTY_TEL, "")));
                         startActivity(callIntent);
                     }});
                 break;

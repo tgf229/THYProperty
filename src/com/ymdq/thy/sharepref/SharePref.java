@@ -98,6 +98,14 @@ public class SharePref
      */
     public static final String SET_MESSAGE = "set_push";
     
+    public static final String PROPERTY_NAME = "property_name";
+    public static final String PROPERTY_ADDRESS = "property_address";
+    public static final String PROPERTY_TEL = "property_tel";
+    public static final String PROPERTY_LOGO = "property_logo";
+    public static final String PROPERTY_CONTENT = "property_content";
+    public static final String PROPERTY_TITLE = "property_title";
+    public static final String PROPERTY_TITLEURL = "property_title_url";
+    
     public static void saveBoolean(String key, boolean value)
     {
         getSharedPreferences().edit().putBoolean(key, value).commit();
