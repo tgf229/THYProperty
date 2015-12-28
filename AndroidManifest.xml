@@ -288,6 +288,12 @@
             android:name="com.ymdq.thy.ui.propertyservice.PraiseVoteActivity"
             android:screenOrientation="portrait">
         </activity>
+        
+        <!-- 物业公司介绍 -->
+        <activity
+            android:name="com.ymdq.thy.ui.propertyservice.PropertyInfoActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
         <!-- 极光推送开始 -->
 

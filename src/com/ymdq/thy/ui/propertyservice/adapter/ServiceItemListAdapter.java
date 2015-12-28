@@ -15,15 +15,15 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ymdq.thy.JRApplication;
 import com.ymdq.thy.R;
-import com.ymdq.thy.bean.propertyservice.PraiseListDoc;
 import com.ymdq.thy.bean.propertyservice.ServiceItemDoc;
 import com.ymdq.thy.callback.UICallBack;
 import com.ymdq.thy.constant.Constants;
-import com.ymdq.thy.ui.home.MainFragment;
-import com.ymdq.thy.ui.propertyservice.PraiseDetailActivity;
+import com.ymdq.thy.ui.home.MyCentralCardActivity;
+import com.ymdq.thy.ui.home.MyCentralDelivertyActivity;
+import com.ymdq.thy.ui.home.MyCentralListsActivity;
 import com.ymdq.thy.ui.propertyservice.PraiseListActivity;
+import com.ymdq.thy.ui.propertyservice.RepairActivity;
 import com.ymdq.thy.util.GeneralUtils;
-import com.ymdq.thy.util.ToastUtil;
 
 public class ServiceItemListAdapter extends BaseAdapter
 {
@@ -76,26 +76,83 @@ public class ServiceItemListAdapter extends BaseAdapter
             mHolder = (HolderView)convertView.getTag();
         }
         
-        ImageLoader.getInstance().displayImage(entity.getsImage(),
-            mHolder.img,
-            JRApplication.setAllDisplayImageOptions(context,
-                "community_default",
-                "community_default",
-                "community_default"));
-        mHolder.name.setText(entity.getsName());
-        convertView.setOnClickListener(new OnClickListener()
+        if (GeneralUtils.isNullOrZeroLenght(entity.getsId()))
         {
-            @Override
-            public void onClick(View v)
+        }
+        else
+        {
+            ImageLoader.getInstance().displayImage(entity.getsImage(),
+                mHolder.img,
+                JRApplication.setAllDisplayImageOptions(context,
+                    "community_default",
+                    "community_default",
+                    "community_default"));
+            mHolder.name.setText(entity.getsName());
+            convertView.setOnClickListener(new OnClickListener()
             {
-                //                Intent intent = new Intent(context,PraiseDetailActivity.class);
-                //                intent.putExtra("detail", entity);
-                //                String time = GeneralUtils.isNullOrZeroLenght(context.choiseTime)? context.currentTime:context.choiseTime;
-                //                intent.putExtra("time", time);
-                //                intent.putExtra("myVoteTimes", context.myVoteTimes);
-                //                context.startActivityForResult(intent, Constants.Praise_vote_success);
-            }
-        });
+                @Override
+                public void onClick(View v)
+                {
+                    //报修
+                    if (Constants.PROPERTY_JOB_REPAIR.equals(entity.getsId()))
+                    {
+                        Intent repairIntent = new Intent(context, RepairActivity.class);
+                        repairIntent.putExtra("title_name", "报修");
+                        repairIntent.putExtra("type", Constants.PROPERTY_REPAIR);
+                        context.startActivity(repairIntent);
+                    }
+                    //投诉
+                    else if (Constants.PROPERTY_JOB_COMPLAIN.equals(entity.getsId()))
+                    {
+                        Intent complaintIntent = new Intent(context, RepairActivity.class);
+                        complaintIntent.putExtra("title_name", "投诉");
+                        complaintIntent.putExtra("type", Constants.PROPERTY_COMPLAINT);
+                        context.startActivity(complaintIntent);
+                    }
+                    //求助
+                    else if (Constants.PROPERTY_JOB_HELP.equals(entity.getsId()))
+                    {
+                        Intent complaintIntent = new Intent(context, RepairActivity.class);
+                        complaintIntent.putExtra("title_name", "求助");
+                        complaintIntent.putExtra("type", Constants.PROPERTY_HELP);
+                        context.startActivity(complaintIntent);
+                    }
+                    //建议
+                    else if (Constants.PROPERTY_JOB_ADVISE.equals(entity.getsId()))
+                    {
+                        Intent suggestIntent = new Intent(context, RepairActivity.class);
+                        suggestIntent.putExtra("title_name", "建议");
+                        suggestIntent.putExtra("type", Constants.PROPERTY_SUGGEST);
+                        context.startActivity(suggestIntent);
+                    }
+                    //表扬
+                    else if (Constants.PROPERTY_STAFF_PRAISE.equals(entity.getsId()))
+                    {
+                        Intent praiseIntent = new Intent(context, PraiseListActivity.class);
+                        context.startActivity(praiseIntent);
+                    }
+                    //快递
+                    else if (Constants.PROPERTY_SERVICE_PARCEL.equals(entity.getsId()))
+                    {
+                        Intent delivertyIntent = new Intent(context, MyCentralDelivertyActivity.class);
+                        context.startActivity(delivertyIntent);
+                    }
+                    //生活缴费
+                    else if (Constants.PROPERTY_SERVICE_PAYMENT.equals(entity.getsId()))
+                    {
+                        Intent paymentIntent = new Intent(context, MyCentralCardActivity.class);
+                        context.startActivity(paymentIntent);
+                    }
+                    //便民信息
+                    else if (Constants.PROPERTY_SERVICE_CONVENIENT.equals(entity.getsId()))
+                    {
+                        Intent facilitateIntent = new Intent(context, MyCentralListsActivity.class);
+                        context.startActivity(facilitateIntent);
+                    }
+                }
+            });
+        }
+        
         return convertView;
     }
     

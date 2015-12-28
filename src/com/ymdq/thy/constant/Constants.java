@@ -69,6 +69,22 @@ public class Constants
      */
     public static boolean TOURIST = false;
     
+    public static final String PROPERTY_JOB_ADVISE = "job:advise";
+    
+    public static final String PROPERTY_JOB_COMPLAIN = "job:complain";
+    
+    public static final String PROPERTY_JOB_HELP = "job:help";
+    
+    public static final String PROPERTY_JOB_REPAIR = "job:repair";
+    
+    public static final String PROPERTY_STAFF_PRAISE = "staff:praise";
+    
+    public static final String PROPERTY_SERVICE_PARCEL = "service:parcel";
+    
+    public static final String PROPERTY_SERVICE_PAYMENT = "service:payment";
+    
+    public static final String PROPERTY_SERVICE_CONVENIENT = "service:convenient";
+    
     /**
      * 魔鬼数字
      */
@@ -516,5 +532,5 @@ public class Constants
     
     public static final String RENREN_APP_SECRET = "3bf66e42db1e4fa9829b955cc300b737";
     
-    public static Typeface fontFace =  null;
+    public static Typeface fontFace = null;
 }

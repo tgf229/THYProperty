@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -50,7 +51,9 @@ import com.ymdq.thy.sharepref.SharePref;
 import com.ymdq.thy.ui.BaseFragment;
 import com.ymdq.thy.ui.home.adapter.HomeImagePagerAdapter;
 import com.ymdq.thy.ui.personcenter.LoginActivity;
+import com.ymdq.thy.ui.propertyservice.MyTicketActivity;
 import com.ymdq.thy.ui.propertyservice.PraiseListActivity;
+import com.ymdq.thy.ui.propertyservice.PropertyInfoActivity;
 import com.ymdq.thy.ui.propertyservice.adapter.ServiceItemListAdapter;
 import com.ymdq.thy.util.DialogUtil;
 import com.ymdq.thy.util.DownApkUtil;
@@ -595,7 +598,17 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                     if (GeneralUtils.isNotNullOrZeroSize(doc))
                     {
                         serviceItemList.clear();
+                        service_item_grid.removeAllViewsInLayout();
                         serviceItemList.addAll(doc);
+                        int len = serviceItemList.size() % 4;
+                        if (len != 0)
+                        {
+                            for (int i = 0; i < 4-len; i++)
+                            {
+                                ServiceItemDoc item = new ServiceItemDoc();
+                                serviceItemList.add(item);
+                            }
+                        }
                         serviceItemListAdapter.notifyDataSetChanged();
                     }
                 }
@@ -754,7 +767,38 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
     {
         switch (v.getId())
         {
-        //快递信息
+            case R.id.property_info:
+                Intent intent1 = new Intent(getActivity(),PropertyInfoActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.property_list:
+                if(Global.isLogin())
+                {
+                    Intent ticket = new Intent(getActivity(),MyTicketActivity.class);
+                    startActivity(ticket);
+                }
+                else
+                {
+                    goToLogin();
+                }
+                break;
+            case R.id.property_call:
+                if(GeneralUtils.isNullOrZeroLenght(SharePref.getString(SharePref.PROPERTY_TEL, "")))
+                {
+                    ToastUtil.makeText(getActivity(), "暂无号码信息");
+                    break;
+                }
+                DialogUtil.showTwoButtonDialog(getActivity(),"您是否拨打物业号码：\n"+SharePref.getString(SharePref.PROPERTY_TEL, ""),
+                    new DialogCallBack(){
+
+                    @Override
+                    public void dialogBack()
+                    {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+SharePref.getString(SharePref.PROPERTY_TEL, "")));
+                        startActivity(callIntent);
+                    }});
+                break;
+            //快递信息
             case R.id.my_central_delivery:
                 if (Global.isLogin())
                 {
@@ -856,7 +900,7 @@ public class MainFragment extends BaseFragment implements OnHeaderRefreshListene
                     if (Global.isLogin())
                     {
                         Global.saveUCId(c_id);
-                        login();
+//                        login();
                     }
                     Global.saveCId(c_id);
                     reqInit();
